@@ -1,0 +1,8 @@
+/* Setting DRPC options for better privacy */
+
+{
+    "discord.removeRemoteRepository": true,
+    "discord.removeLowerDetails": false,
+    "discord.lowerDetailsDebugging": "Debugging coursework",
+    "discord.lowerDetailsEditing": "University Coursework Project"
+}
