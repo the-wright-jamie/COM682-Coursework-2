@@ -1,4 +1,4 @@
-<nav class="shadow navbar">
+<nav class="fixed-top shadow navbar">
     <div class="container-fluid">
         <a class="invertible navbar-brand" href="/">
         <img src="../../assets/img/logo.png" style="margin-right: 10%; margin-left: 5%" alt="" height="24" class="d-inline-block align-text-top">
@@ -12,19 +12,22 @@
 </nav>
 
 <div class="container-fluid" style="max-width: 760px">
-    <br>
+    <br><br><br>
     <div class="hstack gap-4">
         <input class="invertible form-control me-auto" type="text" placeholder="Post something..." >
         <button type="button" class="btn btn-secondary">Post</button>
     </div>
     <br>
-    <app-user-post *ngFor="let post of this.data" 
+    <app-user-post *ngFor="let post of this.data.reverse()" 
         [username]="post.username"
+        [avatar]="post.avatar"
+        [badge]="post.badge"
         [type]="post.type"
         [date]="post.date"
         [username]="post.username"
         [header]="post.header"
         [body]="post.body"
+        [media]="post.media"
         [likes]="post.likes"
         [comments]="post.comments"></app-user-post>
 </div>

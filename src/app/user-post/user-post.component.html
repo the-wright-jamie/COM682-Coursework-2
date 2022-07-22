@@ -1,7 +1,7 @@
 <div class="shadow card">
     <div class="card-header">
-        <img class="small-avatar" src="https://avatars.githubusercontent.com/u/56081223?v=4">
-        <a href="/u/{{ this.username }}">{{ this.username }}</a> posted a {{ this.type }} on {{ this.date }}
+        <img class="small-avatar" src="{{ this.avatar }}">
+        <a href="/u/{{ this.username }}">{{ this.username }}</a><span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{ this.badge }}</span> posted a {{ this.type }} {{ this.formattedDate }}
     </div>
     <div class="card-body">
         <div class="card-title">
@@ -9,6 +9,7 @@
         </div>
         <p class="card-text">{{ this.body }}</p>
     </div>
+    <img *ngIf="this.hasMedia" src="{{ this.media }}" class="image-attachment">
     <div class="card-footer text-muted" style="margin-bottom: -2%">
         <span class="badge rounded-pill"><span class="material-symbols-rounded interact-controls">
             thumb_up
