@@ -5,12 +5,14 @@ import { RouterModule, Routes } from '@angular/router'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { UserPostComponent } from './user-post/user-post.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomePageComponent },
+  { path: 'feed', component: NewsFeedComponent },
   { path: 'login', component: LoginComponent },
   { path: 'welcome', component: LandingPageComponent },
   { path: 'signup', component: SignupComponent },
@@ -24,9 +26,11 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomePageComponent,
+    NewsFeedComponent,
     LandingPageComponent,
     ErrorPageComponent,
+    UserPostComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,

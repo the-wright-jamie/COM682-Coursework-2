@@ -1,0 +1,38 @@
+<nav class="shadow navbar">
+    <div class="container-fluid">
+        <a class="invertible navbar-brand" href="/">
+        <img src="../../assets/img/logo.png" style="margin-right: 10%; margin-left: 5%" alt="" height="24" class="d-inline-block align-text-top">
+        UlsterBook
+        </a>
+        <div class="d-flex">
+            <a class="btn btn-primary ms-2" href="/login" role="button">Login</a>
+            <a class="btn btn-outline-primary ms-2" href="/signup" role="button">Sign up</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid" style="max-width: 760px">
+    <br>
+    <div class="hstack gap-4">
+        <input class="invertible form-control me-auto" type="text" placeholder="Post something..." >
+        <button type="button" class="btn btn-secondary">Post</button>
+    </div>
+    <br>
+    <app-user-post *ngFor="let post of this.data" 
+        [username]="post.username"
+        [type]="post.type"
+        [date]="post.date"
+        [username]="post.username"
+        [header]="post.header"
+        [body]="post.body"
+        [likes]="post.likes"
+        [comments]="post.comments"></app-user-post>
+</div>
+
+
+<div *ngIf="this.isLoading" class="position-absolute top-50 start-50 translate-middle text-center">
+    <div class="spinner-border spinner-border-sm" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>{{ this.loadingMessage }}</p>
+</div>

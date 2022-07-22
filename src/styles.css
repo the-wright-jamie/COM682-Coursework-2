@@ -4,12 +4,32 @@
 		background-color: #f5f5f5;
 		color: #222;
 	}
+
+	a {
+		color: #222;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #222;
+		text-decoration: underline;
+	}
 }
 
 @media (prefers-color-scheme: dark) {
 	body {
 		background-color: #222;
 		color: #fff;
+	}
+
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #fff;
+		text-decoration: underline;
 	}
 
 	.navbar {
@@ -23,4 +43,14 @@
     .invertible {
         filter: invert(1);
     }
+}
+
+.small-avatar {
+	max-width: 2em;
+	border-radius: 50%;
+	margin-right: 2%;
+}
+
+.interact-controls {
+	margin-right: 2%;
 }
