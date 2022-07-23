@@ -1,18 +1,35 @@
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
-      </div>
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <h4>Create Post</h4>
+  <br>
+  <form>
+    <h5>Title</h5>
+    <input #title (keyup)="this.titleChanged(title.value)" type="text" id="title" class="form-control invertible">
+    <div id="passwordHelpBlock" class="form-text">
+      Don't add anything to the body if you just want to have a title
     </div>
-  </div>
+    <br>
+    <h5>Body</h5>
+      <textarea #body_input (keyup)="this.bodyChanged(body_input.value)" class="form-control invertible" id="body" rows="3"></textarea>
+    <br>
+    <!--<h5>Attached Media</h5>
+    <br>-->
+    <a class="shadow btn btn-primary" href="/create-post" role="button">Post!</a>
+  </form>
+
+  <br>
+  <h5>How your post will look:</h5>
+  <app-user-post
+    [username]="this.username"
+    [avatar]="this.avatar"
+    [badge]="this.badge"
+    [type]="this.type"
+    [date]="this.date"
+    [header]="this.header"
+    [body]="this.body"
+    [media]="this.media"
+    [likes]="this.likes"
+    [comments]="this.comments">
+  </app-user-post>
+</div>

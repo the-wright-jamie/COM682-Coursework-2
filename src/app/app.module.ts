@@ -11,9 +11,12 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { UserPostComponent } from './user-post/user-post.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoadingComponent } from './loading/loading.component';
 
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
+  { path: 'create-post', component: CreatePostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'welcome', component: LandingPageComponent },
   { path: 'signup', component: SignupComponent },
@@ -33,6 +36,8 @@ const routes: Routes = [
     UserPostComponent,
     UserPageComponent,
     CreatePostComponent,
+    NavbarComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
