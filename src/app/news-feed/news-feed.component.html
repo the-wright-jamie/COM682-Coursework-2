@@ -12,11 +12,11 @@
 </nav>
 
 <div class="container-fluid" style="max-width: 760px">
-    <br><br><br>
-    <div class="hstack gap-4">
-        <input class="invertible form-control me-auto" type="text" placeholder="Post something..." >
-        <button type="button" class="btn btn-secondary">Post</button>
-    </div>
+    <br><br><br><br>
+    <div class="d-grid gap-2">
+        <button class="shadow btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" type="button">Post something...</button>
+        <app-create-post></app-create-post>
+      </div>
     <br>
     <app-user-post *ngFor="let post of this.data.reverse()" 
         [username]="post.username"
@@ -31,7 +31,6 @@
         [likes]="post.likes"
         [comments]="post.comments"></app-user-post>
 </div>
-
 
 <div *ngIf="this.isLoading" class="position-absolute top-50 start-50 translate-middle text-center">
     <div class="spinner-border spinner-border-sm" role="status">

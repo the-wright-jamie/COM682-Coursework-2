@@ -10,6 +10,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { UserPostComponent } from './user-post/user-post.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
     ErrorPageComponent,
     UserPostComponent,
     UserPageComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,
