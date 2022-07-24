@@ -29,6 +29,8 @@ export class NewsFeedComponent implements OnInit {
       return obj.shouldShow === "true"
     });
 
+    this.data = this.data.sort((a: { time: number; }, b: { time: number; }) => (a.time > b.time) ? 1 : -1);
+
     this.loadingMessage = "Now loading";
     this.isLoading = false;
   }

@@ -88,3 +88,7 @@
 .container-fluid {
 	max-width: 760px;
 }
+
+.light {
+	opacity: 60%;
+}

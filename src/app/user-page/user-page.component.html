@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="!this.isDeleted && this.userFound">
     <div class="text-center">
         <img src="{{ this.avatar }}" class="large-avatar">
         <h1>{{ this.user }}</h1>
@@ -32,6 +32,32 @@
                 {{ this.creation }} ({{ this.creationTimeSince }})
             </div>
         </div>
+
+        <hr>
+
+        <h4>User Posts</h4>
+        <br>
+        <div *ngIf="!this.isMuted">
+            <app-user-post *ngFor="let post of this.data.reverse()" 
+            [poster]="this.user"
+            [type]="post.type"
+            [date]="post.date"
+            [header]="post.header"
+            [body]="post.body"
+            [media]="post.media"
+            [likes]="post.likes"
+            [comments]="post.comments"></app-user-post>
+        </div>
+
+        <div class="text-center light" *ngIf="this.isMuted">
+            This user has been muted by the moderation team due to violations of our Community Guidelines and Terms of Service. As a result, so you can't see their posts.
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="this.isDeleted">
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <h1 class="text-center light">This user as been deleted</h1>
     </div>
 </div>
 
