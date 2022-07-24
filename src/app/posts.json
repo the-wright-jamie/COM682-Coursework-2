@@ -1,46 +1,119 @@
 [
     {
       "id": 1,
-      "poster": "jamesw-64",
+      "posterId": 1,
+      "poster": "",
       "type": "message",
       "date": 1658515830,
       "header": "This is the first post ever",
       "body": "This is a post to celebrate the first ever post on the website. Here's what I have to say: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vestibulum nisi nisi, ut scelerisque nunc lacinia sit amet.",
       "media": "",
       "likes": 0,
-      "comments": 0
+      "comments": 0,
+      "shouldShow": ""
     },
     {
       "id": 2,
-      "poster": "johndoe",
+      "posterId": 3,
+      "poster": "",
       "type": "message",
       "date": 1658518630,
       "header": "The second post!",
       "body": "This is a post about something. Here's what I have to say: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vestibulum nisi nisi, ut scelerisque nunc lacinia sit amet.",
       "media": "",
       "likes": 0,
-      "comments": 0
+      "comments": 0,
+      "shouldShow": ""
     },
     {
       "id": 3,
-      "poster": "janedoe",
+      "posterId": 4,
+      "poster": "",
       "type": "image",
       "date": 1658521630,
       "header": "I'm sad!",
       "body": "I joined just a few hours too late and didn't get the early adopter badge. Guys, this is honestly really toxic and I think I should be allowed to have the badge. Let's boycott and cancel UlsterBook!",
       "media": "https://ichef.bbci.co.uk/news/976/cpsprodpb/2D45/production/_114898511_hi062045152.jpg",
       "likes": 0,
-      "comments": 0
+      "comments": 0,
+      "shouldShow": ""
     },
     {
       "id": 4,
-      "poster": "test-user",
+      "posterId": 5,
+      "poster": "",
       "type": "message",
       "date": 1658522630,
       "header": "Beep boop",
       "body": "Beep boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop ",
       "media": "",
       "likes": 0,
-      "comments": 0
+      "comments": 0,
+      "shouldShow": ""
+    },
+    {
+      "id": 5,
+      "posterId": 2,
+      "poster": "",
+      "type": "message",
+      "date": 1658532630,
+      "header": "Beep boop",
+      "body": "Beep boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop ",
+      "media": "",
+      "likes": 0,
+      "comments": 0,
+      "shouldShow": ""
+    },
+    {
+      "id": 6,
+      "posterId": 6,
+      "poster": "",
+      "type": "message",
+      "date": 1658532630,
+      "header": "Beep boop",
+      "body": "Beep boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop ",
+      "media": "",
+      "likes": 0,
+      "comments": 0,
+      "shouldShow": ""
+    },
+    {
+      "id": 7,
+      "posterId": 7,
+      "poster": "",
+      "type": "message",
+      "date": 1658532630,
+      "header": "Beep boop",
+      "body": "Beep boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop ",
+      "media": "",
+      "likes": 0,
+      "comments": 0,
+      "shouldShow": ""
+    },
+    {
+      "id": 8,
+      "posterId": 8,
+      "poster": "",
+      "type": "message",
+      "date": 1658532630,
+      "header": "Beep boop",
+      "body": "Beep boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop ",
+      "media": "",
+      "likes": 0,
+      "comments": 0,
+      "shouldShow": ""
+    },
+    {
+      "id": 9,
+      "posterId": 9,
+      "poster": "",
+      "type": "message",
+      "date": 1658532630,
+      "header": "Beep boop",
+      "body": "Beep boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop ",
+      "media": "",
+      "likes": 0,
+      "comments": 0,
+      "shouldShow": ""
     }
   ]

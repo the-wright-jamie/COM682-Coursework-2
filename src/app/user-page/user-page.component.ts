@@ -32,8 +32,13 @@ export class UserPageComponent implements OnInit {
         this.user = currentUser.username;
         this.avatar = currentUser.avatar;
 
-        this.badgeColour = currentUser.badge?.split(":")[1];
-        this.badge = currentUser.badge?.split(":")[0];
+        if(currentUser.isAdmin === "true" || currentUser.isModerator === "true") {
+          this.badge = currentUser.isAdmin === "true" ? "Site Admin" : "Moderator"
+          this.badgeColour = currentUser.isAdmin === "true" ? "danger" : "warning"
+        } else {
+          this.badgeColour = currentUser.badge?.split(":")[1];
+          this.badge = currentUser.badge?.split(":")[0];
+        }
 
         this.birthday = moment(new Date(currentUser.birthday * 1000)).format("DD MMMM   YYYY");
         this.birthdayTimeSince = this.timeDifference.calculate(currentUser.birthday * 1000);
