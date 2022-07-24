@@ -1,1 +1,38 @@
-<p>user-page works!</p>
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+    <div class="text-center">
+        <img src="{{ this.avatar }}" class="large-avatar">
+        <h1>{{ this.user }}</h1>
+        <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{ this.badge }}</span>
+    </div>
+
+    <hr>
+
+    <h4>About User</h4>
+    <div class="about-user">
+        <div class="row align-middle">
+            <div class="col-1 text-center">
+                <span class="align-bottom" class="material-symbols-rounded">
+                    cake
+                </span>
+            </div>
+            <div class="col">
+                {{ this.birthday }} ({{ this.birthdayTimeSince }})
+            </div>
+        </div>
+
+        <div class="row align-middle">
+            <div class="col-1 text-center">
+                <span class="align-bottom" class="material-symbols-rounded">
+                    add_circle
+                </span>
+            </div>
+            <div class="col">
+                {{ this.creation }} ({{ this.creationTimeSince }})
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-error-page *ngIf="!this.userFound"></app-error-page>

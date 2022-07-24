@@ -61,6 +61,14 @@
 	background-repeat: no-repeat;
 }
 
+.large-avatar {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
 .interact-controls {
 	margin-right: 2%;
 }

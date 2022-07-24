@@ -13,13 +13,13 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoadingComponent } from './loading/loading.component';
-
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
   { path: 'create-post', component: CreatePostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'welcome', component: LandingPageComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'u/:id', component: UserPageComponent },
   { path: '404', component: ErrorPageComponent},
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: '**', redirectTo: '/404' }
