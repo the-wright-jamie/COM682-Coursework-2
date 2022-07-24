@@ -6,9 +6,7 @@
     </div>
     <br>
     <app-user-post *ngFor="let post of this.data.reverse()" 
-        [username]="post.username"
-        [avatar]="post.avatar"
-        [badge]="post.badge"
+        [poster]="post.poster"
         [type]="post.type"
         [date]="post.date"
         [header]="post.header"

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TimeDifferenceService } from '../time-difference.service';
 import moment from 'moment';
-import { Users } from '../users';
-import users from './../users.json';
+import users from '../users.json';
 
 @Component({
   selector: 'app-user-page',
@@ -27,7 +26,6 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
     let urlUser = this.route.snapshot.paramMap.get('id')?.toString();
-    console.log(users);
 
     users.forEach(currentUser => {
       if(urlUser === currentUser.username) {
