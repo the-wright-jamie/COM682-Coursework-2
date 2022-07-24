@@ -31,5 +31,16 @@
       "media": "https://ichef.bbci.co.uk/news/976/cpsprodpb/2D45/production/_114898511_hi062045152.jpg",
       "likes": 0,
       "comments": 0
+    },
+    {
+      "id": 4,
+      "poster": "test-user",
+      "type": "message",
+      "date": 1658522630,
+      "header": "Beep boop",
+      "body": "Beep boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop boop beep boop ",
+      "media": "",
+      "likes": 0,
+      "comments": 0
     }
   ]
