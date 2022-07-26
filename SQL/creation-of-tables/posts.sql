@@ -7,7 +7,7 @@ CREATE TABLE posts (
     postDate int NOT NULL, 
     header varchar(255) NOT NULL, 
     body varchar(1200) NOT NULL,
-    media varchar(1200) NOT NULL,
+    media varchar(1200),
     likes int NOT NULL,
 
     FOREIGN KEY (posterId) REFERENCES users(id)
