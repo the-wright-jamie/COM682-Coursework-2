@@ -5,7 +5,8 @@
         <a class="shadow btn btn-primary" href="/create-post" role="button">Post something...</a>
     </div>
     <br>
-    <app-user-post *ngFor="let post of this.data.reverse()" 
+    <app-user-post *ngFor="let post of this.data.reverse()"
+        [id]="post.id"
         [poster]="post.poster"
         [type]="post.type"
         [date]="post.date"

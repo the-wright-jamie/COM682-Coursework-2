@@ -13,6 +13,7 @@ export class UserPostComponent implements OnInit {
   badgeColour: string | undefined;
 
   // add type
+  @Input() id: number | undefined;
   @Input('poster') poster: string | undefined;
   avatar: string | undefined;
   badge: string | undefined;
@@ -46,5 +47,9 @@ export class UserPostComponent implements OnInit {
 
   get hasMedia(): boolean {
     return this.media == "" ? false : true;
+  }
+
+  get isComment(): boolean {
+    return this.type == "comment" ? true : false;
   }
 }

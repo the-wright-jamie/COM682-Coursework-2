@@ -4,10 +4,13 @@
         <a href="/u/{{ this.poster }}">{{ this.poster }}</a><span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{ this.badge }}</span> posted a {{ this.type }} {{ this.formattedDate }}
     </div>
     <div class="card-body">
-        <div class="card-title">
+        <div *ngIf="!this.isComment" class="card-title">
             <h5 class="card-title">{{ this.header }}</h5>
         </div>
         <p class="card-text">{{ this.body }}</p>
+        <div *ngIf="this.isComment">
+            <a class="light" href="feed">See Source</a>
+        </div>
     </div>
     <img *ngIf="this.hasMedia" src="{{ this.media }}" class="image-attachment">
     <div class="card-footer text-muted" style="margin-bottom: -2%">
@@ -15,9 +18,9 @@
             thumb_up
         </span> <p class="text-center">{{ this.likes }}</p></span>
 
-        <span class="badge rounded-pill"><span class="material-symbols-rounded interact-controls">
+        <span *ngIf="!this.isComment" class="badge rounded-pill"><span class="material-symbols-rounded interact-controls">
             comment
-        </span> <p class="text-center">{{ this.comments }}</p></span>
+        </span><a href="/post/{{ this.id }}"><p class="text-center">{{ this.comments }}</p></a></span>
     </div>
 </div>
 <br>

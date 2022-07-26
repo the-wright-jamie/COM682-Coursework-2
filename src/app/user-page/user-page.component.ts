@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TimeDifferenceService } from '../time-difference.service';
 import moment from 'moment';
 import users from '../users.json';
-import posts from '../posts.json'
+import posts from '../posts.json';
+import comments from '../comments.json';
 
 @Component({
   selector: 'app-user-page',
@@ -25,6 +26,15 @@ export class UserPageComponent implements OnInit {
   isMuted = false;
 
   data: any; //TODO FIX!!!!!!
+
+  comments = [
+    {
+      "username": "",
+      "date": 0,
+      "body": "",
+      "likes": 0
+    }
+  ]
 
   constructor(private route: ActivatedRoute, private timeDifference: TimeDifferenceService) {
   }
@@ -60,6 +70,19 @@ export class UserPageComponent implements OnInit {
 
         this.data = this.data.sort((a: { time: number; }, b: { time: number; }) => (a.time > b.time) ? 1 : -1);
 
+        let commentCount = 0;
+        comments.forEach(comment => {
+          if (comment.posterId === currentUser.id) {
+            this.comments[commentCount] = {
+              username: currentUser.username,
+              date: comment.date,
+              body: comment.body,
+              likes: comment.likes,
+            }
+
+            commentCount = commentCount + 1;
+          }
+        });
         return;
       }
     });

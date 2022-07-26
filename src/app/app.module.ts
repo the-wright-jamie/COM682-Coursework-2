@@ -13,6 +13,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoadingComponent } from './loading/loading.component';
+import { PostPageComponent } from './post-page/post-page.component';
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
   { path: 'create-post', component: CreatePostComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'welcome', component: LandingPageComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'u/:id', component: UserPageComponent },
+  { path: 'post/:id', component: PostPageComponent },
   { path: '404', component: ErrorPageComponent},
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: '**', redirectTo: '/404' }
@@ -38,6 +40,7 @@ const routes: Routes = [
     CreatePostComponent,
     NavbarComponent,
     LoadingComponent,
+    PostPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import users from '../users.json'
 import posts from '../posts.json'
+import comments from '../comments.json';
 
 @Component({
   selector: 'app-news-feed',
@@ -17,6 +18,15 @@ export class NewsFeedComponent implements OnInit {
 
   ngOnInit(): void {
     posts.forEach(post => {
+      let commentCount = 0;
+      comments.forEach(comment => {
+        if (comment.postId === post.id) {
+          commentCount = commentCount + 1;
+        }
+      });
+
+      post.comments = commentCount;
+
       users.forEach(currentUser => {
         if (post.posterId === currentUser.id) {
           post.poster = currentUser.username;

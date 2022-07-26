@@ -2,8 +2,13 @@
 
 <div class="container-fluid" *ngIf="!this.isDeleted && this.userFound">
     <div class="text-center">
-        <img src="{{ this.avatar }}" class="large-avatar">
-        <h1>{{ this.user }}</h1>
+        <img src="{{ this.avatar }}" class="shadow large-avatar">
+        <h1>{{ this.user }} <div class="btn-group">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+            <ul class="dropdown-menu">
+              Test
+            </ul>
+          </div></h1>
         <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{ this.badge }}</span>
     </div>
 
@@ -35,22 +40,49 @@
 
         <hr>
 
-        <h4>User Posts</h4>
-        <br>
-        <div *ngIf="!this.isMuted">
-            <app-user-post *ngFor="let post of this.data.reverse()" 
-            [poster]="this.user"
-            [type]="post.type"
-            [date]="post.date"
-            [header]="post.header"
-            [body]="post.body"
-            [media]="post.media"
-            [likes]="post.likes"
-            [comments]="post.comments"></app-user-post>
+        <div class="text-center light" *ngIf="this.isMuted">
+            This user has been temporarily muted by the moderation team due to violations of our Community Guidelines and Terms of Service. As a result, so you can't see their posts. They can still like and follow accounts but they cannot comment or post.
         </div>
 
-        <div class="text-center light" *ngIf="this.isMuted">
-            This user has been muted by the moderation team due to violations of our Community Guidelines and Terms of Service. As a result, so you can't see their posts.
+        
+        <div *ngIf="!this.isMuted">
+            <div id="posts">
+                <h4>User Posts</h4>
+                <br>
+                <div>
+                    <app-user-post *ngFor="let post of this.data.reverse()"
+                    [id]="post.id"
+                    [poster]="this.user"
+                    [type]="post.type"
+                    [date]="post.date"
+                    [header]="post.header"
+                    [body]="post.body"
+                    [media]="post.media"
+                    [likes]="post.likes"
+                    [comments]="post.comments"></app-user-post>
+                </div>
+
+                <div class="text-center light" *ngIf="this.isMuted">
+                    This user has been temporarily muted by the moderation team due to violations of our Community Guidelines and Terms of Service. As a result, so you can't see their posts. They can still like and follow accounts but they cannot comment or post.
+                </div>
+            </div>
+
+            <div id="comments">
+                <h4>User Comments</h4>
+                <br>
+                <div>
+                    <app-user-post *ngFor="let comments of this.comments.reverse()" 
+                    [id]="0"
+                    [poster]="this.user"
+                    [type]="'comment'"
+                    [date]="comments.date"
+                    [header]=""
+                    [body]="comments.body"
+                    [media]=""
+                    [likes]="comments.likes"
+                    [comments]="0"></app-user-post>
+                </div>
+            </div>
         </div>
     </div>
 </div>
