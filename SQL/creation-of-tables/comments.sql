@@ -6,7 +6,6 @@ CREATE TABLE comments (
     posterId int NOT NULL,
     postDate int NOT NULL,
     body varchar(1200) NOT NULL,
-    likes int NOT NULL,
 
     FOREIGN KEY (postId) REFERENCES posts(id),
     FOREIGN KEY (posterId) REFERENCES users(id)

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiInterfaceService } from '../api-interface.service'
 import users from '../users.json'
 import posts from '../posts.json'
 import comments from '../comments.json';
@@ -27,7 +28,7 @@ export class NewsFeedComponent implements OnInit {
 
       post.comments = commentCount;
 
-      users.forEach(currentUser => {
+      ApiInterfaceService.getUsers().forEach(currentUser => {
         if (post.posterId === currentUser.id) {
           post.poster = currentUser.username;
           post.shouldShow = currentUser.isMuted === "false" && currentUser.isDeleted === "false" ? "true" : "false";
