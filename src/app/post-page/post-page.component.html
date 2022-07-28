@@ -1,38 +1,39 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
-    <div *ngIf="this.isFound">
-        <app-user-post
-        [id]="this.post.id"
-        [poster]="this.post.username"
-        [type]="this.post.type"
-        [date]="this.post.date"
-        [header]="this.post.header"
-        [body]="this.post.body"
-        [media]="this.post.media"
-        [likes]="this.post.likes"
-        [comments]="this.post.comments"></app-user-post>
+  <div *ngIf="this.isFound">
+    <app-user-post
+      [id]="this.post.id"
+      [poster]="this.post.username"
+      [type]="this.post.type"
+      [date]="this.post.date"
+      [header]="this.post.header"
+      [body]="this.post.body"
+      [media]="this.post.media"
+      [likes]="this.post.likes"
+      [comments]="this.post.comments"
+    ></app-user-post>
 
-        <h5>Comments</h5>
-        <div *ngIf="this.post.comments > 0">
-            <app-user-post  *ngFor="let comment of this.comments.reverse()"
-            [id]="0"
-            [poster]="this.comment.username"
-            [type]="'comment'"
-            [date]="this.comment.date"
-            [header]=""
-            [body]="this.comment.body"
-            [media]=""
-            [likes]="0"
-            [comments]="0"></app-user-post>
-        </div>
-
-        <div *ngIf="this.post.comments === 0" class="text-center light">
-            No comments found
-        </div>
+    <h5>Comments</h5>
+    <div *ngIf="this.post.comments > 0">
+      <app-user-post
+        *ngFor="let comment of this.comments.reverse()"
+        [id]="0"
+        [poster]="this.comment.username"
+        [type]="'comment'"
+        [date]="this.comment.date"
+        [header]=""
+        [body]="this.comment.body"
+        [media]=""
+        [likes]="0"
+        [comments]="0"
+      ></app-user-post>
     </div>
 
-    <div *ngIf="!this.isFound">
-        <app-error-page></app-error-page>
-    </div>
+    <div *ngIf="this.post.comments === 0" class="text-center light">No comments found</div>
+  </div>
+
+  <div *ngIf="!this.isFound">
+    <app-error-page></app-error-page>
+  </div>
 </div>

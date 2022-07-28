@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
-    <div class="d-grid gap-2">
-        <a class="shadow btn btn-primary" href="/create-post" role="button">Post something...</a>
-    </div>
-    <br>
-    <app-user-post *ngFor="let post of this.data.reverse()"
+  <div class="d-grid gap-2">
+    <a class="shadow btn btn-primary" href="/create-post" role="button">Post something...</a>
+  </div>
+  <br />
+  <!--<app-user-post *ngFor="let post of this.data.reverse()"
         [id]="post.id"
         [poster]="post.poster"
         [type]="post.type"
@@ -14,7 +14,7 @@
         [body]="post.body"
         [media]="post.media"
         [likes]="post.likes"
-        [comments]="post.comments"></app-user-post>
+        [comments]="post.comments"></app-user-post>-->
 </div>
 
 <app-loading [isLoading]="this.isLoading"></app-loading>

@@ -6,9 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./error-page.component.css']
 })
 export class ErrorPageComponent implements OnInit {
-
   constructor() {}
 
-  async ngOnInit(): Promise<void> {
-  }
+  async ngOnInit(): Promise<void> {}
 }

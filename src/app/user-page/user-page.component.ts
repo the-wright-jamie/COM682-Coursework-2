@@ -12,7 +12,6 @@ import comments from '../comments.json';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
-
   user: string | undefined;
   avatar: string | undefined;
   badge: string | undefined;
@@ -29,37 +28,36 @@ export class UserPageComponent implements OnInit {
 
   comments = [
     {
-      "username": "",
-      "date": 0,
-      "body": "",
-      "likes": 0
+      username: '',
+      date: 0,
+      body: '',
+      likes: 0
     }
-  ]
+  ];
 
-  constructor(private route: ActivatedRoute, private timeDifference: TimeDifferenceService) {
-  }
+  constructor(private route: ActivatedRoute, private timeDifference: TimeDifferenceService) {}
 
   ngOnInit(): void {
     let urlUser = this.route.snapshot.paramMap.get('id')?.toString();
 
-    users.forEach(currentUser => {
+    users.forEach((currentUser) => {
       if (urlUser === currentUser.username) {
         this.user = currentUser.username;
         this.avatar = currentUser.avatar;
-        this.isDeleted = currentUser.isDeleted === "true" ? true : false;
-        this.isMuted = currentUser.isMuted === "true" ? true : false;
+        this.isDeleted = currentUser.isDeleted === 'true' ? true : false;
+        this.isMuted = currentUser.isMuted === 'true' ? true : false;
 
-        if (currentUser.isAdmin === "true" || currentUser.isModerator === "true") {
-          this.badge = currentUser.isAdmin === "true" ? "Site Admin" : "Moderator"
-          this.badgeColour = currentUser.isAdmin === "true" ? "danger" : "warning"
+        if (currentUser.isAdmin === 'true' || currentUser.isModerator === 'true') {
+          this.badge = currentUser.isAdmin === 'true' ? 'Site Admin' : 'Moderator';
+          this.badgeColour = currentUser.isAdmin === 'true' ? 'danger' : 'warning';
         } else {
-          this.badgeColour = currentUser.badge?.split(":")[1];
-          this.badge = currentUser.badge?.split(":")[0];
+          this.badgeColour = currentUser.badge?.split(':')[1];
+          this.badge = currentUser.badge?.split(':')[0];
         }
 
-        this.birthday = moment(new Date(currentUser.birthday * 1000)).format("DD MMMM YYYY");
+        this.birthday = moment(new Date(currentUser.birthday * 1000)).format('DD MMMM YYYY');
         this.birthdayTimeSince = this.timeDifference.calculate(currentUser.birthday * 1000);
-        this.creation = moment(new Date(currentUser.accountCreation * 1000)).format("DD MMMM YYYY");
+        this.creation = moment(new Date(currentUser.accountCreation * 1000)).format('DD MMMM YYYY');
         this.creationTimeSince = this.timeDifference.calculate(currentUser.accountCreation * 1000);
 
         this.userFound = true;
@@ -68,17 +66,17 @@ export class UserPageComponent implements OnInit {
           return obj.posterId === currentUser.id;
         });
 
-        this.data = this.data.sort((a: { time: number; }, b: { time: number; }) => (a.time > b.time) ? 1 : -1);
+        this.data = this.data.sort((a: { time: number }, b: { time: number }) => (a.time > b.time ? 1 : -1));
 
         let commentCount = 0;
-        comments.forEach(comment => {
+        comments.forEach((comment) => {
           if (comment.posterId === currentUser.id) {
             this.comments[commentCount] = {
               username: currentUser.username,
               date: comment.date,
               body: comment.body,
-              likes: comment.likes,
-            }
+              likes: comment.likes
+            };
 
             commentCount = commentCount + 1;
           }
@@ -87,5 +85,4 @@ export class UserPageComponent implements OnInit {
       }
     });
   }
-
 }

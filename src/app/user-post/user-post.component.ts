@@ -8,7 +8,6 @@ import users from '../users.json';
   styleUrls: ['./user-post.component.css']
 })
 export class UserPostComponent implements OnInit {
-
   formattedDate: string | undefined;
   badgeColour: string | undefined;
 
@@ -24,32 +23,32 @@ export class UserPostComponent implements OnInit {
   @Input('media') media: string | undefined;
   @Input('likes') likes: number | undefined;
   @Input('comments') comments: number | undefined;
-  constructor(private timeDifference: TimeDifferenceService) { }
+  constructor(private timeDifference: TimeDifferenceService) {}
 
   ngOnInit(): void {
-    typeof this.date === 'string' ? this.date : this.date = this.date * 1000;
+    typeof this.date === 'string' ? this.date : (this.date = this.date * 1000);
     this.formattedDate = this.timeDifference.calculate(this.date);
 
-    users.forEach(currentUser => {
-      if(currentUser.username === this.poster) {
-          this.avatar = currentUser.avatar;
-          if(currentUser.isAdmin === "true" || currentUser.isModerator === "true") {
-            this.badge = currentUser.isAdmin === "true" ? "Site Admin" : "Moderator"
-            this.badgeColour = currentUser.isAdmin === "true" ? "danger" : "warning"
-          } else {
-            this.badgeColour = currentUser.badge?.split(":")[1];
-            this.badge = currentUser.badge?.split(":")[0];
-          }
-          this.avatar = currentUser.avatar;
+    users.forEach((currentUser) => {
+      if (currentUser.username === this.poster) {
+        this.avatar = currentUser.avatar;
+        if (currentUser.isAdmin === 'true' || currentUser.isModerator === 'true') {
+          this.badge = currentUser.isAdmin === 'true' ? 'Site Admin' : 'Moderator';
+          this.badgeColour = currentUser.isAdmin === 'true' ? 'danger' : 'warning';
+        } else {
+          this.badgeColour = currentUser.badge?.split(':')[1];
+          this.badge = currentUser.badge?.split(':')[0];
+        }
+        this.avatar = currentUser.avatar;
       }
     });
   }
 
   get hasMedia(): boolean {
-    return this.media == "" ? false : true;
+    return this.media == '' ? false : true;
   }
 
   get isComment(): boolean {
-    return this.type == "comment" ? true : false;
+    return this.type == 'comment' ? true : false;
   }
 }

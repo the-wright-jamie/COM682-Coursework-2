@@ -4,28 +4,35 @@
   <div class="row">
     <div class="col">
       <h4>Create Post</h4>
-      <br>
+      <br />
       <form>
         <h5>Title</h5>
-        <input #title (keyup)="this.titleChanged(title.value)" type="text" id="title" class="form-control invertible">
+        <input #title (keyup)="this.titleChanged(title.value)" type="text" id="title" class="form-control invertible" />
         <div id="passwordHelpBlock" class="form-text">
           Don't add anything to the body if you just want to have a title
         </div>
-        <br>
+        <br />
         <h5>Body</h5>
-          <textarea #body_input (keyup)="this.bodyChanged(body_input.value)" class="form-control invertible" id="body" rows="3"></textarea>
-        <br>
+        <textarea
+          #body_input
+          (keyup)="this.bodyChanged(body_input.value)"
+          class="form-control invertible"
+          id="body"
+          rows="3"
+        ></textarea>
+        <br />
         <!--<h5>Attached Media</h5>
         <br>-->
         <a class="shadow btn btn-primary" href="/create-post" role="button">Post!</a>
       </form>
-      <br>
+      <br />
     </div>
 
     <div class="col">
       <h5>How your post will look:</h5>
       <app-user-post
-        [id]="0",
+        [id]="0"
+        ,
         [poster]="this.username"
         [type]="this.type"
         [date]="this.date"
@@ -33,7 +40,8 @@
         [body]="this.body"
         [media]="this.media"
         [likes]="this.likes"
-        [comments]="this.comments">
+        [comments]="this.comments"
+      >
       </app-user-post>
     </div>
   </div>

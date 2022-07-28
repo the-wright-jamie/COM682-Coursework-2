@@ -7,50 +7,47 @@ import users from '../users.json';
 import posts from '../posts.json';
 import comments from '../comments.json';
 
-
 @Component({
   selector: 'app-post-page',
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.css']
 })
 export class PostPageComponent implements OnInit {
-
   post = {
-    "id": 0,
-    "username": "",
-    "avatar": "",
-    "badge": "",
-    "type": "",
-    "date": 0,
-    "header": "",
-    "body": "",
-    "media": "",
-    "likes": 0,
-    "comments": 0
-  }
+    id: 0,
+    username: '',
+    avatar: '',
+    badge: '',
+    type: '',
+    date: 0,
+    header: '',
+    body: '',
+    media: '',
+    likes: 0,
+    comments: 0
+  };
 
   comments = [
     {
-      "username": "",
-      "date": 0,
-      "body": "",
-      "likes": 0
+      username: '',
+      date: 0,
+      body: '',
+      likes: 0
     }
-  ]
+  ];
 
   isFound = false;
 
-  constructor(private route: ActivatedRoute, private timeDifference: TimeDifferenceService) {
-  }
+  constructor(private route: ActivatedRoute, private timeDifference: TimeDifferenceService) {}
 
   ngOnInit(): void {
-    posts.forEach(post => {
+    posts.forEach((post) => {
       if (post.id === Number(this.route.snapshot.paramMap.get('id')?.toString())) {
         this.isFound = true;
-        
+
         this.post.id = post.id;
 
-        users.forEach(currentUser => {
+        users.forEach((currentUser) => {
           if (post.posterId === currentUser.id) {
             this.post.username = currentUser.username;
             this.post.avatar = currentUser.avatar;
@@ -67,16 +64,16 @@ export class PostPageComponent implements OnInit {
         this.post.likes = post.likes;
 
         let commentCount = 0;
-        comments.forEach(comment => {
+        comments.forEach((comment) => {
           if (comment.postId === post.id) {
-            users.forEach(currentUser => {
+            users.forEach((currentUser) => {
               if (comment.posterId === currentUser.id) {
                 this.comments[commentCount] = {
                   username: currentUser.username,
                   date: comment.date,
                   body: comment.body,
-                  likes: comment.likes,
-                }
+                  likes: comment.likes
+                };
               }
             });
 
