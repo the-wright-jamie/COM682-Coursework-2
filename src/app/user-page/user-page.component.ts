@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TimeDifferenceService } from '../time-difference.service';
 import moment from 'moment';
-import users from '../users.json';
-import posts from '../posts.json';
-import comments from '../comments.json';
+import { ApiInterfaceService } from '../api-interface.service';
+import { Post } from '../post';
+import { User } from '../user';
 
 @Component({
   selector: 'app-user-page',
@@ -12,35 +12,109 @@ import comments from '../comments.json';
   styleUrls: ['./user-page.component.css']
 })
 export class UserPageComponent implements OnInit {
-  user: string | undefined;
-  avatar: string | undefined;
-  badge: string | undefined;
-  badgeColour: string | undefined;
-  birthday: string | undefined;
-  birthdayTimeSince: string | undefined;
-  creation: string | undefined;
-  creationTimeSince: string | undefined;
-  userFound = false;
-  isDeleted = false;
-  isMuted = false;
-
   data: any; //TODO FIX!!!!!!
 
-  comments = [
-    {
-      username: '',
-      date: 0,
-      body: '',
-      likes: 0
-    }
-  ];
+  posts: Post[];
+  user: User;
+  comments: Comment[];
+  isLoading = true;
+  userFound = false;
 
-  constructor(private route: ActivatedRoute, private timeDifference: TimeDifferenceService) {}
+  birthdayString = '';
+  birthdayTimeSince = '';
+  accountCreationString = '';
+  accountCreationTimeSince = '';
+
+  badge = '';
+  badgeColour = '';
+
+  constructor(
+    private route: ActivatedRoute,
+    private timeDifference: TimeDifferenceService,
+    private apiService: ApiInterfaceService
+  ) {
+    this.user = {
+      id: 0,
+      username: '',
+      emailAddress: '',
+      avatar: '',
+      badge: '',
+      birthday: 0,
+      accountCreation: 0,
+      isDeleted: false,
+      isMuted: false,
+      isBanned: false,
+      isModerator: false,
+      isAdmin: false
+    };
+    this.posts = [];
+    this.comments = [];
+  }
 
   ngOnInit(): void {
-    let urlUser = this.route.snapshot.paramMap.get('id')?.tostring();
+    let urlUser = this.route.snapshot.paramMap.get('id')!.toString();
 
-    users.forEach((currentUser) => {
+    this.apiService.getUser(urlUser).subscribe((user: any) => {
+      this.user = user['Table1'][0];
+      console.log(this.user);
+      this.userFound = true;
+
+      if (this.user.isAdmin === true || this.user.isModerator === true) {
+        this.badge = this.user.isAdmin === true ? 'Site Admin' : 'Moderator';
+        this.badgeColour = this.user.isAdmin === true ? 'danger' : 'warning';
+      } else {
+        this.badge = this.user.badge?.split(':')[0];
+        this.badgeColour = this.user.badge?.split(':')[1];
+      }
+
+      this.birthdayString = moment(new Date(this.user.birthday * 1000)).format('DD MMMM YYYY');
+      this.birthdayTimeSince = this.timeDifference.calculate(this.user.birthday * 1000);
+      this.accountCreationString = moment(new Date(this.user.accountCreation * 1000)).format('DD MMMM YYYY');
+      this.accountCreationTimeSince = this.timeDifference.calculate(this.user.accountCreation * 1000);
+    });
+
+    this.apiService.getPostsByUser(urlUser).subscribe((posts: any) => {
+      console.log(posts);
+      let iteration = 0;
+      Object.keys(posts['Table1']).forEach((key: any) => {
+        this.posts[iteration] = {
+          id: posts['Table1'][key].id,
+          posterId: posts['Table1'][key].posterId,
+          poster: posts['Table1'][key].username,
+          avatar: posts['Table1'][key].avatar,
+          postType: posts['Table1'][key].postType,
+          postDate: posts['Table1'][key].postDate,
+          header: posts['Table1'][key].header,
+          body: posts['Table1'][key].body,
+          media: posts['Table1'][key].media,
+          comments: posts['Table1'][key].comments,
+          likes: posts['Table1'][key].likes
+        };
+        iteration++;
+      });
+      this.isLoading = false;
+    });
+
+    /*this.apiService.getUserComments(urlUser).subscribe((comments: any) => {
+      console.log(comments);
+      let iteration = 0;
+      Object.keys(comments['Table1']).forEach((key: any) => {
+        this.comments[iteration] = {
+          id: comments['Table1'][key].id,
+          postId: comments['Table1'][key].postId,
+          posterId: comments['Table1'][key].posterId,
+          postDate: comments['Table1'][key].postDate,
+          body: comments['Table1'][key].body,
+          likes: comments['Table1'][key].likes,
+          username: comments['Table1'][key].username,
+          avatar: comments['Table1'][key].avatar
+        };
+        iteration++;
+      });
+      this.isLoading = false;
+    });
+
+    /*users.forEach((currentUser) => {
       if (urlUser === currentUser.username) {
         this.user = currentUser.username;
         this.avatar = currentUser.avatar;
@@ -83,6 +157,6 @@ export class UserPageComponent implements OnInit {
         });
         return;
       }
-    });
+    });*/
   }
 }

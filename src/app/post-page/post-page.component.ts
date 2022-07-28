@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
+import { ApiInterfaceService } from '../api-interface.service';
 import { TimeDifferenceService } from '../time-difference.service';
-
-import users from '../users.json';
-import posts from '../posts.json';
-import comments from '../comments.json';
 
 @Component({
   selector: 'app-post-page',
@@ -38,10 +35,14 @@ export class PostPageComponent implements OnInit {
 
   isFound = false;
 
-  constructor(private route: ActivatedRoute, private timeDifference: TimeDifferenceService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private timeDifference: TimeDifferenceService,
+    private apiService: ApiInterfaceService
+  ) {}
 
   ngOnInit(): void {
-    posts.forEach((post) => {
+    /*posts.forEach((post) => {
       if (post.id === number(this.route.snapshot.paramMap.get('id')?.tostring())) {
         this.isFound = true;
 
@@ -83,6 +84,6 @@ export class PostPageComponent implements OnInit {
 
         this.post.comments = commentCount;
       }
-    });
+    });*/
   }
 }

@@ -4,4 +4,7 @@ export interface Comment {
   posterId: number;
   postDate: number;
   body: string;
+  likes: number;
+  username: string;
+  avatar: string;
 }
