@@ -1,23 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { TimeDifferenceService } from '../time-difference.service';
-import users from '../users.json';
 
 @Component({
   selector: 'app-user-post',
   templateUrl: './user-post.component.html',
-  styleUrls: ['./user-post.component.css']
+  styleUrls: ['./user-post.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class UserPostComponent implements OnInit {
   formattedDate: string | undefined;
   badgeColour: string | undefined;
 
   // add type
-  @Input() id: number | undefined;
+  @Input('id') id: number | undefined;
   @Input('poster') poster: string | undefined;
-  avatar: string | undefined;
-  badge: string | undefined;
-  @Input('type') type: string | undefined;
-  @Input('date') date!: number | string;
+  @Input('avatar') avatar: string | undefined;
+  @Input('badge') badge: string | undefined;
+  @Input('postType') postType: string | undefined;
+  @Input('postDate') postDate!: number | string;
   @Input('header') header: string | undefined;
   @Input('body') body: string | undefined;
   @Input('media') media: string | undefined;
@@ -26,22 +26,21 @@ export class UserPostComponent implements OnInit {
   constructor(private timeDifference: TimeDifferenceService) {}
 
   ngOnInit(): void {
-    typeof this.date === 'string' ? this.date : (this.date = this.date * 1000);
-    this.formattedDate = this.timeDifference.calculate(this.date);
+    typeof this.postDate === 'string' ? this.postDate : (this.postDate = this.postDate * 1000);
+    this.formattedDate = this.timeDifference.calculate(this.postDate);
 
-    users.forEach((currentUser) => {
+    /*this.users.forEach((currentUser) => {
       if (currentUser.username === this.poster) {
-        this.avatar = currentUser.avatar;
-        if (currentUser.isAdmin === 'true' || currentUser.isModerator === 'true') {
-          this.badge = currentUser.isAdmin === 'true' ? 'Site Admin' : 'Moderator';
-          this.badgeColour = currentUser.isAdmin === 'true' ? 'danger' : 'warning';
+        this.avatar = currentUser.avatar.valueOf();
+        if (currentUser.isAdmin === true || currentUser.isModerator === true) {
+          this.badge = currentUser.isAdmin === true ? 'Site Admin' : 'Moderator';
+          this.badgeColour = currentUser.isAdmin === true ? 'danger' : 'warning';
         } else {
           this.badgeColour = currentUser.badge?.split(':')[1];
           this.badge = currentUser.badge?.split(':')[0];
         }
-        this.avatar = currentUser.avatar;
       }
-    });
+    });*/
   }
 
   get hasMedia(): boolean {
@@ -49,6 +48,6 @@ export class UserPostComponent implements OnInit {
   }
 
   get isComment(): boolean {
-    return this.type == 'comment' ? true : false;
+    return this.postType == 'comment' ? true : false;
   }
 }

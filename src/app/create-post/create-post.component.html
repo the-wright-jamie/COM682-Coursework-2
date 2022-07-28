@@ -18,8 +18,7 @@
           (keyup)="this.bodyChanged(body_input.value)"
           class="form-control invertible"
           id="body"
-          rows="3"
-        ></textarea>
+          rows="3"></textarea>
         <br />
         <!--<h5>Attached Media</h5>
         <br>-->
@@ -32,17 +31,15 @@
       <h5>How your post will look:</h5>
       <app-user-post
         [id]="0"
-        ,
-        [poster]="this.username"
-        [type]="this.type"
-        [date]="this.date"
+        [poster]="'lmao'"
+        [avatar]="'lmao'"
+        [postType]="this.type"
+        [postDate]="this.date"
         [header]="this.header"
         [body]="this.body"
         [media]="this.media"
         [likes]="this.likes"
-        [comments]="this.comments"
-      >
-      </app-user-post>
+        [comments]="this.comments"></app-user-post>
     </div>
   </div>
 </div>

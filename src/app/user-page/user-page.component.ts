@@ -38,7 +38,7 @@ export class UserPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private timeDifference: TimeDifferenceService) {}
 
   ngOnInit(): void {
-    let urlUser = this.route.snapshot.paramMap.get('id')?.toString();
+    let urlUser = this.route.snapshot.paramMap.get('id')?.tostring();
 
     users.forEach((currentUser) => {
       if (urlUser === currentUser.username) {

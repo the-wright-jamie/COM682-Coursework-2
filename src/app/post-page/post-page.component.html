@@ -11,8 +11,7 @@
       [body]="this.post.body"
       [media]="this.post.media"
       [likes]="this.post.likes"
-      [comments]="this.post.comments"
-    ></app-user-post>
+      [comments]="this.post.comments"></app-user-post>
 
     <h5>Comments</h5>
     <div *ngIf="this.post.comments > 0">
@@ -26,8 +25,7 @@
         [body]="this.comment.body"
         [media]=""
         [likes]="0"
-        [comments]="0"
-      ></app-user-post>
+        [comments]="0"></app-user-post>
     </div>
 
     <div *ngIf="this.post.comments === 0" class="text-center light">No comments found</div>

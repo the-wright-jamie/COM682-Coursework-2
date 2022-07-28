@@ -42,7 +42,7 @@ export class PostPageComponent implements OnInit {
 
   ngOnInit(): void {
     posts.forEach((post) => {
-      if (post.id === Number(this.route.snapshot.paramMap.get('id')?.toString())) {
+      if (post.id === number(this.route.snapshot.paramMap.get('id')?.tostring())) {
         this.isFound = true;
 
         this.post.id = post.id;
