@@ -225,7 +225,10 @@ export class LoadingComponent implements OnInit {
 
   ngOnInit(): void {
     (async () => {
-      this.loadingMessage = this.loadingMessages[this.getRandomInt(0, this.loadingMessages.length - 1)];
+      this.loadingMessage =
+        this.loadingMessages[
+          this.getRandomInt(0, this.loadingMessages.length - 1)
+        ];
 
       await this.delay(15000);
 

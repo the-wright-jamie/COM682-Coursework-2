@@ -16,7 +16,10 @@
       [comments]="this.post.comments"></app-user-post>
 
     <h5>
-      Comments <span class="badge rounded-pill text-bg-secondary">{{ this.comments.length }}</span>
+      Comments
+      <span class="badge rounded-pill text-bg-secondary">{{
+        this.comments.length
+      }}</span>
     </h5>
     <div *ngIf="this.post.comments > 0">
       <app-user-post
@@ -34,7 +37,9 @@
         [comments]="0"></app-user-post>
     </div>
 
-    <div *ngIf="this.post.comments === 0" class="text-center light">No comments found</div>
+    <div *ngIf="this.post.comments === 0" class="text-center light">
+      No comments found
+    </div>
   </div>
 
   <div *ngIf="!this.isFound && !this.isLoading">

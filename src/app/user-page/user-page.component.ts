@@ -68,10 +68,18 @@ export class UserPageComponent implements OnInit {
         this.badgeColour = this.user.badge?.split(':')[1];
       }
 
-      this.birthdayString = moment(new Date(this.user.birthday * 1000)).format('DD MMMM YYYY');
-      this.birthdayTimeSince = this.timeDifference.calculate(this.user.birthday * 1000);
-      this.accountCreationString = moment(new Date(this.user.accountCreation * 1000)).format('DD MMMM YYYY');
-      this.accountCreationTimeSince = this.timeDifference.calculate(this.user.accountCreation * 1000);
+      this.birthdayString = moment(new Date(this.user.birthday * 1000)).format(
+        'DD MMMM YYYY'
+      );
+      this.birthdayTimeSince = this.timeDifference.calculate(
+        this.user.birthday * 1000
+      );
+      this.accountCreationString = moment(
+        new Date(this.user.accountCreation * 1000)
+      ).format('DD MMMM YYYY');
+      this.accountCreationTimeSince = this.timeDifference.calculate(
+        this.user.accountCreation * 1000
+      );
     });
 
     this.apiService.getPostsByUser(urlUser).subscribe((posts: any) => {

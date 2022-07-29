@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 import { TimeDifferenceService } from '../time-difference.service';
 
 @Component({
@@ -28,7 +33,9 @@ export class UserPostComponent implements OnInit {
   constructor(private timeDifference: TimeDifferenceService) {}
 
   ngOnInit(): void {
-    typeof this.postDate === 'string' ? this.postDate : (this.postDate = this.postDate * 1000);
+    typeof this.postDate === 'string'
+      ? this.postDate
+      : (this.postDate = this.postDate * 1000);
     this.formattedDate = this.timeDifference.calculate(this.postDate);
 
     console.log(this.avatar);

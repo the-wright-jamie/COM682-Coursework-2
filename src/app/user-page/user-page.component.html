@@ -17,7 +17,9 @@
         </ul>
       </div>
     </h1>
-    <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{ this.badge }}</span>
+    <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
+      this.badge
+    }}</span>
   </div>
 
   <hr />
@@ -26,7 +28,9 @@
   <div class="about-user">
     <div class="row align-middle">
       <div class="col-1 text-center">
-        <span class="align-bottom" class="material-symbols-rounded"> cake </span>
+        <span class="align-bottom" class="material-symbols-rounded">
+          cake
+        </span>
       </div>
       <div class="col">
         {{ this.birthdayString }}
@@ -36,7 +40,9 @@
 
     <div class="row align-middle">
       <div class="col-1 text-center">
-        <span class="align-bottom" class="material-symbols-rounded"> add_circle </span>
+        <span class="align-bottom" class="material-symbols-rounded">
+          add_circle
+        </span>
       </div>
       <div class="col">
         {{ this.accountCreationString }}
@@ -47,15 +53,19 @@
     <hr />
 
     <div class="text-center light" *ngIf="this.user.isMuted">
-      This user has been temporarily muted by the moderation team due to violations of our Community Guidelines and
-      Terms of Service. As a result, so you can't see their posts. They can still like and follow accounts but they
-      cannot comment or post.
+      This user has been temporarily muted by the moderation team due to
+      violations of our Community Guidelines and Terms of Service. As a result,
+      so you can't see their posts. They can still like and follow accounts but
+      they cannot comment or post.
     </div>
 
     <div *ngIf="!this.user.isMuted">
       <div id="posts">
         <h4>
-          User Posts <span class="badge rounded-pill text-bg-secondary">{{ this.posts.length }}</span>
+          User Posts
+          <span class="badge rounded-pill text-bg-secondary">{{
+            this.posts.length
+          }}</span>
         </h4>
         <a (click)="scroll(commentsArea)">Go to Comments</a>
         <br />
@@ -77,9 +87,10 @@
         </div>
 
         <div class="text-center light" *ngIf="this.user.isMuted">
-          This user has been temporarily muted by the moderation team due to violations of our Community Guidelines and
-          Terms of Service. As a result, so you can't see their posts. They can still like and follow accounts but they
-          cannot comment or post.
+          This user has been temporarily muted by the moderation team due to
+          violations of our Community Guidelines and Terms of Service. As a
+          result, so you can't see their posts. They can still like and follow
+          accounts but they cannot comment or post.
         </div>
       </div>
 
@@ -87,7 +98,10 @@
 
       <div id="comments">
         <h4>
-          User Comments <span class="badge rounded-pill text-bg-secondary">{{ this.comments.length }}</span>
+          User Comments
+          <span class="badge rounded-pill text-bg-secondary">{{
+            this.comments.length
+          }}</span>
         </h4>
         <a (click)="scroll(top)">Go to Top</a>
         <br />

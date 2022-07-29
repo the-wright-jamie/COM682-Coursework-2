@@ -33,13 +33,19 @@ export class TimeDifferenceService {
         return num > 1 ? num + ' hours ago' : num + ' hour ago';
       } else if (elapsed < msPerMonth) {
         let num = Math.round(elapsed / msPerDay);
-        return num > 1 ? 'about ' + num + ' days ago' : 'about ' + num + ' day ago';
+        return num > 1
+          ? 'about ' + num + ' days ago'
+          : 'about ' + num + ' day ago';
       } else if (elapsed < msPerYear) {
         let num = Math.round(elapsed / msPerMonth);
-        return num > 1 ? 'about ' + num + ' months ago' : 'about ' + num + ' month ago';
+        return num > 1
+          ? 'about ' + num + ' months ago'
+          : 'about ' + num + ' month ago';
       } else {
         let num = Math.round(elapsed / msPerYear);
-        return num > 1 ? 'about ' + num + ' years ago' : 'about ' + num + ' year ago';
+        return num > 1
+          ? 'about ' + num + ' years ago'
+          : 'about ' + num + ' year ago';
       }
     }
   }

@@ -18,7 +18,10 @@ export class PostPageComponent implements OnInit {
   postLoaded = false;
   commentsLoaded = false;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiInterfaceService) {
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiInterfaceService
+  ) {
     this.comments = [];
     this.post = {
       id: 0,
