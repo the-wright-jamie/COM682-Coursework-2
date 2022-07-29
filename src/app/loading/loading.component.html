@@ -4,3 +4,7 @@
   </div>
   <p>{{ this.loadingMessage }}</p>
 </div>
+
+<div *ngIf="this.isLoading" class="light position-absolute bottom-0 start-50 translate-middle-x text-center">
+  <p>{{ this.sorryMessage }}</p>
+</div>
