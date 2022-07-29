@@ -63,6 +63,7 @@
             [id]="post.id"
             [poster]="this.user.username"
             [avatar]="this.user.avatar"
+            [badge]="post.badge"
             [postType]="post.postType"
             [postDate]="post.postDate"
             [header]="post.header"
@@ -81,9 +82,10 @@
 
       <div id="comments">
         <h4>User Comments</h4>
+        <h5>Total Comments: {{ this.comments.length }}</h5>
         <br />
         <div>
-          <!--<app-user-post
+          <app-user-post
             *ngFor="let comment of this.comments"
             [id]="comment.id"
             [poster]="this.user.username"
@@ -93,7 +95,7 @@
             [header]=""
             [body]="comment.body"
             [media]=""
-            [likes]="comment.likes"></app-user-post>-->
+            [likes]="comment.likes"></app-user-post>
         </div>
       </div>
     </div>
@@ -105,7 +107,7 @@
     <h1 class="text-center light">This user as been deleted</h1>
   </div>
 </div>
-<div *ngIf="!this.isLoading">
+<div *ngIf="!this.isLoading && !this.userFound">
   <app-error-page *ngIf="!this.userFound"></app-error-page>
 </div>
 <app-loading [isLoading]="this.isLoading"></app-loading>

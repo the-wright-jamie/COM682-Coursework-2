@@ -29,6 +29,7 @@ export class NewsFeedComponent implements OnInit {
           posterId: posts['Table1'][key].posterId,
           poster: posts['Table1'][key].username,
           avatar: posts['Table1'][key].avatar,
+          badge: posts['Table1'][key].badge,
           postType: posts['Table1'][key].postType,
           postDate: posts['Table1'][key].postDate,
           header: posts['Table1'][key].header,

@@ -3,6 +3,7 @@ export interface Post {
   posterId: string;
   poster: string;
   avatar: string;
+  badge: string;
   postType: string;
   postDate: number;
   header: string;

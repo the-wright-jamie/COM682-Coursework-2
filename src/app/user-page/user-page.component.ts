@@ -5,6 +5,7 @@ import moment from 'moment';
 import { ApiInterfaceService } from '../api-interface.service';
 import { Post } from '../post';
 import { User } from '../user';
+import { Comment } from '../comment';
 
 @Component({
   selector: 'app-user-page',
@@ -17,7 +18,8 @@ export class UserPageComponent implements OnInit {
   posts: Post[];
   user: User;
   comments: Comment[];
-  isLoading = true;
+  postsLoaded = false;
+  commentsLoaded = false;
   userFound = false;
 
   birthdayString = '';
@@ -56,7 +58,6 @@ export class UserPageComponent implements OnInit {
 
     this.apiService.getUser(urlUser).subscribe((user: any) => {
       this.user = user['Table1'][0];
-      console.log(this.user);
       this.userFound = true;
 
       if (this.user.isAdmin === true || this.user.isModerator === true) {
@@ -74,7 +75,6 @@ export class UserPageComponent implements OnInit {
     });
 
     this.apiService.getPostsByUser(urlUser).subscribe((posts: any) => {
-      console.log(posts);
       let iteration = 0;
       Object.keys(posts['Table1']).forEach((key: any) => {
         this.posts[iteration] = {
@@ -82,6 +82,7 @@ export class UserPageComponent implements OnInit {
           posterId: posts['Table1'][key].posterId,
           poster: posts['Table1'][key].username,
           avatar: posts['Table1'][key].avatar,
+          badge: posts['Table1'][key].badge,
           postType: posts['Table1'][key].postType,
           postDate: posts['Table1'][key].postDate,
           header: posts['Table1'][key].header,
@@ -92,11 +93,10 @@ export class UserPageComponent implements OnInit {
         };
         iteration++;
       });
-      this.isLoading = false;
+      this.postsLoaded = true;
     });
 
-    /*this.apiService.getUserComments(urlUser).subscribe((comments: any) => {
-      console.log(comments);
+    this.apiService.getUserComments(urlUser).subscribe((comments: any) => {
       let iteration = 0;
       Object.keys(comments['Table1']).forEach((key: any) => {
         this.comments[iteration] = {
@@ -111,52 +111,11 @@ export class UserPageComponent implements OnInit {
         };
         iteration++;
       });
-      this.isLoading = false;
+      this.commentsLoaded = true;
     });
+  }
 
-    /*users.forEach((currentUser) => {
-      if (urlUser === currentUser.username) {
-        this.user = currentUser.username;
-        this.avatar = currentUser.avatar;
-        this.isDeleted = currentUser.isDeleted === 'true' ? true : false;
-        this.isMuted = currentUser.isMuted === 'true' ? true : false;
-
-        if (currentUser.isAdmin === 'true' || currentUser.isModerator === 'true') {
-          this.badge = currentUser.isAdmin === 'true' ? 'Site Admin' : 'Moderator';
-          this.badgeColour = currentUser.isAdmin === 'true' ? 'danger' : 'warning';
-        } else {
-          this.badgeColour = currentUser.badge?.split(':')[1];
-          this.badge = currentUser.badge?.split(':')[0];
-        }
-
-        this.birthday = moment(new Date(currentUser.birthday * 1000)).format('DD MMMM YYYY');
-        this.birthdayTimeSince = this.timeDifference.calculate(currentUser.birthday * 1000);
-        this.creation = moment(new Date(currentUser.accountCreation * 1000)).format('DD MMMM YYYY');
-        this.creationTimeSince = this.timeDifference.calculate(currentUser.accountCreation * 1000);
-
-        this.userFound = true;
-
-        this.data = posts.filter((obj) => {
-          return obj.posterId === currentUser.id;
-        });
-
-        this.data = this.data.sort((a: { time: number }, b: { time: number }) => (a.time > b.time ? 1 : -1));
-
-        let commentCount = 0;
-        comments.forEach((comment) => {
-          if (comment.posterId === currentUser.id) {
-            this.comments[commentCount] = {
-              username: currentUser.username,
-              date: comment.date,
-              body: comment.body,
-              likes: comment.likes
-            };
-
-            commentCount = commentCount + 1;
-          }
-        });
-        return;
-      }
-    });*/
+  get isLoading(): boolean {
+    return !(this.postsLoaded && this.commentsLoaded);
   }
 }
