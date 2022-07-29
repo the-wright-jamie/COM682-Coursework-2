@@ -7,4 +7,5 @@ export interface Comment {
   likes: number;
   username: string;
   avatar: string;
+  badge: string;
 }

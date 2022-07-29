@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid" *ngIf="!this.isLoading && this.userFound">
+<div #top class="container-fluid" *ngIf="!this.isLoading && this.userFound">
   <!-- (!this.user.isDeleted && this.userFound) || -->
   <div class="text-center">
     <img src="{{ this.user.avatar }}" class="shadow large-avatar" />
@@ -54,8 +54,11 @@
 
     <div *ngIf="!this.user.isMuted">
       <div id="posts">
-        <h4>User Posts</h4>
-        <h5>Post Count: {{ this.posts.length }}</h5>
+        <h4>
+          User Posts <span class="badge rounded-pill text-bg-secondary">{{ this.posts.length }}</span>
+        </h4>
+        <a (click)="scroll(commentsArea)">Go to Comments</a>
+        <br />
         <br />
         <div>
           <app-user-post
@@ -80,14 +83,20 @@
         </div>
       </div>
 
+      <hr #commentsArea />
+
       <div id="comments">
-        <h4>User Comments</h4>
-        <h5>Total Comments: {{ this.comments.length }}</h5>
+        <h4>
+          User Comments <span class="badge rounded-pill text-bg-secondary">{{ this.comments.length }}</span>
+        </h4>
+        <a (click)="scroll(top)">Go to Top</a>
+        <br />
         <br />
         <div>
           <app-user-post
             *ngFor="let comment of this.comments"
             [id]="comment.id"
+            [underPostId]="comment.postId"
             [poster]="this.user.username"
             [avatar]="this.user.avatar"
             [postType]="'comment'"

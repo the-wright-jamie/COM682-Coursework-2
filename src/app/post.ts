@@ -1,6 +1,6 @@
 export interface Post {
   id: number;
-  posterId: string;
+  posterId: number;
   poster: string;
   avatar: string;
   badge: string;

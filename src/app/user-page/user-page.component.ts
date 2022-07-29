@@ -107,12 +107,17 @@ export class UserPageComponent implements OnInit {
           body: comments['Table1'][key].body,
           likes: comments['Table1'][key].likes,
           username: comments['Table1'][key].username,
-          avatar: comments['Table1'][key].avatar
+          avatar: comments['Table1'][key].avatar,
+          badge: comments['Table1'][key].badge
         };
         iteration++;
       });
       this.commentsLoaded = true;
     });
+  }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
   }
 
   get isLoading(): boolean {

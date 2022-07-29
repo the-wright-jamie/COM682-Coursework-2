@@ -14,6 +14,7 @@ export class UserPostComponent implements OnInit {
 
   // add type
   @Input('id') id: number | undefined;
+  @Input('underPostId') underPostId: number | undefined;
   @Input('poster') poster: string | undefined;
   @Input('avatar') avatar: string | undefined;
   @Input('badge') badge: string | undefined;
@@ -29,6 +30,8 @@ export class UserPostComponent implements OnInit {
   ngOnInit(): void {
     typeof this.postDate === 'string' ? this.postDate : (this.postDate = this.postDate * 1000);
     this.formattedDate = this.timeDifference.calculate(this.postDate);
+
+    console.log(this.avatar);
 
     this.badgeName = this.badge?.split(':')[0];
     this.badgeColour = this.badge?.split(':')[1];

@@ -1,37 +1,45 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
-  <div *ngIf="this.isFound">
+  <div *ngIf="!this.isLoading">
     <app-user-post
       [id]="this.post.id"
-      [poster]="this.post.username"
-      [postType]="this.post.type"
-      [postDate]="this.post.date"
+      [poster]="this.post.poster"
+      [avatar]="this.post.avatar"
+      [badge]="this.post.badge"
+      [postType]="this.post.postType"
+      [postDate]="this.post.postDate"
       [header]="this.post.header"
       [body]="this.post.body"
       [media]="this.post.media"
       [likes]="this.post.likes"
       [comments]="this.post.comments"></app-user-post>
 
-    <h5>Comments</h5>
+    <h5>
+      Comments <span class="badge rounded-pill text-bg-secondary">{{ this.comments.length }}</span>
+    </h5>
     <div *ngIf="this.post.comments > 0">
       <app-user-post
         *ngFor="let comment of this.comments.reverse()"
-        [id]="0"
-        [poster]="this.comment.username"
+        [id]="comment.id"
+        [poster]="comment.username"
+        [avatar]="comment.avatar"
+        [badge]="comment.badge"
         [postType]="'comment'"
-        [postDate]="this.comment.date"
+        [postDate]="comment.postDate"
         [header]=""
-        [body]="this.comment.body"
+        [body]="comment.body"
         [media]=""
-        [likes]="0"
+        [likes]="comment.likes"
         [comments]="0"></app-user-post>
     </div>
 
     <div *ngIf="this.post.comments === 0" class="text-center light">No comments found</div>
   </div>
 
-  <div *ngIf="!this.isFound">
+  <div *ngIf="!this.isFound && !this.isLoading">
     <app-error-page></app-error-page>
   </div>
 </div>
+
+<app-loading [isLoading]="this.isLoading"></app-loading>

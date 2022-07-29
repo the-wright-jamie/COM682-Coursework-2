@@ -10,8 +10,8 @@
       <h5 class="card-title">{{ this.header }}</h5>
     </div>
     <p class="card-text">{{ this.body }}</p>
-    <div *ngIf="this.isComment">
-      <a class="light" href="feed">See Source</a>
+    <div *ngIf="this.isComment && this.underPostId">
+      <a class="light" href="/post/{{ this.underPostId }}">See Source</a>
     </div>
   </div>
   <img *ngIf="this.hasMedia" src="{{ this.media }}" class="image-attachment" />

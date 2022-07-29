@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
 import { ApiInterfaceService } from '../api-interface.service';
-import { TimeDifferenceService } from '../time-difference.service';
+import { Post } from '../post';
+import { Comment } from '../comment';
 
 @Component({
   selector: 'app-post-page',
@@ -10,80 +11,73 @@ import { TimeDifferenceService } from '../time-difference.service';
   styleUrls: ['./post-page.component.css']
 })
 export class PostPageComponent implements OnInit {
-  post = {
-    id: 0,
-    username: '',
-    avatar: '',
-    badge: '',
-    type: '',
-    date: 0,
-    header: '',
-    body: '',
-    media: '',
-    likes: 0,
-    comments: 0
-  };
-
-  comments = [
-    {
-      username: '',
-      date: 0,
-      body: '',
-      likes: 0
-    }
-  ];
+  post: Post;
+  comments: Comment[];
 
   isFound = false;
+  postLoaded = false;
+  commentsLoaded = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private timeDifference: TimeDifferenceService,
-    private apiService: ApiInterfaceService
-  ) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiInterfaceService) {
+    this.comments = [];
+    this.post = {
+      id: 0,
+      posterId: 0,
+      poster: '',
+      avatar: '',
+      badge: '',
+      postType: '',
+      postDate: 0,
+      header: '',
+      body: '',
+      media: '',
+      comments: 0,
+      likes: 0
+    };
+  }
 
   ngOnInit(): void {
-    /*posts.forEach((post) => {
-      if (post.id === number(this.route.snapshot.paramMap.get('id')?.tostring())) {
-        this.isFound = true;
+    let postId = Number(this.route.snapshot.paramMap.get('id')?.toString());
+    this.apiService.getPost(postId).subscribe((post: any) => {
+      this.isFound = true;
 
-        this.post.id = post.id;
+      this.post.id = post['Table1'][0].id;
+      this.post.poster = post['Table1'][0].username;
+      this.post.avatar = post['Table1'][0].avatar;
+      this.post.badge = post['Table1'][0].badge;
+      this.post.postType = post['Table1'][0].postType;
+      this.post.postDate = post['Table1'][0].postDate;
+      this.post.header = post['Table1'][0].header;
+      this.post.body = post['Table1'][0].body;
+      this.post.media = post['Table1'][0].media;
+      this.post.likes = post['Table1'][0].likes;
+      this.post.comments = post['Table1'][0].comments;
 
-        users.forEach((currentUser) => {
-          if (post.posterId === currentUser.id) {
-            this.post.username = currentUser.username;
-            this.post.avatar = currentUser.avatar;
-            this.post.badge = currentUser.badge;
-            // post.shouldShow = currentUser.isMuted === "false" && currentUser.isDeleted === "false" ? "true" : "false";
-          }
-        });
+      this.postLoaded = true;
+    });
 
-        this.post.type = post.type;
-        this.post.date = post.date;
-        this.post.header = post.header;
-        this.post.body = post.body;
-        this.post.media = post.media;
-        this.post.likes = post.likes;
+    this.apiService.getComments(postId).subscribe((comments: any) => {
+      let iteration = 0;
+      Object.keys(comments['Table1']).forEach((key: any) => {
+        this.comments[iteration] = {
+          id: comments['Table1'][key].id,
+          posterId: comments['Table1'][key].posterId,
+          postId: comments['Table1'][key].postId,
+          username: comments['Table1'][key].username,
+          avatar: comments['Table1'][key].avatar,
+          badge: comments['Table1'][key].badge,
+          postDate: comments['Table1'][key].postDate,
+          body: comments['Table1'][key].body,
+          likes: comments['Table1'][key].likes
+        };
+        iteration++;
+      });
+      console.log(this.comments);
+      this.commentsLoaded = true;
+    });
+  }
 
-        let commentCount = 0;
-        comments.forEach((comment) => {
-          if (comment.postId === post.id) {
-            users.forEach((currentUser) => {
-              if (comment.posterId === currentUser.id) {
-                this.comments[commentCount] = {
-                  username: currentUser.username,
-                  date: comment.date,
-                  body: comment.body,
-                  likes: comment.likes
-                };
-              }
-            });
-
-            commentCount = commentCount + 1;
-          }
-        });
-
-        this.post.comments = commentCount;
-      }
-    });*/
+  get isLoading(): boolean {
+    return !(this.postLoaded && this.commentsLoaded);
   }
 }
