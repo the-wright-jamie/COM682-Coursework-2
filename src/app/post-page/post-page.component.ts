@@ -75,7 +75,7 @@ export class PostPageComponent implements OnInit {
         };
         iteration++;
       });
-      console.log(this.comments);
+
       this.commentsLoaded = true;
     });
   }

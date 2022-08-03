@@ -38,8 +38,6 @@ export class UserPostComponent implements OnInit {
       : (this.postDate = this.postDate * 1000);
     this.formattedDate = this.timeDifference.calculate(this.postDate);
 
-    console.log(this.avatar);
-
     this.badgeName = this.badge?.split(':')[0];
     this.badgeColour = this.badge?.split(':')[1];
   }
