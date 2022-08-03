@@ -29,11 +29,17 @@
     <div *ngIf="!this.userIsOnTheirPage && this.isSignedIn" class="dropdown">
       <br />
       <button
+        id="followButton"
         type="button"
-        class="btn btn-outline-primary"
+        (click)="this.setFollowingStatus()"
+        [className]="
+          this.followStatus === 'Following'
+            ? 'btn btn-outline-primary active'
+            : 'btn btn-outline-primary'
+        "
         data-bs-toggle="button"
         autocomplete="off">
-        Follow
+        {{ this.followStatus }}
       </button>
     </div>
   </div>

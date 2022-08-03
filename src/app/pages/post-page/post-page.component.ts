@@ -56,7 +56,7 @@ export class PostPageComponent implements OnInit {
 
         this.isFound = true;
       } catch (e) {
-        console.log(e);
+        //TODO don't fail silently!
       }
       this.postLoaded = true;
     });
@@ -80,11 +80,9 @@ export class PostPageComponent implements OnInit {
           iteration++;
         });
       } catch (e) {
-        console.log(e);
         this.hasComments = false;
       }
       this.commentsLoaded = true;
-      console.log(this.comments);
     });
   }
 

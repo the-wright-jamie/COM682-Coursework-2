@@ -31,6 +31,8 @@ export class UserPageComponent implements OnInit {
   badge = '';
   badgeColour = '';
 
+  followStatus = 'Follow';
+
   constructor(
     private route: ActivatedRoute,
     private timeDifference: TimeDifferenceService,
@@ -83,6 +85,16 @@ export class UserPageComponent implements OnInit {
       this.accountCreationTimeSince = this.timeDifference.calculate(
         this.user.accountCreation * 1000
       );
+
+      this.apiService
+        .getFollowingForUser(Number(this.cookieService.get('userId')))
+        .subscribe((following: any) => {
+          Object.keys(following['Table1']).forEach((key: any) => {
+            if (following['Table1'][key].followingId == this.user.id) {
+              this.followStatus = 'Following';
+            }
+          });
+        });
     });
 
     this.apiService.getPostsByUser(urlUser).subscribe((posts: any) => {
@@ -144,5 +156,38 @@ export class UserPageComponent implements OnInit {
 
   get isSignedIn(): boolean {
     return this.statusService.isSignedIn;
+  }
+
+  setFollowingStatus(): void {
+    switch (this.followStatus === 'Follow') {
+      case true:
+        this.apiService.followUser(
+          Number(this.cookieService.get('userId')),
+          this.user.id
+        );
+        /*.subscribe({
+            next: () => {
+              this.followStatus = 'Following';
+            },
+            error: (e: any) => {
+              // TODO don't fail silently!
+            }
+          })*/
+        break;
+      case false:
+        this.apiService.unfollowUser(
+          Number(this.cookieService.get('userId')),
+          this.user.id
+        );
+        /*.subscribe({
+            next: () => {
+              this.followStatus = 'Follow';
+            },
+            error: (e: any) => {
+              // TODO don't fail silently!
+            }
+          })*/
+        break;
+    }
   }
 }

@@ -8,6 +8,8 @@ import shajs from 'sha.js';
 export class ApiInterfaceService {
   constructor(private httpClient: HttpClient) {}
 
+  // --- IN RELATION TO USERS --- //
+
   // this returns a list of all users
   getUsers() {
     return this.httpClient.get(
@@ -23,6 +25,8 @@ export class ApiInterfaceService {
         '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=HVTFvbyzhnueDxUcw6d_Rb7xd_z4KyueLDRUL-tD138'
     );
   }
+
+  // --- IN RELATION TO POSTS --- //
 
   // this gets posts from a specified user based on the user ID
   getPosts(userId: number) {
@@ -51,6 +55,8 @@ export class ApiInterfaceService {
     );
   }
 
+  // --- IN RELATION TO COMMENTS --- //
+
   // this gets the comments for a specific post based on the post ID
   getComments(postId: number) {
     return this.httpClient.get(
@@ -69,6 +75,8 @@ export class ApiInterfaceService {
     );
   }
 
+  // --- IN RELATION TO FOLLOW SYSTEM --- //
+
   getFollowingForUser(userId: number) {
     return this.httpClient.get(
       'https://prod-26.centralus.logic.azure.com/workflows/d2182750ef944d9bbeb5d3aad843bcbc/triggers/manual/paths/invoke/api/v1/following/' +
@@ -76,6 +84,36 @@ export class ApiInterfaceService {
         '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=dNRi0grm6HILV5Tc7IkhKJPjTiQSB_oJbRFE3B1NRfw'
     );
   }
+
+  getFollowersForUser(userId: number) {
+    throw new Error(
+      'Received userId: ' +
+        userId +
+        '. However, this method not implemented yet.'
+    );
+  }
+
+  followUser(followerId: number, followingId: number) {
+    throw new Error(
+      'Received followerId: ' +
+        followerId +
+        ' and followingId: ' +
+        followingId +
+        '. However, this method not implemented yet.'
+    );
+  }
+
+  unfollowUser(followerId: number, followingId: number) {
+    throw new Error(
+      'Received followerId: ' +
+        followerId +
+        ' and followingId: ' +
+        followingId +
+        '. However, this method not implemented yet.'
+    );
+  }
+
+  // --- IN RELATION TO USER AUTHENTICATION --- //
 
   // hashes the password so we aren't sending raw passwords over the web
   // and then sends a post request to get the login token
