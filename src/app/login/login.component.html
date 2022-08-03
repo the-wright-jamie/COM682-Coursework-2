@@ -1,23 +1,30 @@
-<div class="position-absolute top-50 start-50 translate-middle">
+<app-loading *ngIf="this.signingIn" [isLoading]="this.signingIn"></app-loading>
+<div
+  *ngIf="!this.signingIn"
+  class="position-absolute top-50 start-50 translate-middle">
   <div class="container">
     <div class="shadow card">
       <div class="card-header text-center">Login</div>
       <div class="card-body">
         <p *ngIf="this.signInError" class="error">{{ this.signInError }}</p>
-        <form>
+        <form #user="ngForm" (ngSubmit)="attemptLogin(user)">
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input
               type="username"
               class="form-control invertible"
-              id="username" />
+              id="username"
+              name="username"
+              ngModel />
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input
               type="password"
               class="form-control invertible"
-              id="password" />
+              id="password"
+              name="password"
+              ngModel />
           </div>
           <div class="mb-3 form-check">
             <input

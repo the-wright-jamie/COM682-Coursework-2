@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-landing-page',
@@ -6,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-  constructor() {}
+  constructor(private cookieService: CookieService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.cookieService.get('token') !== '') {
+      this.router.navigate(['/feed']);
+    }
+  }
+
+  get isSignedIn() {
+    return this.cookieService.get('token') === '' ? false : true;
+  }
 }

@@ -43,7 +43,7 @@ export class UserPostComponent implements OnInit {
   }
 
   get hasMedia(): boolean {
-    return this.media === '' ? false : true;
+    return this.media === '' || this.media === null ? false : true;
   }
 
   get isComment(): boolean {

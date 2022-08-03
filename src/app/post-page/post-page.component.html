@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
-  <div *ngIf="!this.isLoading">
+  <div *ngIf="!this.isLoading && this.isFound">
     <app-user-post
       [id]="this.post.id"
       [poster]="this.post.poster"
@@ -21,7 +21,7 @@
         this.comments.length
       }}</span>
     </h5>
-    <div *ngIf="this.post.comments > 0">
+    <div *ngIf="this.hasComments">
       <app-user-post
         *ngFor="let comment of this.comments.reverse()"
         [id]="comment.id"

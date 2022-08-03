@@ -9,11 +9,25 @@
         class="d-inline-block align-text-top" />
       UlsterBook
     </a>
-    <div class="d-flex">
+    <div *ngIf="!this.isSignedIn" class="d-flex">
       <a class="btn btn-primary ms-2" href="/login" role="button">Login</a>
       <a class="btn btn-outline-primary ms-2" href="/signup" role="button"
         >Sign up</a
       >
+    </div>
+    <div *ngIf="this.isSignedIn" class="d-flex align-items-center">
+      <div class="ms-2">
+        Hello,
+        <a href="/u/{{ this.username }}" style="white-space: nowrap">{{
+          this.username
+        }}</a>
+      </div>
+      <button
+        (click)="this.signOut()"
+        style="white-space: nowrap"
+        class="btn btn-outline-primary ms-2">
+        Sign Out
+      </button>
     </div>
   </div>
 </nav>

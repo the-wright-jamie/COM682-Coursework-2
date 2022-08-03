@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,7 +18,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoadingComponent } from './loading/loading.component';
 import { PostPageComponent } from './post-page/post-page.component';
-import { CookieService } from 'ngx-cookie-service';
+
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
   { path: 'create-post', component: CreatePostComponent },
@@ -44,7 +47,12 @@ const routes: Routes = [
     LoadingComponent,
     PostPageComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    FormsModule
+  ],
   providers: [CookieService],
   bootstrap: [AppComponent]
 })

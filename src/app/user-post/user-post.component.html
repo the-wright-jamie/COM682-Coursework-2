@@ -1,39 +1,71 @@
+<!-- create a card with a drop shadow -->
 <div class="shadow card">
+  <!-- create the card header, which contains info such 
+  as the poster and when is was posted -->
   <div class="card-header">
+    <!-- poster avatar -->
     <img class="small-avatar" src="{{ this.avatar }}" />
-    <a href="/u/{{ this.poster }}">{{ this.poster }}</a
-    ><span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
+    <!-- poster username -->
+    <a href="/u/{{ this.poster }}">{{ this.poster }}</a>
+    <!-- poster badge -->
+    <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
       this.badgeName
     }}</span>
+    <!-- post type and date -->
     posted a {{ this.postType }} {{ this.formattedDate }}
   </div>
+
+  <!-- create the card body -->
   <div class="card-body">
+    <!-- if this is a comment, there won't be a title so
+    don't attempt to show it -->
     <div *ngIf="!this.isComment" class="card-title">
       <h5 class="card-title">{{ this.header }}</h5>
     </div>
+    <!-- show the body -->
     <p class="card-text">{{ this.body }}</p>
+    <!-- if this is a comment and if we are on a user's page 
+    (comments will be out of context in this context) -->
     <div *ngIf="this.isComment && this.underPostId">
       <a class="light" href="/post/{{ this.underPostId }}">See Source</a>
     </div>
-    <div *ngIf="this.hasMedia">
-      <p>This has a media :O</p>
+    <!-- if the post has attached media then show this div -->
+    <img
+      *ngIf="this.hasMedia"
+      src="{{ this.media }}"
+      class="image-attachment" />
+  </div>
+
+  <!-- create the footer  -->
+  <div class="card-footer text-muted" style="margin-bottom: -2%">
+    <!-- show the likes -->
+    <div class="invertible">
+      <span class="material-symbols-rounded interact-controls"> thumb_up </span>
+      <p>{{ this.likes }}</p>
+    </div>
+
+    <!-- show the comments button if this isn't a comment
+    (you cannot comment on comments) -->
+    <div *ngIf="!this.isComment" class="invertible">
+      <div>
+        <a *ngIf="this.id !== 0" href="/post/{{ this.id }}"
+          ><span class="material-symbols-rounded interact-controls">
+            comment
+          </span>
+          <!-- if this is a real post, include a link to the comments -->
+          <p>{{ this.comments }}</p></a
+        >
+      </div>
+      <!-- if we are on the post creation page, don't include a 
+      link to the comments list -->
+      <div *ngIf="this.id === 0">
+        <span class="material-symbols-rounded interact-controls">
+          comment
+        </span>
+        <p>{{ this.comments }}</p>
+      </div>
     </div>
   </div>
-  <img *ngIf="this.hasMedia" src="{{ this.media }}" class="image-attachment" />
-  <div class="card-footer text-muted" style="margin-bottom: -2%">
-    <span class="badge rounded-pill"
-      ><span class="material-symbols-rounded interact-controls">
-        thumb_up
-      </span>
-      <p class="text-center">{{ this.likes }}</p></span
-    >
-
-    <span *ngIf="!this.isComment" class="badge rounded-pill"
-      ><span class="material-symbols-rounded interact-controls"> comment </span
-      ><a href="/post/{{ this.id }}"
-        ><p class="text-center">{{ this.comments }}</p></a
-      ></span
-    >
-  </div>
 </div>
+<!-- add a space for good measure -->
 <br />

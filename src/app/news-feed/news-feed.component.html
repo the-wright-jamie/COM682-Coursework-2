@@ -2,7 +2,11 @@
 
 <div class="container-fluid">
   <div class="d-grid gap-2">
-    <a class="shadow btn btn-primary" href="/create-post" role="button"
+    <a
+      *ngIf="this.isSignedIn"
+      class="shadow btn btn-primary"
+      href="/create-post"
+      role="button"
       >Post something...</a
     >
   </div>
@@ -22,6 +26,11 @@
       [likes]="post.likes"
       [comments]="post.comments"></app-user-post>
   </div>
-</div>
+  <div
+    *ngIf="this.notFollowingAnyone"
+    class="position-absolute top-50 start-50 translate-middle text-center">
+    <p class="light">You aren't following anyone 🙈</p>
+  </div>
 
-<app-loading [isLoading]="this.isLoading"></app-loading>
+  <app-loading [isLoading]="this.isLoading"></app-loading>
+</div>

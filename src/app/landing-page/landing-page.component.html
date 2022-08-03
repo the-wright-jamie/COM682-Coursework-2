@@ -4,10 +4,17 @@
     <br />
     <br />
     <h1 class="text-center">Ulster Book</h1>
-    <h5 class="text-center">Coming Soon!</h5>
     <br />
-    <a class="btn btn-primary ms-2" href="/feed" role="button"
-      >Go to the home page</a
-    >
+    <div *ngIf="this.isSignedIn">
+      <a class="btn btn-primary ms-2" href="/feed" role="button"
+        >Go to the home page</a
+      >
+    </div>
+    <div *ngIf="!this.isSignedIn">
+      <a class="btn btn-primary ms-2" href="/login" role="button">Login</a>
+      <a class="btn btn-outline-primary ms-2" href="/signup" role="button"
+        >Sign up</a
+      >
+    </div>
   </div>
 </div>

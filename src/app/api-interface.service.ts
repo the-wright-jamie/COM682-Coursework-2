@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import shajs from 'sha.js';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,7 @@ export class ApiInterfaceService {
   }
 
   login(username: string, password: string) {
+    password = shajs('sha256').update(password).digest('hex');
     return this.httpClient.post(
       'https://prod-13.centralus.logic.azure.com/workflows/29fa72dadcd34b81b70fd89d7584abc0/triggers/manual/paths/invoke/api/v1/login?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=zlkcA11VpgoSw_R-D09IrH8G1H4ZWR62HXWQcn3t_GE',
       { username: username, password: password }
