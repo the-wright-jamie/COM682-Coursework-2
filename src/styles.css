@@ -92,3 +92,7 @@
 .light {
   opacity: 60%;
 }
+
+.error {
+  color: red;
+}

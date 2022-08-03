@@ -3,6 +3,7 @@
     <div class="shadow card">
       <div class="card-header text-center">Login</div>
       <div class="card-body">
+        <p *ngIf="this.signInError" class="error">{{ this.signInError }}</p>
         <form>
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>

@@ -15,6 +15,9 @@
     <div *ngIf="this.isComment && this.underPostId">
       <a class="light" href="/post/{{ this.underPostId }}">See Source</a>
     </div>
+    <div *ngIf="this.hasMedia">
+      <p>This has a media :O</p>
+    </div>
   </div>
   <img *ngIf="this.hasMedia" src="{{ this.media }}" class="image-attachment" />
   <div class="card-footer text-muted" style="margin-bottom: -2%">

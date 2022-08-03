@@ -75,4 +75,11 @@ export class ApiInterfaceService {
       'https://prod-07.centralus.logic.azure.com/workflows/29fcadb797d34235b61c96658586ac0f/triggers/manual/paths/invoke/api/v1/likes?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qoN06mlE0MJ356g7BVSsE-sbvxoEXAny40vcqPhAJ2o'
     );
   }
+
+  login(username: string, password: string) {
+    return this.httpClient.post(
+      'https://prod-13.centralus.logic.azure.com/workflows/29fa72dadcd34b81b70fd89d7584abc0/triggers/manual/paths/invoke/api/v1/login?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=zlkcA11VpgoSw_R-D09IrH8G1H4ZWR62HXWQcn3t_GE',
+      { username: username, password: password }
+    );
+  }
 }
