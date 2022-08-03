@@ -6,20 +6,35 @@
     <img src="{{ this.user.avatar }}" class="shadow large-avatar" />
     <h1>
       {{ this.user.username }}
-      <div class="btn-group">
-        <button
-          class="btn btn-outline-secondary btn-sm dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"></button>
-        <ul class="dropdown-menu">
-          Test
-        </ul>
-      </div>
     </h1>
     <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
       this.badge
     }}</span>
+    <div *ngIf="this.userIsOnTheirPage" class="dropdown">
+      <br />
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+    <div *ngIf="!this.userIsOnTheirPage && this.isSignedIn" class="dropdown">
+      <br />
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        data-bs-toggle="button"
+        autocomplete="off">
+        Follow
+      </button>
+    </div>
   </div>
 
   <hr />

@@ -6,6 +6,8 @@ import { ApiInterfaceService } from '../api-interface.service';
 import { Post } from '../post';
 import { User } from '../user';
 import { Comment } from '../comment';
+import { CookieService } from 'ngx-cookie-service';
+import { StatusCheckerService } from '../status-checker.service';
 
 @Component({
   selector: 'app-user-page',
@@ -33,7 +35,9 @@ export class UserPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private timeDifference: TimeDifferenceService,
-    private apiService: ApiInterfaceService
+    private apiService: ApiInterfaceService,
+    private cookieService: CookieService,
+    private statusService: StatusCheckerService
   ) {
     this.user = {
       id: 0,
@@ -130,5 +134,16 @@ export class UserPageComponent implements OnInit {
 
   get isLoading(): boolean {
     return !(this.postsLoaded && this.commentsLoaded);
+  }
+
+  get userIsOnTheirPage(): boolean {
+    return this.route.snapshot.paramMap.get('id')!.toString() ===
+      this.cookieService.get('username')
+      ? true
+      : false;
+  }
+
+  get isSignedIn(): boolean {
+    return this.statusService.isSignedIn;
   }
 }

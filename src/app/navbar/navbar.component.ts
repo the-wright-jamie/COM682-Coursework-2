@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  // TODO Use new service
   get isSignedIn() {
     return this.cookieService.get('token') === '' ? false : true;
   }

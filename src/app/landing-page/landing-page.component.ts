@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { StatusCheckerService } from '../status-checker.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,7 +9,11 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-  constructor(private cookieService: CookieService, private router: Router) {}
+  constructor(
+    private cookieService: CookieService,
+    private router: Router,
+    private statusService: StatusCheckerService
+  ) {}
 
   ngOnInit(): void {
     if (this.cookieService.get('token') !== '') {
@@ -17,6 +22,6 @@ export class LandingPageComponent implements OnInit {
   }
 
   get isSignedIn() {
-    return this.cookieService.get('token') === '' ? false : true;
+    return this.statusService.isSignedIn;
   }
 }

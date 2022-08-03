@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiInterfaceService } from '../api-interface.service';
 import { Post } from '../post';
+import { StatusCheckerService } from '../status-checker.service';
 
 @Component({
   selector: 'app-news-feed',
@@ -21,7 +22,8 @@ export class NewsFeedComponent implements OnInit {
   constructor(
     private apiService: ApiInterfaceService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private statusService: StatusCheckerService
   ) {
     this.posts = [];
     this.data = [];
@@ -63,6 +65,6 @@ export class NewsFeedComponent implements OnInit {
   }
 
   get isSignedIn() {
-    return this.cookieService.get('token') === '' ? false : true;
+    return this.statusService.isSignedIn;
   }
 }
