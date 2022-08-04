@@ -11,6 +11,7 @@
       type="text"
       id="title"
       class="form-control invertible" />
+    <p class="light">({{ this.header.length }}/128)</p>
     <br />
     <h5>Body</h5>
     <textarea
@@ -19,6 +20,7 @@
       class="form-control invertible"
       id="body"
       rows="3"></textarea>
+    <p class="light">({{ this.body.length }}/2000)</p>
     <br />
     <h5>Media Link</h5>
     <input
@@ -26,12 +28,27 @@
       (keyup)="this.mediaChanged(media_input.value)"
       type="text"
       id="title"
-      value="https://www.howtogeek.com/wp-content/uploads/2018/07/error-403-forbidden-message-on-a-website.jpeg"
       class="form-control invertible" />
     <br />
-    <a class="shadow btn btn-primary" href="/create-post" role="button"
-      >Post!</a
-    >
+    <p class="light" *ngIf="!this.readyToPost">
+      You must include a title and a body in order to be able to post
+    </p>
+    <p class="light" *ngIf="this.dataOverload">
+      Your title or body has too much information
+    </p>
+    <div
+      *ngIf="this.isPosting"
+      class="spinner-border spinner-border-sm"
+      role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <button
+      *ngIf="this.readyToPost && !this.dataOverload && !this.isPosting"
+      type="button"
+      class="btn btn-primary"
+      (click)="this.post()">
+      Post!
+    </button>
   </form>
   <br />
 

@@ -37,7 +37,7 @@ export class ApiInterfaceService {
     );
   }
 
-  //
+  // get posts by a certain user
   getPostsByUser(username: string) {
     return this.httpClient.get(
       'https://prod-18.centralus.logic.azure.com/workflows/9f78a4aa0732455da757fd01f0058b58/triggers/manual/paths/invoke/api/v1/userPosts/' +
@@ -52,6 +52,27 @@ export class ApiInterfaceService {
       'https://prod-01.centralus.logic.azure.com/workflows/da85adce2c474fc5a7ac849f019cb26f/triggers/manual/paths/invoke/api/v1/post/' +
         postId +
         '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=SdgavJBTvS9Xm7DJzI6lgs2m6pXeVX2KxYt1xx7CMog'
+    );
+  }
+
+  createPost(
+    token: string,
+    posterId: number,
+    header: string,
+    body: string,
+    media: string
+  ) {
+    return this.httpClient.post(
+      'https://prod-09.centralus.logic.azure.com/workflows/ae72c51c114543558b633d2b7cdab577/triggers/manual/paths/invoke/api/v1/createPost?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=FciYyk4fhhr4xWjiGfczrqx2Ek_kFr0q4b7vgMpHCjI',
+      {
+        token: token,
+        posterId: posterId,
+        postDate: Math.round(new Date().getTime() / 1000),
+        postType: 'post',
+        header: header,
+        body: body,
+        media: media
+      }
     );
   }
 
@@ -77,6 +98,7 @@ export class ApiInterfaceService {
 
   // --- IN RELATION TO FOLLOW SYSTEM --- //
 
+  // get who a user is following
   getFollowingForUser(userId: number) {
     return this.httpClient.get(
       'https://prod-26.centralus.logic.azure.com/workflows/d2182750ef944d9bbeb5d3aad843bcbc/triggers/manual/paths/invoke/api/v1/following/' +
@@ -85,6 +107,7 @@ export class ApiInterfaceService {
     );
   }
 
+  // get who is following a certain user
   getFollowersForUser(userId: number) {
     return this.httpClient.get(
       'https://prod-28.centralus.logic.azure.com/workflows/75b745b52d0f4561a7a53dcfec869a92/triggers/manual/paths/invoke/api/v1/followers/' +
@@ -93,6 +116,7 @@ export class ApiInterfaceService {
     );
   }
 
+  // get the counts of social status for a certain user
   getFollowingAndFollowerCountForUser(userId: number) {
     return this.httpClient.get(
       'https://prod-08.centralus.logic.azure.com/workflows/f51b16edd0cc44f68653d2c5ac9156ba/triggers/manual/paths/invoke/api/v1/followCount/' +
@@ -101,7 +125,8 @@ export class ApiInterfaceService {
     );
   }
 
-  //
+  // TODO For these next two we need to authenticate the user against their token
+  // send a follow user request
   followUser(followerId: number, followingId: number) {
     console.log('follow user');
     return this.httpClient.put(
@@ -110,7 +135,7 @@ export class ApiInterfaceService {
     );
   }
 
-  // https://prod-06.centralus.logic.azure.com/workflows/74257f39224c4c7cacca6cc2dfa923ed/triggers/manual/paths/invoke/api/v1/unfollow?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VDZmlQ_djyswMQQO7y9P88W6qrpCS9T7YowyWxRlTA0
+  // send an unfollow user request
   unfollowUser(followerId: number, followingId: number) {
     console.log('unfollow user');
     return this.httpClient.put(
@@ -123,7 +148,6 @@ export class ApiInterfaceService {
 
   // hashes the password so we aren't sending raw passwords over the web
   // and then sends a post request to get the login token
-  // TODO actually save the token in azure
   login(username: string, password: string) {
     password = shajs('sha256').update(password).digest('hex');
     return this.httpClient.post(
@@ -132,6 +156,8 @@ export class ApiInterfaceService {
     );
   }
 
+  // check if the user is logged in
+  // TODO may not need this as we can validate the token in Azure for sensitive tasks
   isTokenValid(token: string) {
     throw new Error(
       'Received token: ' + token + '. However, this method not implemented yet.'
