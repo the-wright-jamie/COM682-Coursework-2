@@ -11,8 +11,8 @@
     <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
       this.badgeName
     }}</span>
-    <!-- post type and date -->
-    posted a {{ this.postType }} {{ this.formattedDate }}
+    <!-- post date -->
+    {{ this.isComment ? 'commented' : 'posted' }} {{ this.formattedDate }}
   </div>
 
   <!-- create the card body -->
@@ -29,11 +29,28 @@
     <div *ngIf="this.isComment && this.underPostId">
       <a class="light" href="/post/{{ this.underPostId }}">See Source</a>
     </div>
-    <!-- if the post has attached media then show this div -->
-    <img
+
+    <!-- Button trigger modal -->
+    <button
       *ngIf="this.hasMedia"
-      src="{{ this.media }}"
-      class="image-attachment" />
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#imageModal">
+      View full image
+    </button>
+  </div>
+
+  <!-- if the post has attached media then show this -->
+  <img *ngIf="this.hasMedia" src="{{ this.media }}" class="image-attachment" />
+
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <img src="{{ this.media }}" class="image-modal" />
+      </div>
+    </div>
   </div>
 
   <!-- create the footer  -->

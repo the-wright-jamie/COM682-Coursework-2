@@ -118,7 +118,7 @@
         <a (click)="scroll(commentsArea)">Go to Comments</a>
         <br />
         <br />
-        <div>
+        <div *ngIf="this.hasPosts">
           <app-user-post
             *ngFor="let post of this.posts"
             [id]="post.id"
@@ -133,12 +133,8 @@
             [likes]="post.likes"
             [comments]="post.comments"></app-user-post>
         </div>
-
-        <div class="text-center light" *ngIf="this.user.isMuted">
-          This user has been temporarily muted by the moderation team due to
-          violations of our Community Guidelines and Terms of Service. As a
-          result, so you can't see their posts. They can still like and follow
-          accounts but they cannot comment or post.
+        <div class="text-center" *ngIf="!this.hasPosts">
+          <p class="light">This user has never posted 💭</p>
         </div>
       </div>
 
@@ -154,7 +150,7 @@
         <a (click)="scroll(top)">Go to Top</a>
         <br />
         <br />
-        <div>
+        <div *ngIf="this.hasComments">
           <app-user-post
             *ngFor="let comment of this.comments"
             [id]="comment.id"
@@ -167,6 +163,9 @@
             [body]="comment.body"
             [media]=""
             [likes]="comment.likes"></app-user-post>
+        </div>
+        <div class="text-center" *ngIf="!this.hasComments">
+          <p class="light">This user has never commented 🙊</p>
         </div>
       </div>
     </div>

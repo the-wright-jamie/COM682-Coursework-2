@@ -29,7 +29,9 @@
   <div
     *ngIf="this.notFollowingAnyone"
     class="position-absolute top-50 start-50 translate-middle text-center">
-    <p class="light">You aren't following anyone 🙈</p>
+    <p class="light">
+      You aren't following anyone, or no one you follow has posted yet 🙈
+    </p>
   </div>
 
   <app-loading [isLoading]="this.isLoading"></app-loading>

@@ -20,7 +20,9 @@ export class UserPageComponent implements OnInit {
   user: User;
   comments: Comment[];
   postsLoaded = false;
+  hasPosts = false;
   commentsLoaded = false;
+  hasComments = false;
   userFound = false;
 
   birthdayString = '';
@@ -107,43 +109,53 @@ export class UserPageComponent implements OnInit {
     });
 
     this.apiService.getPostsByUser(urlUser).subscribe((posts: any) => {
-      let iteration = 0;
-      Object.keys(posts['Table1']).forEach((key: any) => {
-        this.posts[iteration] = {
-          id: posts['Table1'][key].id,
-          posterId: posts['Table1'][key].posterId,
-          poster: posts['Table1'][key].username,
-          avatar: posts['Table1'][key].avatar,
-          badge: posts['Table1'][key].badge,
-          postType: posts['Table1'][key].postType,
-          postDate: posts['Table1'][key].postDate,
-          header: posts['Table1'][key].header,
-          body: posts['Table1'][key].body,
-          media: posts['Table1'][key].media,
-          comments: posts['Table1'][key].comments,
-          likes: posts['Table1'][key].likes
-        };
-        iteration++;
-      });
+      try {
+        let iteration = 0;
+        Object.keys(posts['Table1']).forEach((key: any) => {
+          this.posts[iteration] = {
+            id: posts['Table1'][key].id,
+            posterId: posts['Table1'][key].posterId,
+            poster: posts['Table1'][key].username,
+            avatar: posts['Table1'][key].avatar,
+            badge: posts['Table1'][key].badge,
+            postType: posts['Table1'][key].postType,
+            postDate: posts['Table1'][key].postDate,
+            header: posts['Table1'][key].header,
+            body: posts['Table1'][key].body,
+            media: posts['Table1'][key].media,
+            comments: posts['Table1'][key].comments,
+            likes: posts['Table1'][key].likes
+          };
+          iteration++;
+          this.hasPosts = true;
+        });
+      } catch (e) {
+        this.hasPosts = false;
+      }
       this.postsLoaded = true;
     });
 
     this.apiService.getUserComments(urlUser).subscribe((comments: any) => {
-      let iteration = 0;
-      Object.keys(comments['Table1']).forEach((key: any) => {
-        this.comments[iteration] = {
-          id: comments['Table1'][key].id,
-          postId: comments['Table1'][key].postId,
-          posterId: comments['Table1'][key].posterId,
-          postDate: comments['Table1'][key].postDate,
-          body: comments['Table1'][key].body,
-          likes: comments['Table1'][key].likes,
-          username: comments['Table1'][key].username,
-          avatar: comments['Table1'][key].avatar,
-          badge: comments['Table1'][key].badge
-        };
-        iteration++;
-      });
+      try {
+        let iteration = 0;
+        Object.keys(comments['Table1']).forEach((key: any) => {
+          this.comments[iteration] = {
+            id: comments['Table1'][key].id,
+            postId: comments['Table1'][key].postId,
+            posterId: comments['Table1'][key].posterId,
+            postDate: comments['Table1'][key].postDate,
+            body: comments['Table1'][key].body,
+            likes: comments['Table1'][key].likes,
+            username: comments['Table1'][key].username,
+            avatar: comments['Table1'][key].avatar,
+            badge: comments['Table1'][key].badge
+          };
+          iteration++;
+          this.hasComments = true;
+        });
+      } catch (e) {
+        this.hasComments = false;
+      }
       this.commentsLoaded = true;
     });
   }

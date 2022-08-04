@@ -1,52 +1,50 @@
 <app-navbar></app-navbar>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <h4>Create Post</h4>
-      <br />
-      <form>
-        <h5>Title</h5>
-        <input
-          #title
-          (keyup)="this.titleChanged(title.value)"
-          type="text"
-          id="title"
-          class="form-control invertible" />
-        <div id="passwordHelpBlock" class="form-text">
-          Don't add anything to the body if you just want to have a title
-        </div>
-        <br />
-        <h5>Body</h5>
-        <textarea
-          #body_input
-          (keyup)="this.bodyChanged(body_input.value)"
-          class="form-control invertible"
-          id="body"
-          rows="3"></textarea>
-        <br />
-        <!--<h5>Attached Media</h5>
-        <br>-->
-        <a class="shadow btn btn-primary" href="/create-post" role="button"
-          >Post!</a
-        >
-      </form>
-      <br />
-    </div>
+  <h4>Create Post</h4>
+  <br />
+  <form>
+    <h5>Title</h5>
+    <input
+      #title
+      (keyup)="this.titleChanged(title.value)"
+      type="text"
+      id="title"
+      class="form-control invertible" />
+    <br />
+    <h5>Body</h5>
+    <textarea
+      #body_input
+      (keyup)="this.bodyChanged(body_input.value)"
+      class="form-control invertible"
+      id="body"
+      rows="3"></textarea>
+    <br />
+    <h5>Media Link</h5>
+    <input
+      #media_input
+      (keyup)="this.mediaChanged(media_input.value)"
+      type="text"
+      id="title"
+      value="https://www.howtogeek.com/wp-content/uploads/2018/07/error-403-forbidden-message-on-a-website.jpeg"
+      class="form-control invertible" />
+    <br />
+    <a class="shadow btn btn-primary" href="/create-post" role="button"
+      >Post!</a
+    >
+  </form>
+  <br />
 
-    <div class="col">
-      <h5>How your post will look:</h5>
-      <app-user-post
-        [id]="0"
-        [poster]="this.username"
-        [avatar]="this.avatar"
-        [postType]="this.type"
-        [postDate]="this.date"
-        [header]="this.header"
-        [body]="this.body"
-        [media]="this.media"
-        [likes]="this.likes"
-        [comments]="this.comments"></app-user-post>
-    </div>
-  </div>
+  <h5>How your post will look:</h5>
+  <app-user-post
+    [id]="0"
+    [poster]="this.username"
+    [avatar]="this.avatar"
+    [postType]="this.type"
+    [postDate]="this.date"
+    [header]="this.header"
+    [body]="this.body"
+    [media]="this.media"
+    [likes]="this.likes"
+    [comments]="this.comments"></app-user-post>
 </div>

@@ -81,7 +81,13 @@
 }
 
 .image-attachment {
-  max-height: 340px;
+  max-height: 240px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.image-modal {
+  width: 100%;
   object-fit: cover;
 }
 
