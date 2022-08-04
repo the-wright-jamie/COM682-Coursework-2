@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiInterfaceService } from '../../services/api-interface.service';
 import { Post } from '../../types/post';
 import { Comment } from '../../types/comment';
+import { StatusCheckerService } from 'src/app/services/status-checker.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-post-page',
@@ -16,10 +18,15 @@ export class PostPageComponent implements OnInit {
   postLoaded = false;
   hasComments = false;
   commentsLoaded = false;
+  isPosting = false;
+
+  comment = '';
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiInterfaceService
+    private apiService: ApiInterfaceService,
+    private statusService: StatusCheckerService,
+    private cookieService: CookieService
   ) {
     this.comments = [];
     this.post = {
@@ -86,7 +93,42 @@ export class PostPageComponent implements OnInit {
     });
   }
 
+  postComment() {
+    this.isPosting = true;
+    this.apiService
+      .createComment(
+        this.cookieService.get('token'),
+        Number(this.cookieService.get('userId')),
+        Number(this.route.snapshot.paramMap.get('id')?.toString()),
+        this.comment.replace("'", "''")
+      )
+      .subscribe({
+        next: () => {
+          window.location.reload();
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      });
+  }
+
+  commentChanged(str: string) {
+    this.comment = str;
+  }
+
   get isLoading(): boolean {
     return !(this.postLoaded && this.commentsLoaded);
+  }
+
+  get isSignedIn(): boolean {
+    return this.statusService.isSignedIn;
+  }
+
+  get readyToPost(): boolean {
+    return this.comment !== '';
+  }
+
+  get dataOverload(): boolean {
+    return this.comment.length > 2000;
   }
 }

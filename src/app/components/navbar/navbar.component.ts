@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   }
 
   signOut(): void {
-    this.cookieService.deleteAll();
+    this.cookieService.deleteAll('/');
     this.router.navigate(['/']);
   }
 

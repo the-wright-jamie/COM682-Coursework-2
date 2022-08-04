@@ -21,9 +21,40 @@
         this.comments.length
       }}</span>
     </h5>
+    <div *ngIf="this.isSignedIn">
+      <br />
+      <h5>Post a comment</h5>
+      <textarea
+        #body_input
+        (keyup)="this.commentChanged(body_input.value)"
+        class="form-control invertible"
+        id="body"
+        rows="3"></textarea>
+      <p class="light">({{ this.comment.length }}/2000)</p>
+      <p class="light" *ngIf="!this.readyToPost">
+        You must include text in order to be able to comment
+      </p>
+      <p class="light" *ngIf="this.dataOverload">
+        Your comment has too much information
+      </p>
+      <div
+        *ngIf="this.isPosting"
+        class="spinner-border spinner-border-sm"
+        role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <button
+        *ngIf="this.readyToPost && !this.dataOverload && !this.isPosting"
+        type="button"
+        class="btn btn-primary"
+        (click)="this.postComment()">
+        Comment!
+      </button>
+      <br />
+    </div>
     <div *ngIf="this.hasComments">
       <app-user-post
-        *ngFor="let comment of this.comments.reverse()"
+        *ngFor="let comment of this.comments"
         [id]="comment.id"
         [poster]="comment.username"
         [avatar]="comment.avatar"

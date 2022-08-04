@@ -32,7 +32,7 @@
 
     <!-- Button trigger modal -->
     <button
-      *ngIf="this.hasMedia"
+      *ngIf="this.hasMedia && !this.isComment"
       type="button"
       class="btn btn-primary"
       data-bs-toggle="modal"

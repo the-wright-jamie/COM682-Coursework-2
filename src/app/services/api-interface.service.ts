@@ -144,6 +144,19 @@ export class ApiInterfaceService {
     );
   }
 
+  createComment(token: string, posterId: number, postId: number, body: string) {
+    return this.httpClient.post(
+      'https://prod-16.centralus.logic.azure.com/workflows/43069a674aaf453381116739942e3447/triggers/manual/paths/invoke/api/v1/createComment?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bfZspr1FzjurxgTXajWJkwLTDJo7A9qnvTrL3kr-jVI',
+      {
+        token: token,
+        posterId: posterId,
+        postId: postId,
+        postDate: Math.round(new Date().getTime() / 1000),
+        body: body
+      }
+    );
+  }
+
   // --- IN RELATION TO USER AUTHENTICATION --- //
 
   // hashes the password so we aren't sending raw passwords over the web
