@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import shajs from 'sha.js';
 
 @Injectable({
@@ -86,30 +86,36 @@ export class ApiInterfaceService {
   }
 
   getFollowersForUser(userId: number) {
-    throw new Error(
-      'Received userId: ' +
+    return this.httpClient.get(
+      'https://prod-28.centralus.logic.azure.com/workflows/75b745b52d0f4561a7a53dcfec869a92/triggers/manual/paths/invoke/api/v1/followers/' +
         userId +
-        '. However, this method not implemented yet.'
+        '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nfufgQ6JuKnuVnDGiokUrw9l5N274Np3i78xYNahErY'
     );
   }
 
+  getFollowingAndFollowerCountForUser(userId: number) {
+    return this.httpClient.get(
+      'https://prod-08.centralus.logic.azure.com/workflows/f51b16edd0cc44f68653d2c5ac9156ba/triggers/manual/paths/invoke/api/v1/followCount/' +
+        userId +
+        '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Si1xhbiVK6docG0RQsvnoYMC2W8G4kRSPB4idmNicj8'
+    );
+  }
+
+  //
   followUser(followerId: number, followingId: number) {
-    throw new Error(
-      'Received followerId: ' +
-        followerId +
-        ' and followingId: ' +
-        followingId +
-        '. However, this method not implemented yet.'
+    console.log('follow user');
+    return this.httpClient.put(
+      'https://prod-16.centralus.logic.azure.com/workflows/bf64471072c44f5ba7b8a61aa0ae1a3a/triggers/manual/paths/invoke/api/v1/follow?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_aLIgslml1iUks-nGafE0zLIoL8dTu_6HoQND1_8Mhk',
+      { followerId: followerId, followingId: followingId }
     );
   }
 
+  // https://prod-06.centralus.logic.azure.com/workflows/74257f39224c4c7cacca6cc2dfa923ed/triggers/manual/paths/invoke/api/v1/unfollow?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VDZmlQ_djyswMQQO7y9P88W6qrpCS9T7YowyWxRlTA0
   unfollowUser(followerId: number, followingId: number) {
-    throw new Error(
-      'Received followerId: ' +
-        followerId +
-        ' and followingId: ' +
-        followingId +
-        '. However, this method not implemented yet.'
+    console.log('unfollow user');
+    return this.httpClient.put(
+      'https://prod-06.centralus.logic.azure.com/workflows/74257f39224c4c7cacca6cc2dfa923ed/triggers/manual/paths/invoke/api/v1/unfollow?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VDZmlQ_djyswMQQO7y9P88W6qrpCS9T7YowyWxRlTA0',
+      { followerId: followerId, followingId: followingId }
     );
   }
 

@@ -10,6 +10,24 @@
     <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
       this.badge
     }}</span>
+    <div class="row">
+      <div class="col">
+        <a href="/u/{{ this.user.username }}/followers"
+          >Followers:
+          <span class="badge rounded-pill text-bg-secondary">{{
+            this.followerCount
+          }}</span></a
+        >
+      </div>
+      <div class="col">
+        <a href="/u/{{ this.user.username }}/following"
+          >Following:
+          <span class="badge rounded-pill text-bg-secondary">{{
+            this.followingCount
+          }}</span></a
+        >
+      </div>
+    </div>
     <div *ngIf="this.userIsOnTheirPage" class="dropdown">
       <br />
       <button
@@ -20,10 +38,16 @@
         Actions
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Edit Account</a></li>
-        <li><a class="dropdown-item" href="#">See Following</a></li>
-        <li><a class="dropdown-item" href="#">See Followers</a></li>
-        <li><a class="dropdown-item" href="#">Delete Account</a></li>
+        <li>
+          <a class="dropdown-item" href="/u/{{ this.user.username }}/edit"
+            >Edit Account</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" href="/u/{{ this.user.username }}/delete"
+            >Delete Account</a
+          >
+        </li>
       </ul>
     </div>
     <div *ngIf="!this.userIsOnTheirPage && this.isSignedIn" class="dropdown">
@@ -33,9 +57,11 @@
         type="button"
         (click)="this.setFollowingStatus()"
         [className]="
-          this.followStatus === 'Following'
-            ? 'btn btn-outline-primary active'
-            : 'btn btn-outline-primary'
+          this.followStatus !== '...'
+            ? this.followStatus === 'Following'
+              ? 'btn btn-outline-primary active'
+              : 'btn btn-outline-primary'
+            : 'btn btn-outline-primary disabled'
         "
         data-bs-toggle="button"
         autocomplete="off">

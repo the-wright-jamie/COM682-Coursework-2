@@ -32,6 +32,8 @@ export class UserPageComponent implements OnInit {
   badgeColour = '';
 
   followStatus = 'Follow';
+  followerCount = 0;
+  followingCount = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -94,6 +96,13 @@ export class UserPageComponent implements OnInit {
               this.followStatus = 'Following';
             }
           });
+        });
+
+      this.apiService
+        .getFollowingAndFollowerCountForUser(this.user.id)
+        .subscribe((counts: any) => {
+          this.followingCount = counts['Table1'][0]['following'];
+          this.followerCount = counts['Table1'][0]['followers'];
         });
     });
 
@@ -161,32 +170,34 @@ export class UserPageComponent implements OnInit {
   setFollowingStatus(): void {
     switch (this.followStatus === 'Follow') {
       case true:
-        this.apiService.followUser(
-          Number(this.cookieService.get('userId')),
-          this.user.id
-        );
-        /*.subscribe({
+        this.followStatus = '...';
+        this.apiService
+          .followUser(Number(this.cookieService.get('userId')), this.user.id)
+          .subscribe({
             next: () => {
+              console.log('Hello 1');
               this.followStatus = 'Following';
             },
             error: (e: any) => {
+              console.log(e);
               // TODO don't fail silently!
             }
-          })*/
+          });
         break;
       case false:
-        this.apiService.unfollowUser(
-          Number(this.cookieService.get('userId')),
-          this.user.id
-        );
-        /*.subscribe({
+        this.followStatus = '...';
+        this.apiService
+          .unfollowUser(Number(this.cookieService.get('userId')), this.user.id)
+          .subscribe({
             next: () => {
+              console.log('Hello 2');
               this.followStatus = 'Follow';
             },
             error: (e: any) => {
+              console.log(e);
               // TODO don't fail silently!
             }
-          })*/
+          });
         break;
     }
   }

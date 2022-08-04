@@ -6,18 +6,26 @@ import { FormsModule } from '@angular/forms';
 
 import { CookieService } from 'ngx-cookie-service';
 
-import { AppComponent } from './app.component';
+// Pages
 import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
 import { NewsFeedComponent } from './pages/news-feed/news-feed.component';
+import { SignupComponent } from './pages/signup/signup.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { UserPostComponent } from './components/user-post/user-post.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
+import { PostPageComponent } from './pages/post-page/post-page.component';
+import { EditUserPageComponent } from './pages/edit-user-page/edit-user-page.component';
+import { UserFollowersPageComponent } from './pages/user-followers-page/user-followers-page.component';
+import { UserFollowingPageComponent } from './pages/user-following-page/user-following-page.component';
+import { DeleteUserPageComponent } from './pages/delete-user-page/delete-user-page.component';
+
+// Components
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { UserPostComponent } from './components/user-post/user-post.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoadingComponent } from './components/loading/loading.component';
-import { PostPageComponent } from './pages/post-page/post-page.component';
+
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
@@ -26,6 +34,10 @@ const routes: Routes = [
   { path: 'welcome', component: LandingPageComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'u/:id', component: UserPageComponent },
+  { path: 'u/:id/edit', component: EditUserPageComponent },
+  { path: 'u/:id/followers', component: UserFollowersPageComponent },
+  { path: 'u/:id/following', component: UserFollowingPageComponent },
+  { path: 'u/:id/delete', component: DeleteUserPageComponent },
   { path: 'post/:id', component: PostPageComponent },
   { path: '404', component: ErrorPageComponent },
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
@@ -45,7 +57,11 @@ const routes: Routes = [
     CreatePostComponent,
     NavbarComponent,
     LoadingComponent,
-    PostPageComponent
+    PostPageComponent,
+    EditUserPageComponent,
+    UserFollowersPageComponent,
+    UserFollowingPageComponent,
+    DeleteUserPageComponent
   ],
   imports: [
     BrowserModule,

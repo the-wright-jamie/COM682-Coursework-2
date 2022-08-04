@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid text-center" *ngIf="!this.isLoading">
+  <img src="{{ this.avatar }}" class="shadow large-avatar" />
+  <h1>
+    {{ this.username }}
+  </h1>
+  <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
+    this.badge
+  }}</span>
+  <br /><br />
+  <a
+    class="text-center btn btn-outline-primary"
+    href="/u/{{ this.username }}"
+    role="button"
+    >Go back to {{ this.username }}'s page</a
+  >
+  <hr />
+  <h1 class="text-center">Followers</h1>
+  <div *ngIf="this.hasMembers">
+    <a *ngFor="let follower of this.followers" href="/u/{{ follower }}"
+      >{{ follower }}<br
+    /></a>
+  </div>
+  <p class="light" *ngIf="!this.hasMembers">
+    This user doesn't have any followers 🏃
+  </p>
+</div>
+
+<app-loading [isLoading]="this.isLoading"></app-loading>
