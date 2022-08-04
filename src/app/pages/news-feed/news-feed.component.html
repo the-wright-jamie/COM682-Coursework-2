@@ -9,6 +9,13 @@
       role="button"
       >Post something...</a
     >
+    <a
+      *ngIf="this.isSignedIn"
+      class="shadow btn btn-outline-primary"
+      href="/search-for-users"
+      role="button"
+      >Search for users...</a
+    >
   </div>
   <br />
   <div *ngIf="!this.isLoading">

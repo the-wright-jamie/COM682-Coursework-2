@@ -26,6 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
 import { AppComponent } from './app.component';
+import { SearchForUserPageComponent } from './search-for-user-page/search-for-user-page.component';
 
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
@@ -61,7 +62,8 @@ const routes: Routes = [
     EditUserPageComponent,
     UserFollowersPageComponent,
     UserFollowingPageComponent,
-    DeleteUserPageComponent
+    DeleteUserPageComponent,
+    SearchForUserPageComponent
   ],
   imports: [
     BrowserModule,
