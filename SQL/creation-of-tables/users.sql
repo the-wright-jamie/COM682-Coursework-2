@@ -2,8 +2,8 @@ USE UlsterBook;
 
 CREATE TABLE users ( 
     id int IDENTITY(1,1) PRIMARY KEY,
-    username varchar(24) NOT NULL,
-    emailAddress varchar(255) NOT NULL,
+    username varchar(24) UNIQUE NOT NULL,
+    emailAddress varchar(255) UNIQUE NOT NULL,
     hashedPassword varchar(64) NOT NULL,
     avatar varchar(1200),
     badge varchar(100),

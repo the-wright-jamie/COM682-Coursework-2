@@ -26,19 +26,20 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
 import { AppComponent } from './app.component';
-import { SearchForUserPageComponent } from './search-for-user-page/search-for-user-page.component';
+import { SearchForUserPageComponent } from './pages/search-for-user-page/search-for-user-page.component';
 
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
+  { path: 'search-for-users', component: SearchForUserPageComponent },
   { path: 'create-post', component: CreatePostComponent },
   { path: 'login', component: LoginComponent },
   { path: 'welcome', component: LandingPageComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'u/:id', component: UserPageComponent },
-  { path: 'u/:id/edit', component: EditUserPageComponent },
+  { path: 'u/:id/edit', component: EditUserPageComponent }, // TODO
   { path: 'u/:id/followers', component: UserFollowersPageComponent },
   { path: 'u/:id/following', component: UserFollowingPageComponent },
-  { path: 'u/:id/delete', component: DeleteUserPageComponent },
+  { path: 'u/:id/delete', component: DeleteUserPageComponent }, // TODO
   { path: 'post/:id', component: PostPageComponent },
   { path: '404', component: ErrorPageComponent },
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },

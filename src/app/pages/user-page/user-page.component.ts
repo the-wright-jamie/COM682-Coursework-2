@@ -67,6 +67,10 @@ export class UserPageComponent implements OnInit {
 
     this.apiService.getUser(urlUser).subscribe((user: any) => {
       this.user = user['Table1'][0];
+      this.user['avatar'] =
+        user['Table1'][0]['avatar'] === ''
+          ? 'assets/img/default.png'
+          : user['Table1'][0]['avatar'];
       this.userFound = true;
 
       if (this.user.isAdmin === true || this.user.isModerator === true) {
@@ -187,11 +191,9 @@ export class UserPageComponent implements OnInit {
           .followUser(Number(this.cookieService.get('userId')), this.user.id)
           .subscribe({
             next: () => {
-              console.log('Hello 1');
               this.followStatus = 'Following';
             },
             error: (e: any) => {
-              console.log(e);
               // TODO don't fail silently!
             }
           });
@@ -202,11 +204,9 @@ export class UserPageComponent implements OnInit {
           .unfollowUser(Number(this.cookieService.get('userId')), this.user.id)
           .subscribe({
             next: () => {
-              console.log('Hello 2');
               this.followStatus = 'Follow';
             },
             error: (e: any) => {
-              console.log(e);
               // TODO don't fail silently!
             }
           });

@@ -1,1 +1,26 @@
-<p>search-for-user-page works!</p>
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <form #user="ngForm" (ngSubmit)="search(user)">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="username"
+        class="form-control invertible"
+        id="username"
+        name="username"
+        ngModel />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <br />
+  <p class="light" *ngIf="this.noResult">No Results 🙈</p>
+
+  <app-loading
+    *ngIf="this.isLoading"
+    [isLoading]="this.isLoading"></app-loading>
+
+  <div *ngIf="!this.isLoading">
+    <a *ngFor="let user of this.users" href="/u/{{ user }}">{{ user }}<br /></a>
+  </div>
+</div>

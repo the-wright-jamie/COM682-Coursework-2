@@ -106,9 +106,7 @@ export class PostPageComponent implements OnInit {
         next: () => {
           window.location.reload();
         },
-        error: (e) => {
-          console.log(e);
-        }
+        error: (e) => {}
       });
   }
 

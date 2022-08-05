@@ -11,9 +11,11 @@ export class ApiInterfaceService {
   // --- IN RELATION TO USERS --- //
 
   // this returns a list of all users
-  getUsers() {
+  getUsers(searchQuery: string) {
     return this.httpClient.get(
-      'https://prod-15.centralus.logic.azure.com/workflows/4bdd3afb9e514c88b8954a2c72a9edbd/triggers/manual/paths/invoke/api/v1/users?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=g3_krp1UaCchIcB6I2Zqdi6Cigs9yHtpnSTYxd8MNgY'
+      'https://prod-15.centralus.logic.azure.com/workflows/4bdd3afb9e514c88b8954a2c72a9edbd/triggers/manual/paths/invoke/api/v1/users/' +
+        searchQuery +
+        '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=g3_krp1UaCchIcB6I2Zqdi6Cigs9yHtpnSTYxd8MNgY'
     );
   }
 
@@ -128,7 +130,6 @@ export class ApiInterfaceService {
   // TODO For these next two we need to authenticate the user against their token
   // send a follow user request
   followUser(followerId: number, followingId: number) {
-    console.log('follow user');
     return this.httpClient.put(
       'https://prod-16.centralus.logic.azure.com/workflows/bf64471072c44f5ba7b8a61aa0ae1a3a/triggers/manual/paths/invoke/api/v1/follow?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=_aLIgslml1iUks-nGafE0zLIoL8dTu_6HoQND1_8Mhk',
       { followerId: followerId, followingId: followingId }
@@ -137,7 +138,6 @@ export class ApiInterfaceService {
 
   // send an unfollow user request
   unfollowUser(followerId: number, followingId: number) {
-    console.log('unfollow user');
     return this.httpClient.put(
       'https://prod-06.centralus.logic.azure.com/workflows/74257f39224c4c7cacca6cc2dfa923ed/triggers/manual/paths/invoke/api/v1/unfollow?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VDZmlQ_djyswMQQO7y9P88W6qrpCS9T7YowyWxRlTA0',
       { followerId: followerId, followingId: followingId }

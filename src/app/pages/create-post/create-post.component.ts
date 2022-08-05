@@ -47,9 +47,7 @@ export class CreatePostComponent implements OnInit {
           let ids = response['Table1'].reverse();
           this.router.navigate(['/post/' + ids[0]['id']]);
         },
-        error: (e) => {
-          console.log(e);
-        }
+        error: (e) => {}
       });
   }
 

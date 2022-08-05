@@ -29,7 +29,10 @@ export class UserFollowersPageComponent implements OnInit {
     this.apiService.getUser(urlUser).subscribe((user: any) => {
       let userId = user['Table1'][0]['id'];
       this.username = user['Table1'][0]['username'];
-      this.avatar = user['Table1'][0]['avatar'];
+      this.avatar =
+        user['Table1'][0]['avatar'] === ''
+          ? 'assets/img/default.png'
+          : user['Table1'][0]['avatar'];
       let isAdmin = user['Table1'][0]['isAdmin'];
       let isModerator = user['Table1'][0]['isModerator'];
 
