@@ -1,24 +1,62 @@
-<div class="position-absolute top-50 start-50 translate-middle">
-  <div class="container">
-    <div class="shadow card">
-      <div class="card-header text-center">Login</div>
-      <div class="card-body">
-        <form>
-          <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="username" class="form-control" id="username" />
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" />
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="staySignedIn" />
-            <p>Stay signed in</p>
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-      </div>
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <h4>Create Account</h4>
+  <br />
+  <form>
+    <p>Username</p>
+    <input
+      #username_input
+      (keyup)="this.usernameChanged(username_input.value)"
+      type="text"
+      id="username_input"
+      class="form-control invertible" />
+    <p class="light">({{ this.username.length }}/24)</p>
+    <p>E-mail</p>
+    <input
+      #email_input
+      (keyup)="this.emailChanged(email_input.value)"
+      type="text"
+      id="email_input"
+      class="form-control invertible" />
+    <p class="light">({{ this.email.length }}/255)</p>
+    <p>Password</p>
+    <input
+      #password_input
+      (keyup)="this.passwordChanged(password_input.value)"
+      type="password"
+      id="password_input"
+      class="form-control invertible" />
+    <br />
+    <p>Birthday</p>
+    <input
+      #birthday_input
+      (keyup)="this.birthdayChanged(birthday_input.value)"
+      type="text"
+      id="birthday_input"
+      placeholder="dd/mm/yyyy"
+      class="form-control invertible" />
+    <br />
+
+    <p class="light" *ngIf="!this.ready">
+      You must include fill in all fields to continue
+    </p>
+    <p class="light" *ngIf="this.dataOverload">
+      A field contains too much information
+    </p>
+    <div
+      *ngIf="this.isCreating"
+      class="spinner-border spinner-border-sm"
+      role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
-  </div>
+    <button
+      *ngIf="this.ready && !this.dataOverload && !this.isCreating"
+      type="button"
+      class="btn btn-primary"
+      (click)="this.create()">
+      Sign Up!
+    </button>
+  </form>
+  <br />
 </div>

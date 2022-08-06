@@ -38,8 +38,8 @@ export class CreatePostComponent implements OnInit {
       .createPost(
         this.cookieService.get('token'),
         Number(this.cookieService.get('userId')),
-        this.header.replace("'", "''"),
-        this.body.replace("'", "''"),
+        this.header.replace(/'/g, "''"),
+        this.body.replace(/'/g, "''"),
         this.media
       )
       .subscribe({

@@ -54,34 +54,52 @@
   </div>
 
   <!-- create the footer  -->
-  <div class="card-footer text-muted" style="margin-bottom: -2%">
+  <div class="card-footer text-muted d-flex" style="margin-bottom: -2%">
     <!-- show the likes -->
     <div class="invertible">
-      <span class="material-symbols-rounded interact-controls"> thumb_up </span>
-      <p>{{ this.likes }}</p>
+      <div style="color: black">
+        <a (click)="updateLikes()" style="cursor: pointer">
+          <span class="material-symbols-rounded interact-controls">
+            thumb_up
+          </span>
+          <span
+            *ngIf="!this.likeLoading"
+            class="badge rounded-pill text-bg-dark badge"
+            >{{ this.likes }}</span
+          >
+          <div
+            *ngIf="this.likeLoading"
+            class="text-center spinner-border spinner-border-sm"
+            role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </a>
+      </div>
     </div>
 
     <!-- show the comments button if this isn't a comment
     (you cannot comment on comments) -->
     <div *ngIf="!this.isComment" class="invertible">
-      <div>
-        <a *ngIf="this.id !== 0" href="/post/{{ this.id }}"
-          ><span class="material-symbols-rounded interact-controls">
-            comment
-          </span>
-          <!-- if this is a real post, include a link to the comments -->
-          <p>{{ this.comments }}</p></a
-        >
-      </div>
+      <a style="color: black" *ngIf="this.id !== 0" href="/post/{{ this.id }}"
+        ><span class="material-symbols-rounded interact-controls">
+          comment
+        </span>
+        <span class="badge rounded-pill text-bg-dark badge">{{
+          this.comments
+        }}</span>
+      </a>
       <!-- if we are on the post creation page, don't include a
       link to the comments list -->
-      <div *ngIf="this.id === 0">
+      <div style="color: black" *ngIf="this.id === 0">
         <span class="material-symbols-rounded interact-controls">
           comment
         </span>
-        <p>{{ this.comments }}</p>
+        <span class="badge rounded-pill text-bg-dark badge">{{
+          this.comments
+        }}</span>
       </div>
     </div>
+    <br /><br /><br />
   </div>
 </div>
 <!-- add a space for good measure -->

@@ -121,7 +121,12 @@ export class UserPageComponent implements OnInit {
             posterId: posts['Table1'][key].posterId,
             poster: posts['Table1'][key].username,
             avatar: posts['Table1'][key].avatar,
-            badge: posts['Table1'][key].badge,
+            badge:
+              posts['Table1'][key].isAdmin == true
+                ? 'Site Admin:danger'
+                : posts['Table1'][key].isModerator == true
+                ? 'Moderator:warning'
+                : posts['Table1'][key].badge,
             postType: posts['Table1'][key].postType,
             postDate: posts['Table1'][key].postDate,
             header: posts['Table1'][key].header,
@@ -152,7 +157,12 @@ export class UserPageComponent implements OnInit {
             likes: comments['Table1'][key].likes,
             username: comments['Table1'][key].username,
             avatar: comments['Table1'][key].avatar,
-            badge: comments['Table1'][key].badge
+            badge:
+              comments['Table1'][key].isAdmin == true
+                ? 'Site Admin:danger'
+                : comments['Table1'][key].isModerator == true
+                ? 'Moderator:warning'
+                : comments['Table1'][key].badge
           };
           iteration++;
           this.hasComments = true;

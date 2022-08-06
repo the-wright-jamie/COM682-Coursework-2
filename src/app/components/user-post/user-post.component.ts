@@ -4,6 +4,8 @@ import {
   Input,
   OnInit
 } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { ApiInterfaceService } from 'src/app/services/api-interface.service';
 import { TimeDifferenceService } from '../../services/time-difference.service';
 
 @Component({
@@ -16,8 +18,10 @@ export class UserPostComponent implements OnInit {
   badgeColour: string | undefined;
   badgeName: string | undefined;
 
+  likeLoading = false;
+
   // add type
-  @Input('id') id: number | undefined;
+  @Input('id') id!: number;
   @Input('underPostId') underPostId: number | undefined;
   @Input('poster') poster: string | undefined;
   @Input('avatar') avatar: string | undefined;
@@ -29,7 +33,11 @@ export class UserPostComponent implements OnInit {
   @Input('media') media: string | undefined;
   @Input('likes') likes: number | undefined;
   @Input('comments') comments: number | undefined;
-  constructor(private timeDifference: TimeDifferenceService) {}
+  constructor(
+    private timeDifference: TimeDifferenceService,
+    private apiService: ApiInterfaceService,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
     typeof this.postDate === 'string'
@@ -39,6 +47,29 @@ export class UserPostComponent implements OnInit {
 
     this.badgeName = this.badge?.split(':')[0];
     this.badgeColour = this.badge?.split(':')[1];
+  }
+
+  updateLikes() {
+    this.likeLoading = true;
+    this.apiService
+      .updateLikes(
+        this.isComment,
+        this.cookieService.get('token'),
+        this.id,
+        this.cookieService.get('userId')
+      )
+      .subscribe({
+        next: (result: any) => {
+          this.likes =
+            result['message'] === 'Like placed'
+              ? Number(this.likes) + 1
+              : Number(this.likes) - 1;
+          this.likeLoading = false;
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      });
   }
 
   get hasMedia(): boolean {

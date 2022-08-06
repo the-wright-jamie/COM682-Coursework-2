@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiInterfaceService } from '../../services/api-interface.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +15,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private apiService: ApiInterfaceService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.signInError = params['message'];
+    });
+  }
 
   attemptLogin(form: NgForm) {
     this.signInError = '';

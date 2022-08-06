@@ -78,7 +78,12 @@ export class PostPageComponent implements OnInit {
             postId: comments['Table1'][key].postId,
             username: comments['Table1'][key].username,
             avatar: comments['Table1'][key].avatar,
-            badge: comments['Table1'][key].badge,
+            badge:
+              comments['Table1'][key].isAdmin == true
+                ? 'Site Admin:danger'
+                : comments['Table1'][key].isModerator == true
+                ? 'Moderator:warning'
+                : comments['Table1'][key].badge,
             postDate: comments['Table1'][key].postDate,
             body: comments['Table1'][key].body,
             likes: comments['Table1'][key].likes
@@ -100,13 +105,15 @@ export class PostPageComponent implements OnInit {
         this.cookieService.get('token'),
         Number(this.cookieService.get('userId')),
         Number(this.route.snapshot.paramMap.get('id')?.toString()),
-        this.comment.replace("'", "''")
+        this.comment.replace(/'/g, "''")
       )
       .subscribe({
         next: () => {
           window.location.reload();
         },
-        error: (e) => {}
+        error: (e) => {
+          // TODO don't fail silently
+        }
       });
   }
 

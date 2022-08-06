@@ -28,6 +28,25 @@ export class ApiInterfaceService {
     );
   }
 
+  createUser(
+    username: string,
+    email: string,
+    password: string,
+    birthday: number
+  ) {
+    password = shajs('sha256').update(password).digest('hex');
+    return this.httpClient.post(
+      'https://prod-00.centralus.logic.azure.com/workflows/ec71f843e13044e6bd5f0e6e23832f76/triggers/manual/paths/invoke/api/v1/createUser?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4uKRjIXqtTIeAAM1efM10bHWYMKI2fgKgbRTz2BXock',
+      {
+        username: username,
+        email: email,
+        password: password,
+        birthday: birthday,
+        accountCreation: Math.round(new Date().getTime() / 1000)
+      }
+    );
+  }
+
   // --- IN RELATION TO POSTS --- //
 
   // this gets posts from a specified user based on the user ID
@@ -74,6 +93,23 @@ export class ApiInterfaceService {
         header: header,
         body: body,
         media: media
+      }
+    );
+  }
+
+  updateLikes(
+    isComment: boolean,
+    token: string,
+    postId: number,
+    userId: string
+  ) {
+    return this.httpClient.put(
+      'https://prod-09.centralus.logic.azure.com/workflows/5442b7a671874d8bbf5b78beb2262185/triggers/manual/paths/invoke/api/v1/createComment?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CpgNS1vS6lNt7YLYZ2yIDh187dSmJikOah_cSo7W_Cc',
+      {
+        isComment: isComment,
+        postId: postId,
+        token: token,
+        userId: userId
       }
     );
   }
