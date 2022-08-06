@@ -30,6 +30,16 @@
       <a class="light" href="/post/{{ this.underPostId }}">See Source</a>
     </div>
 
+    <div *ngIf="this.postedByCurrentUser">
+      <span style="color: black" class="material-symbols-rounded invertible">
+        delete
+      </span>
+
+      <span style="color: black" class="material-symbols-rounded invertible">
+        edit
+      </span>
+    </div>
+
     <!-- Button trigger modal -->
     <button
       *ngIf="this.hasMedia && !this.isComment"

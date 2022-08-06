@@ -18,6 +18,9 @@ import { EditUserPageComponent } from './pages/edit-user-page/edit-user-page.com
 import { UserFollowersPageComponent } from './pages/user-followers-page/user-followers-page.component';
 import { UserFollowingPageComponent } from './pages/user-following-page/user-following-page.component';
 import { DeleteUserPageComponent } from './pages/delete-user-page/delete-user-page.component';
+import { SearchForUserPageComponent } from './pages/search-for-user-page/search-for-user-page.component';
+import { EditPostPageComponent } from './pages/edit-post-page/edit-post-page.component';
+import { DeletePostPageComponent } from './pages/delete-post-page/delete-post-page.component';
 
 // Components
 import { ErrorPageComponent } from './components/error-page/error-page.component';
@@ -26,7 +29,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
 import { AppComponent } from './app.component';
-import { SearchForUserPageComponent } from './pages/search-for-user-page/search-for-user-page.component';
 
 const routes: Routes = [
   { path: 'feed', component: NewsFeedComponent },
@@ -37,10 +39,12 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'u/:id', component: UserPageComponent },
   { path: 'u/:id/edit', component: EditUserPageComponent }, // TODO
+  { path: 'u/:id/delete', component: DeleteUserPageComponent }, // TODO
   { path: 'u/:id/followers', component: UserFollowersPageComponent },
   { path: 'u/:id/following', component: UserFollowingPageComponent },
-  { path: 'u/:id/delete', component: DeleteUserPageComponent }, // TODO
   { path: 'post/:id', component: PostPageComponent },
+  { path: 'post/:id/edit', component: EditPostPageComponent }, // TODO
+  { path: 'post/:id/delete', component: DeletePostPageComponent }, // TODO
   { path: '404', component: ErrorPageComponent },
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: '**', redirectTo: '/404' }
@@ -64,7 +68,8 @@ const routes: Routes = [
     UserFollowersPageComponent,
     UserFollowingPageComponent,
     DeleteUserPageComponent,
-    SearchForUserPageComponent
+    SearchForUserPageComponent,
+    EditPostPageComponent
   ],
   imports: [
     BrowserModule,

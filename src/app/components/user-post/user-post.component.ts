@@ -87,4 +87,8 @@ export class UserPostComponent implements OnInit {
   get isSignedIn() {
     return this.statusService.isSignedIn;
   }
+
+  get postedByCurrentUser() {
+    return this.poster == this.cookieService.get('username');
+  }
 }
