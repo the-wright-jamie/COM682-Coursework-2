@@ -1,9 +1,7 @@
-# Things left to do
+# Things to do
 
-- [ ] Fix badges not showing up
 - [x] Sign up
   - [ ] Better date system
-- [ ] Add media during post create (Azure Blobs)
 - [ ] Edit Account
   - [ ] Upload avatar
 - [ ] Delete Account
@@ -16,9 +14,9 @@
   - [ ] Delete posts
 - [ ] Moderator Powers
   - [ ] Delete posts
+- [ ] Add media during post create (Azure Blobs)
 - [ ] CI pipeline to deploy webapp
-- [x] Fix alignment of likes and comments buttons
-- [x] Liking
+- [ ] Fix TODO comments
 
 # Stretch goals
 
@@ -30,19 +28,24 @@
 
 # Things done
 
-- Login
-- Create Post (basic)
-- Follow user
-- landing page
-- routing
-- searching for users
-- user page
-- see followers
-- see following
-- News Feed
-- Comments system
-- general components
-  - Loading component
-  - Navbar
-  - Common user post/comment component
-  - Error page
+- [x] Fix likes trying to send when not logged in
+- [x] Fix follow/unfollow being unauthenticated
+- [x] Fix badges not showing up
+- [x] Fix alignment of likes and comments buttons
+- [x] Liking
+- [x] login
+- [x] create Post (basic)
+- [x] follow user
+- [x] landing page
+- [x] routing
+- [x] searching for users
+- [x] user page
+- [x] see followers
+- [x] see following
+- [x] news Feed
+- [x] comments system
+- [x] general components
+  - [x] loading component
+  - [x] navbar
+  - [x] common user post/comment component
+  - [x] error page

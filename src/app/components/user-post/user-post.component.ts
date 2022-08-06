@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiInterfaceService } from 'src/app/services/api-interface.service';
+import { StatusCheckerService } from 'src/app/services/status-checker.service';
 import { TimeDifferenceService } from '../../services/time-difference.service';
 
 @Component({
@@ -36,7 +37,8 @@ export class UserPostComponent implements OnInit {
   constructor(
     private timeDifference: TimeDifferenceService,
     private apiService: ApiInterfaceService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private statusService: StatusCheckerService
   ) {}
 
   ngOnInit(): void {
@@ -50,26 +52,28 @@ export class UserPostComponent implements OnInit {
   }
 
   updateLikes() {
-    this.likeLoading = true;
-    this.apiService
-      .updateLikes(
-        this.isComment,
-        this.cookieService.get('token'),
-        this.id,
-        this.cookieService.get('userId')
-      )
-      .subscribe({
-        next: (result: any) => {
-          this.likes =
-            result['message'] === 'Like placed'
-              ? Number(this.likes) + 1
-              : Number(this.likes) - 1;
-          this.likeLoading = false;
-        },
-        error: (e) => {
-          console.log(e);
-        }
-      });
+    if (this.isSignedIn) {
+      this.likeLoading = true;
+      this.apiService
+        .updateLikes(
+          this.isComment,
+          this.cookieService.get('token'),
+          this.id,
+          this.cookieService.get('userId')
+        )
+        .subscribe({
+          next: (result: any) => {
+            this.likes =
+              result['message'] === 'Like placed'
+                ? Number(this.likes) + 1
+                : Number(this.likes) - 1;
+            this.likeLoading = false;
+          },
+          error: (e) => {
+            console.log(e);
+          }
+        });
+    }
   }
 
   get hasMedia(): boolean {
@@ -78,5 +82,9 @@ export class UserPostComponent implements OnInit {
 
   get isComment(): boolean {
     return this.postType == 'comment' ? true : false;
+  }
+
+  get isSignedIn() {
+    return this.statusService.isSignedIn;
   }
 }

@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { StatusCheckerService } from 'src/app/services/status-checker.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
-  constructor(private cookieService: CookieService, private router: Router) {}
+  constructor(
+    private cookieService: CookieService,
+    private router: Router,
+    private statusService: StatusCheckerService
+  ) {}
 
   token = '';
   username = '';
@@ -24,8 +29,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  // TODO Use new service
   get isSignedIn() {
-    return this.cookieService.get('token') === '' ? false : true;
+    return this.statusService.isSignedIn;
   }
 }

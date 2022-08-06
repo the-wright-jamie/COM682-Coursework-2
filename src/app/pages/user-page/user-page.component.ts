@@ -198,26 +198,34 @@ export class UserPageComponent implements OnInit {
       case true:
         this.followStatus = '...';
         this.apiService
-          .followUser(Number(this.cookieService.get('userId')), this.user.id)
+          .followUser(
+            Number(this.cookieService.get('userId')),
+            this.user.id,
+            this.cookieService.get('token')
+          )
           .subscribe({
             next: () => {
               this.followStatus = 'Following';
             },
             error: (e: any) => {
-              // TODO don't fail silently!
+              this.followStatus = 'Error updating the follow status';
             }
           });
         break;
       case false:
         this.followStatus = '...';
         this.apiService
-          .unfollowUser(Number(this.cookieService.get('userId')), this.user.id)
+          .unfollowUser(
+            Number(this.cookieService.get('userId')),
+            this.user.id,
+            this.cookieService.get('token')
+          )
           .subscribe({
             next: () => {
               this.followStatus = 'Follow';
             },
             error: (e: any) => {
-              // TODO don't fail silently!
+              this.followStatus = 'Error updating the follow status';
             }
           });
         break;
