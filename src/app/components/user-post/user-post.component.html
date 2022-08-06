@@ -30,14 +30,20 @@
       <a class="light" href="/post/{{ this.underPostId }}">See Source</a>
     </div>
 
-    <div *ngIf="this.postedByCurrentUser">
-      <span style="color: black" class="material-symbols-rounded invertible">
-        delete
-      </span>
+    <div>
+      <a *ngIf="this.postedByCurrentUser" href="/post/{{ this.id }}/edit"
+        ><span style="color: black" class="material-symbols-rounded invertible">
+          edit
+        </span></a
+      >
 
-      <span style="color: black" class="material-symbols-rounded invertible">
-        edit
-      </span>
+      <a
+        *ngIf="this.postedByCurrentUser || this.activeUserHasDeletePowers"
+        href="/post/{{ this.id }}/delete"
+        ><span style="color: black" class="material-symbols-rounded invertible">
+          delete
+        </span></a
+      >
     </div>
 
     <!-- Button trigger modal -->

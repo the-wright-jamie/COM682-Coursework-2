@@ -46,6 +46,14 @@ export class LoginComponent implements OnInit {
             'username',
             result['userInfo']['Table1'][0]['username']
           );
+          this.cookieService.set(
+            'role',
+            result['userInfo']['Table1'][0]['isAdmin']
+              ? 'admin'
+              : result['userInfo']['Table1'][0]['isModerator']
+              ? 'moderator'
+              : ''
+          );
 
           this.router.navigate(['/feed']);
           this.signingIn = false;
