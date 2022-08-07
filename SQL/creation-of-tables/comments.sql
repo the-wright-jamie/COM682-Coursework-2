@@ -6,5 +6,4 @@ CREATE TABLE comments (
     body varchar(1200) NOT NULL,
 
     FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE CASCADE,
-    FOREIGN KEY (posterId) REFERENCES users(id)
 );
