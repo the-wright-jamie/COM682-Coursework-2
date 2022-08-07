@@ -28,7 +28,7 @@
         >
       </div>
     </div>
-    <div *ngIf="this.userIsOnTheirPage" class="dropdown">
+    <div *ngIf="this.userIsOnTheirPage || this.userIsAdmin" class="dropdown">
       <br />
       <button
         class="btn btn-secondary dropdown-toggle"
@@ -38,7 +38,7 @@
         Actions
       </button>
       <ul class="dropdown-menu">
-        <li>
+        <li *ngIf="this.userIsOnTheirPage">
           <a class="dropdown-item" href="/u/{{ this.user.username }}/edit"
             >Edit Account</a
           >

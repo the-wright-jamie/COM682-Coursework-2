@@ -192,6 +192,10 @@ export class UserPageComponent implements OnInit {
     return this.statusService.isSignedIn;
   }
 
+  get userIsAdmin(): boolean {
+    return this.cookieService.get('role') === 'admin';
+  }
+
   setFollowingStatus(): void {
     switch (this.followStatus === 'Follow') {
       case true:
