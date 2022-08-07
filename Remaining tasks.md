@@ -1,6 +1,5 @@
 # Things to do
 
-- [ ] Delete Account
 - [ ] Edit post
 - [ ] Edit comment
 - [ ] Edit Account
@@ -8,11 +7,10 @@
 - [ ] Banned users can't log in
   - [ ] Pages are blocked
 - [ ] Admin Powers
+  - [x] Delete posts
   - [ ] Delete account
   - [ ] Mute account
-  - [ ] Delete posts
-- [ ] Moderator Powers
-  - [ ] Delete posts
+  - [ ] Promote user
 - [ ] Filled in like button when liked
 - [x] Sign up
   - [ ] Better date system
@@ -31,6 +29,9 @@
 # Things done
 
 - [x] Delete comment
+- [x] Delete Account
+- [x] Moderator Powers
+  - [x] Delete posts
 - [x] Paging
 - [x] Delete Post
 - [x] Fix likes trying to send when not logged in

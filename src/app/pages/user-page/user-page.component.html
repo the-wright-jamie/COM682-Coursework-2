@@ -173,11 +173,6 @@
   </div>
 </div>
 
-<div class="container-fluid" *ngIf="this.user.isDeleted">
-  <div class="position-absolute top-50 start-50 translate-middle">
-    <h1 class="text-center light">This user as been deleted</h1>
-  </div>
-</div>
 <div *ngIf="!this.isLoading && !this.userFound">
   <app-error-page *ngIf="!this.userFound"></app-error-page>
 </div>

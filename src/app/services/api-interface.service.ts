@@ -47,6 +47,17 @@ export class ApiInterfaceService {
     );
   }
 
+  deleteUser(token: string, userId: number, userToDeleteId: number) {
+    return this.httpClient.post(
+      'https://prod-19.centralus.logic.azure.com/workflows/ca493a2514234d3188e8353eb93ebcd4/triggers/manual/paths/invoke/api/v1/deletePost?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QXwroRzVjth9f6hu_D4OT7k36ElwZsxa6k7MdNhQb7g',
+      {
+        token: token,
+        userId: userId,
+        userToDeleteId: userToDeleteId
+      }
+    );
+  }
+
   // --- IN RELATION TO POSTS --- //
 
   // this gets posts from a specified user based on the user ID

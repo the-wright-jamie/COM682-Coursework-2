@@ -52,7 +52,6 @@ export class UserPageComponent implements OnInit {
       badge: '',
       birthday: 0,
       accountCreation: 0,
-      isDeleted: false,
       isMuted: false,
       isBanned: false,
       isModerator: false,

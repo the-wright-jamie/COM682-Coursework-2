@@ -6,7 +6,6 @@ export interface User {
   badge: string;
   birthday: number;
   accountCreation: number;
-  isDeleted: boolean;
   isMuted: boolean;
   isBanned: boolean;
   isModerator: boolean;

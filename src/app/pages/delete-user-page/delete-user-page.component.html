@@ -1,3 +1,42 @@
 <app-navbar></app-navbar>
 
-<p>delete-user-page works!</p>
+<div #top class="container-fluid" *ngIf="!this.isLoading">
+  <!-- (!this.user.isDeleted && this.userFound) || -->
+  <div class="text-center">
+    <img src="{{ this.user.avatar }}" class="shadow large-avatar" />
+    <h1>
+      {{ this.user.username }}
+    </h1>
+    <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
+      this.badge
+    }}</span>
+  </div>
+
+  <br />
+
+  <div class="text-center">
+    <div *ngIf="!(this.error !== '')">
+      <h3>Are you sure you want to delete this user?</h3>
+      <a
+        class="btn btn-secondary ms-2"
+        href="/u/{{ this.user.username }}"
+        role="button"
+        >Go back</a
+      >
+      <a class="btn btn-danger ms-2" (click)="delete()" role="button">Delete</a>
+    </div>
+    <p *ngIf="this.error !== ''">{{ this.error }}</p>
+  </div>
+
+  <div *ngIf="!this.isFound && !this.isLoading">
+    <app-error-page></app-error-page>
+  </div>
+</div>
+
+<div *ngIf="this.errorFinding">
+  <app-error-page></app-error-page>
+</div>
+
+<app-loading
+  *ngIf="this.isLoading && !this.errorFinding"
+  [isLoading]="this.isLoading && !this.errorFinding"></app-loading>
