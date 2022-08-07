@@ -48,6 +48,30 @@
             >Delete Account</a
           >
         </li>
+        <li>
+          <a
+            *ngIf="this.userIsAdmin && !this.userIsOnTheirPage"
+            class="dropdown-item"
+            href="/u/{{ this.user.username }}/mute"
+            >{{ this.user.isMuted ? 'Unmute User' : 'Mute User' }}</a
+          >
+        </li>
+        <li>
+          <a
+            *ngIf="this.userIsAdmin && !this.userIsOnTheirPage"
+            class="dropdown-item"
+            href="/u/{{ this.user.username }}/ban"
+            >Ban User</a
+          >
+        </li>
+        <li>
+          <a
+            *ngIf="this.userIsAdmin && !this.userIsOnTheirPage"
+            class="dropdown-item"
+            href="/u/{{ this.user.username }}/promote"
+            >Promote/Demote User</a
+          >
+        </li>
       </ul>
     </div>
     <div *ngIf="!this.userIsOnTheirPage && this.isSignedIn" class="dropdown">

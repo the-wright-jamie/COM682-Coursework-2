@@ -27,6 +27,9 @@ import { DeleteUserPageComponent } from './pages/delete-user-page/delete-user-pa
 import { SearchForUserPageComponent } from './pages/search-for-user-page/search-for-user-page.component';
 import { EditPostPageComponent } from './pages/edit-post-page/edit-post-page.component';
 import { DeletePostPageComponent } from './pages/delete-post-page/delete-post-page.component';
+import { MuteUserPageComponent } from './pages/mute-user-page/mute-user-page.component';
+import { BanUserPageComponent } from './pages/ban-user-page/ban-user-page.component';
+import { PromoteUserPageComponent } from './pages/promote-user-page/promote-user-page.component';
 
 import { AppComponent } from './app.component';
 
@@ -40,14 +43,17 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'u/:id', component: UserPageComponent },
   { path: 'u/:id/edit', component: EditUserPageComponent }, // TODO
+  { path: 'u/:id/mute', component: MuteUserPageComponent }, // TODO
+  { path: 'u/:id/ban', component: BanUserPageComponent }, // TODO
+  { path: 'u/:id/promote', component: PromoteUserPageComponent }, // TODO
   { path: 'u/:id/delete', component: DeleteUserPageComponent },
   { path: 'u/:id/followers', component: UserFollowersPageComponent },
   { path: 'u/:id/following', component: UserFollowingPageComponent },
   { path: 'post/:id', component: PostPageComponent },
   { path: 'post/:id/edit', component: EditPostPageComponent }, // TODO
-  { path: 'post/:id/delete', component: DeletePostPageComponent }, // TODO
+  { path: 'post/:id/delete', component: DeletePostPageComponent },
   { path: 'comment/:id/edit', component: EditPostPageComponent }, // TODO
-  { path: 'comment/:id/delete', component: DeletePostPageComponent }, // TODO
+  { path: 'comment/:id/delete', component: DeletePostPageComponent },
   { path: '404', component: ErrorPageComponent },
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: '**', redirectTo: '/404' }
@@ -73,7 +79,10 @@ const routes: Routes = [
     DeleteUserPageComponent,
     SearchForUserPageComponent,
     EditPostPageComponent,
-    DeletePostPageComponent
+    DeletePostPageComponent,
+    MuteUserPageComponent,
+    BanUserPageComponent,
+    PromoteUserPageComponent
   ],
   imports: [
     BrowserModule,

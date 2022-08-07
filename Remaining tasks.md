@@ -8,8 +8,9 @@
   - [ ] Pages are blocked
 - [ ] Admin Powers
   - [x] Delete posts
-  - [ ] Delete account
+  - [x] Delete account
   - [ ] Mute account
+  - [ ] Ban user
   - [ ] Promote user
 - [ ] Filled in like button when liked
 - [x] Sign up
