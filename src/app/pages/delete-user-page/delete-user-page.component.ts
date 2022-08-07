@@ -76,13 +76,17 @@ export class DeleteUserPageComponent implements OnInit {
     this.apiService
       .deleteUser(
         this.cookieService.get('token'),
-        Number(this.cookieService.get('id')),
+        Number(this.cookieService.get('userId')),
         this.user.id
       )
       .subscribe({
         next: (user: any) => {
-          this.cookieService.deleteAll('/');
-          this.router.navigate(['/']);
+          if (this.cookieService.get('role') == 'admin') {
+            this.router.navigate(['/']);
+          } else {
+            this.cookieService.deleteAll('/');
+            this.router.navigate(['/']);
+          }
         },
         error: (e) => {
           this.isFound = true;
