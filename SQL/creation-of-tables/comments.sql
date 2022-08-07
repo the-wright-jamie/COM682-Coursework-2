@@ -7,6 +7,6 @@ CREATE TABLE comments (
     postDate int NOT NULL,
     body varchar(1200) NOT NULL,
 
-    FOREIGN KEY (postId) REFERENCES posts(id),
-    FOREIGN KEY (posterId) REFERENCES users(id)
+    FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE CASCADE,
+    FOREIGN KEY (posterId) REFERENCES users(id) ON DELETE CASCADE
 );

@@ -32,13 +32,36 @@
       [media]="post.media"
       [likes]="post.likes"
       [comments]="post.comments"></app-user-post>
+
+    <a
+      *ngIf="!this.notFollowingAnyone && this.page > 1"
+      href="/feed/{{ this.page - 1 }}"
+      class="btn btn-primary ms-2"
+      >Previous Page</a
+    >
+    <a
+      *ngIf="!this.notFollowingAnyone"
+      href="/feed/{{ this.page + 1 }}"
+      class="btn btn-primary ms-2"
+      >Next Page</a
+    >
+    <br /><br />
   </div>
   <div
-    *ngIf="this.notFollowingAnyone"
+    *ngIf="this.notFollowingAnyone && this.page == 1"
     class="position-absolute top-50 start-50 translate-middle text-center">
     <p class="light">
       You aren't following anyone, or no one you follow has posted yet 🙈
     </p>
+  </div>
+
+  <div
+    *ngIf="this.notFollowingAnyone && this.page != 1"
+    class="position-absolute top-50 start-50 translate-middle text-center">
+    <p class="light">You've reached the last page! 📔</p>
+    <a href="/feed/{{ this.page - 1 }}" class="btn btn-primary"
+      >Previous Page</a
+    >
   </div>
 
   <app-loading [isLoading]="this.isLoading"></app-loading>

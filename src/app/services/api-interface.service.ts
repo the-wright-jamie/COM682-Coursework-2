@@ -50,10 +50,12 @@ export class ApiInterfaceService {
   // --- IN RELATION TO POSTS --- //
 
   // this gets posts from a specified user based on the user ID
-  getPosts(userId: number) {
+  getPosts(userId: number, page: number) {
     return this.httpClient.get(
       'https://prod-27.centralus.logic.azure.com/workflows/621d7b6820614a5e8544eea8ee05e82e/triggers/manual/paths/invoke/api/v1/posts/' +
         userId +
+        '/' +
+        page +
         '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TqVYFNkvJEWl5knqCl9fj-H5I7LKXY39Sy7khlOAoBM'
     );
   }
@@ -97,6 +99,17 @@ export class ApiInterfaceService {
     );
   }
 
+  deletePost(token: string, postId: number, userId: number) {
+    return this.httpClient.post(
+      'https://prod-25.centralus.logic.azure.com/workflows/994eb30b9e9c4f5090cb382725df36f3/triggers/manual/paths/invoke/api/v1/deletePost?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=T_rRFeB6n4PIDC9B8PQF1X_894LThfU7yDDSnlElY5Q',
+      {
+        token: token,
+        postId: postId,
+        userId: userId
+      }
+    );
+  }
+
   updateLikes(
     isComment: boolean,
     token: string,
@@ -125,12 +138,32 @@ export class ApiInterfaceService {
     );
   }
 
+  // this gets the comments for a specific post based on the post ID
+  getComment(commentId: number) {
+    return this.httpClient.get(
+      'https://prod-20.centralus.logic.azure.com/workflows/e9b475ca21b84d168a59b38151fc7af6/triggers/manual/paths/invoke/api/v1/comment/' +
+        commentId +
+        '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=9vuvv4Vu_8jbmcOWMWG7C8YiLyiirlo8zW_IkHw_2F8'
+    );
+  }
+
   // get the comments a user has posted based on the username
   getUserComments(username: string) {
     return this.httpClient.get(
       'https://prod-28.centralus.logic.azure.com/workflows/9f6317a6b3e949d390bd36f3f86c09f0/triggers/manual/paths/invoke/api/v1/userComments/' +
         username +
         '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TvKLdC1KBn8710bH28sEvPM7fMzq8_f2dfMcLPBAu5w'
+    );
+  }
+
+  deleteComment(token: string, postId: number, userId: number) {
+    return this.httpClient.post(
+      'https://prod-30.centralus.logic.azure.com/workflows/a50b526e98654753be4d1654f973721c/triggers/manual/paths/invoke/api/v1/deleteComment?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-wwAhkc8rsqTuhOCvRZUJmm4Hz5n67lmsUu8y2TqUMk',
+      {
+        token: token,
+        postId: postId,
+        userId: userId
+      }
     );
   }
 

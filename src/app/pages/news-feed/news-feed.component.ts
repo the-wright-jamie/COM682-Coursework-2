@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiInterfaceService } from '../../services/api-interface.service';
 import { Post } from '../../types/post';
@@ -18,10 +18,13 @@ export class NewsFeedComponent implements OnInit {
 
   data: any; //TODO FIX!!!!!!
 
+  page = 1;
+
   constructor(
     private apiService: ApiInterfaceService,
     private cookieService: CookieService,
     private router: Router,
+    private route: ActivatedRoute,
     private statusService: StatusCheckerService
   ) {
     this.posts = [];
@@ -29,9 +32,11 @@ export class NewsFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.page = Number(this.route.snapshot.paramMap.get('page')?.toString());
+
     if (this.isSignedIn) {
       this.apiService
-        .getPosts(Number(this.cookieService.get('userId')))
+        .getPosts(Number(this.cookieService.get('userId')), this.page)
         .subscribe((posts: any) => {
           try {
             let iteration = 0;

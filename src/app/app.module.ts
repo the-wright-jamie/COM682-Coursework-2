@@ -6,6 +6,12 @@ import { FormsModule } from '@angular/forms';
 
 import { CookieService } from 'ngx-cookie-service';
 
+// Components
+import { UserPostComponent } from './components/user-post/user-post.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+
 // Pages
 import { LoginComponent } from './pages/login/login.component';
 import { NewsFeedComponent } from './pages/news-feed/news-feed.component';
@@ -22,16 +28,11 @@ import { SearchForUserPageComponent } from './pages/search-for-user-page/search-
 import { EditPostPageComponent } from './pages/edit-post-page/edit-post-page.component';
 import { DeletePostPageComponent } from './pages/delete-post-page/delete-post-page.component';
 
-// Components
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { UserPostComponent } from './components/user-post/user-post.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoadingComponent } from './components/loading/loading.component';
-
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: 'feed', component: NewsFeedComponent },
+  { path: 'feed', redirectTo: '/feed/1', pathMatch: 'full' },
+  { path: 'feed/:page', component: NewsFeedComponent },
   { path: 'search-for-users', component: SearchForUserPageComponent },
   { path: 'create-post', component: CreatePostComponent },
   { path: 'login', component: LoginComponent },
@@ -39,12 +40,14 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'u/:id', component: UserPageComponent },
   { path: 'u/:id/edit', component: EditUserPageComponent }, // TODO
-  { path: 'u/:id/delete', component: DeleteUserPageComponent }, // TODO
+  { path: 'u/:id/delete', component: DeleteUserPageComponent },
   { path: 'u/:id/followers', component: UserFollowersPageComponent },
   { path: 'u/:id/following', component: UserFollowingPageComponent },
   { path: 'post/:id', component: PostPageComponent },
   { path: 'post/:id/edit', component: EditPostPageComponent }, // TODO
   { path: 'post/:id/delete', component: DeletePostPageComponent }, // TODO
+  { path: 'comment/:id/edit', component: EditPostPageComponent }, // TODO
+  { path: 'comment/:id/delete', component: DeletePostPageComponent }, // TODO
   { path: '404', component: ErrorPageComponent },
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: '**', redirectTo: '/404' }
@@ -53,6 +56,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
     LoginComponent,
     SignupComponent,
     NewsFeedComponent,
@@ -61,7 +65,6 @@ const routes: Routes = [
     UserPostComponent,
     UserPageComponent,
     CreatePostComponent,
-    NavbarComponent,
     LoadingComponent,
     PostPageComponent,
     EditUserPageComponent,
@@ -69,7 +72,8 @@ const routes: Routes = [
     UserFollowingPageComponent,
     DeleteUserPageComponent,
     SearchForUserPageComponent,
-    EditPostPageComponent
+    EditPostPageComponent,
+    DeletePostPageComponent
   ],
   imports: [
     BrowserModule,

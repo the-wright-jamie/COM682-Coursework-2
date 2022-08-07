@@ -1,19 +1,21 @@
 # Things to do
 
-- [x] Sign up
-  - [ ] Better date system
-- [ ] Edit Account
-  - [ ] Upload avatar
 - [ ] Delete Account
 - [ ] Edit post
 - [ ] Edit comment
-- [ ] Delete Post
+- [ ] Edit Account
+  - [ ] Upload avatar
+- [ ] Banned users can't log in
+  - [ ] Pages are blocked
 - [ ] Admin Powers
   - [ ] Delete account
   - [ ] Mute account
   - [ ] Delete posts
 - [ ] Moderator Powers
   - [ ] Delete posts
+- [ ] Filled in like button when liked
+- [x] Sign up
+  - [ ] Better date system
 - [ ] Add media during post create (Azure Blobs)
 - [ ] CI pipeline to deploy webapp
 - [ ] Fix TODO comments
@@ -28,6 +30,9 @@
 
 # Things done
 
+- [x] Delete comment
+- [x] Paging
+- [x] Delete Post
 - [x] Fix likes trying to send when not logged in
 - [x] Fix follow/unfollow being unauthenticated
 - [x] Fix badges not showing up

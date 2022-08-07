@@ -9,5 +9,5 @@ CREATE TABLE posts (
     body varchar(1200) NOT NULL,
     media varchar(1200),
 
-    FOREIGN KEY (posterId) REFERENCES users(id)
+    FOREIGN KEY (posterId) REFERENCES users(id) ON DELETE CASCADE
 );

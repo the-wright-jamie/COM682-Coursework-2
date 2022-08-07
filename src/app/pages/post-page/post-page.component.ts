@@ -52,7 +52,12 @@ export class PostPageComponent implements OnInit {
         this.post.id = post['Table1'][0].id;
         this.post.poster = post['Table1'][0].username;
         this.post.avatar = post['Table1'][0].avatar;
-        this.post.badge = post['Table1'][0].badge;
+        this.post.badge =
+          post['Table1'][0].isAdmin == true
+            ? 'Site Admin:danger'
+            : post['Table1'][0].isModerator == true
+            ? 'Moderator:warning'
+            : post['Table1'][0].badge;
         this.post.postType = post['Table1'][0].postType;
         this.post.postDate = post['Table1'][0].postDate;
         this.post.header = post['Table1'][0].header;
