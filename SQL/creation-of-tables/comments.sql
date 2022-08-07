@@ -1,5 +1,3 @@
-USE UlsterBook;
-
 CREATE TABLE comments ( 
     id int IDENTITY(1,1) PRIMARY KEY, 
     postId int NOT NULL,
@@ -8,5 +6,5 @@ CREATE TABLE comments (
     body varchar(1200) NOT NULL,
 
     FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE CASCADE,
-    FOREIGN KEY (posterId) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (posterId) REFERENCES users(id)
 );

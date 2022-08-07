@@ -1,5 +1,3 @@
-USE UlsterBook;
-
 CREATE TABLE users ( 
     id int IDENTITY(1,1) PRIMARY KEY,
     username varchar(24) UNIQUE NOT NULL,

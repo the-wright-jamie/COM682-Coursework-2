@@ -1,5 +1,3 @@
-USE UlsterBook;
-
 CREATE TABLE posts ( 
     id int IDENTITY(1,1) PRIMARY KEY, 
     posterId int NOT NULL, 

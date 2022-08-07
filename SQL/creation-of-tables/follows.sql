@@ -1,5 +1,3 @@
-USE UlsterBook;
-
 CREATE TABLE follows ( 
     followerId int,
     followingId int,
