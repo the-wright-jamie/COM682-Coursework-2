@@ -58,6 +58,51 @@ export class ApiInterfaceService {
     );
   }
 
+  muteUser(token: string, userId: number, userToMuteId: number) {
+    return this.httpClient.post(
+      'https://prod-21.centralus.logic.azure.com/workflows/221c7ab5298d430b99e0755c81037a9b/triggers/manual/paths/invoke/api/v1/muteUser?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=aiK6N2EyG9tVA3nyRK8C3tdiztBwIPTZjntPTcHfOjw',
+      {
+        token: token,
+        userId: userId,
+        userToMuteId: userToMuteId
+      }
+    );
+  }
+
+  banUser(token: string, userId: number, userToBanId: number) {
+    return this.httpClient.post(
+      'https://prod-09.centralus.logic.azure.com/workflows/8510f655a0c242f0a1869fbacbbcca3b/triggers/manual/paths/invoke/api/v1/banUser?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qv8bwa8Ve_pR9ETGpzlli_ORv7N-FUJe64T9BFyz8Y8',
+      {
+        token: token,
+        userId: userId,
+        userToBanId: userToBanId
+      }
+    );
+  }
+
+  /*
+  MODES: 
+  0 - set as standard user
+  1 - set as moderator
+  2 - set as admin
+  */
+  promoteUser(
+    token: string,
+    userId: number,
+    userToDeleteId: number,
+    mode: number
+  ) {
+    return this.httpClient.post(
+      'https://prod-12.centralus.logic.azure.com/workflows/11a4803da18c409cbb6078a5da035ebf/triggers/manual/paths/invoke/api/v1/promoteUser?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=B3LRZV3AwOEbN4wDqPTXV1XvL29-1Rvoj-27zonlDCk ',
+      {
+        token: token,
+        userId: userId,
+        userToPromoteId: userToDeleteId,
+        mode: mode
+      }
+    );
+  }
+
   // --- IN RELATION TO POSTS --- //
 
   // this gets posts from a specified user based on the user ID

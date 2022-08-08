@@ -24,6 +24,9 @@
         >Go back</a
       >
       <a class="btn btn-danger ms-2" (click)="delete()" role="button">Delete</a>
+      <p class="warning">
+        Please note: deletions are permanent and non-reversible
+      </p>
     </div>
     <p *ngIf="this.error !== ''">{{ this.error }}</p>
   </div>

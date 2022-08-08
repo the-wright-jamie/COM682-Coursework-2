@@ -50,7 +50,9 @@
         </li>
         <li>
           <a
-            *ngIf="this.userIsAdmin && !this.userIsOnTheirPage"
+            *ngIf="
+              this.userIsAdmin && !this.userIsOnTheirPage && !this.user.isBanned
+            "
             class="dropdown-item"
             href="/u/{{ this.user.username }}/mute"
             >{{ this.user.isMuted ? 'Unmute User' : 'Mute User' }}</a
@@ -58,7 +60,9 @@
         </li>
         <li>
           <a
-            *ngIf="this.userIsAdmin && !this.userIsOnTheirPage"
+            *ngIf="
+              this.userIsAdmin && !this.userIsOnTheirPage && !this.user.isBanned
+            "
             class="dropdown-item"
             href="/u/{{ this.user.username }}/ban"
             >Ban User</a
@@ -66,7 +70,9 @@
         </li>
         <li>
           <a
-            *ngIf="this.userIsAdmin && !this.userIsOnTheirPage"
+            *ngIf="
+              this.userIsAdmin && !this.userIsOnTheirPage && !this.user.isBanned
+            "
             class="dropdown-item"
             href="/u/{{ this.user.username }}/promote"
             >Promote/Demote User</a
@@ -74,7 +80,9 @@
         </li>
       </ul>
     </div>
-    <div *ngIf="!this.userIsOnTheirPage && this.isSignedIn" class="dropdown">
+    <div
+      *ngIf="!this.userIsOnTheirPage && this.isSignedIn && !this.user.isBanned"
+      class="dropdown">
       <br />
       <button
         id="followButton"
@@ -131,7 +139,13 @@
       they cannot comment or post.
     </div>
 
-    <div *ngIf="!this.user.isMuted">
+    <div class="text-center light" *ngIf="this.user.isBanned">
+      This user has been banned by the moderation team due to violations of our
+      Community Guidelines and Terms of Service. As a result, so you can't see
+      their posts.
+    </div>
+
+    <div *ngIf="!this.user.isMuted && !this.user.isBanned">
       <div id="posts">
         <h4>
           User Posts

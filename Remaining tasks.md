@@ -5,13 +5,7 @@
 - [ ] Edit Account
   - [ ] Upload avatar
 - [ ] Banned users can't log in
-  - [ ] Pages are blocked
-- [ ] Admin Powers
-  - [x] Delete posts
-  - [x] Delete account
-  - [ ] Mute account
-  - [ ] Ban user
-  - [ ] Promote user
+  - [x] Pages are blocked
 - [ ] Filled in like button when liked
 - [x] Sign up
   - [ ] Better date system
@@ -33,6 +27,12 @@
 - [x] Delete Account
 - [x] Moderator Powers
   - [x] Delete posts
+- [x] Admin Powers
+  - [x] Delete posts
+  - [x] Delete account
+  - [x] Mute account
+  - [x] Ban user
+  - [x] Promote user
 - [x] Paging
 - [x] Delete Post
 - [x] Fix likes trying to send when not logged in
