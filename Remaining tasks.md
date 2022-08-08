@@ -4,8 +4,6 @@
 - [ ] Edit comment
 - [ ] Edit Account
   - [ ] Upload avatar
-- [ ] Banned users can't log in
-  - [x] Pages are blocked
 - [ ] Filled in like button when liked
 - [x] Sign up
   - [ ] Better date system
@@ -33,6 +31,8 @@
   - [x] Mute account
   - [x] Ban user
   - [x] Promote user
+- [x] Banned users can't log in
+  - [x] Pages are blocked
 - [x] Paging
 - [x] Delete Post
 - [x] Fix likes trying to send when not logged in

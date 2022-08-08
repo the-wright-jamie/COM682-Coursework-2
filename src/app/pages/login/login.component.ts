@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
         },
         error: (e) => {
           this.signingIn = false;
-          this.signInError = e.error;
+          this.signInError = e.error.message;
         }
       });
   }
