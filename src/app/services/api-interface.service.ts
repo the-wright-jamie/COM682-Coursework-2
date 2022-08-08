@@ -194,7 +194,7 @@ export class ApiInterfaceService {
     userId: string
   ) {
     return this.httpClient.put(
-      'https://prod-09.centralus.logic.azure.com/workflows/5442b7a671874d8bbf5b78beb2262185/triggers/manual/paths/invoke/api/v1/createComment?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CpgNS1vS6lNt7YLYZ2yIDh187dSmJikOah_cSo7W_Cc',
+      'https://prod-09.centralus.logic.azure.com/workflows/5442b7a671874d8bbf5b78beb2262185/triggers/manual/paths/invoke/api/v1/updateLike?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CpgNS1vS6lNt7YLYZ2yIDh187dSmJikOah_cSo7W_Cc',
       {
         isComment: isComment,
         postId: postId,
@@ -230,6 +230,31 @@ export class ApiInterfaceService {
       'https://prod-28.centralus.logic.azure.com/workflows/9f6317a6b3e949d390bd36f3f86c09f0/triggers/manual/paths/invoke/api/v1/userComments/' +
         username +
         '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TvKLdC1KBn8710bH28sEvPM7fMzq8_f2dfMcLPBAu5w'
+    );
+  }
+
+  createComment(token: string, posterId: number, postId: number, body: string) {
+    return this.httpClient.post(
+      'https://prod-16.centralus.logic.azure.com/workflows/43069a674aaf453381116739942e3447/triggers/manual/paths/invoke/api/v1/createComment?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bfZspr1FzjurxgTXajWJkwLTDJo7A9qnvTrL3kr-jVI',
+      {
+        token: token,
+        posterId: posterId,
+        postId: postId,
+        postDate: Math.round(new Date().getTime() / 1000),
+        body: body
+      }
+    );
+  }
+
+  editComment(token: string, posterId: number, postId: number, body: string) {
+    return this.httpClient.patch(
+      'https://prod-06.centralus.logic.azure.com/workflows/21cc99de7daf43e6864995c73ecb37cc/triggers/manual/paths/invoke/api/v1/editComment?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=9ZXgBmW_K9O22_CzasFwgfjY05TPFXbbre015FqaC8U',
+      {
+        token: token,
+        userId: posterId,
+        postId: postId,
+        body: body
+      }
     );
   }
 
@@ -294,19 +319,6 @@ export class ApiInterfaceService {
         followerId: followerId,
         followingId: followingId,
         token: token
-      }
-    );
-  }
-
-  createComment(token: string, posterId: number, postId: number, body: string) {
-    return this.httpClient.post(
-      'https://prod-16.centralus.logic.azure.com/workflows/43069a674aaf453381116739942e3447/triggers/manual/paths/invoke/api/v1/createComment?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bfZspr1FzjurxgTXajWJkwLTDJo7A9qnvTrL3kr-jVI',
-      {
-        token: token,
-        posterId: posterId,
-        postId: postId,
-        postDate: Math.round(new Date().getTime() / 1000),
-        body: body
       }
     );
   }

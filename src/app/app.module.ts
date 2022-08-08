@@ -43,14 +43,14 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'u/:id', component: UserPageComponent },
   { path: 'u/:id/edit', component: EditUserPageComponent }, // TODO
-  { path: 'u/:id/mute', component: MuteUserPageComponent }, // TODO
-  { path: 'u/:id/ban', component: BanUserPageComponent }, // TODO
-  { path: 'u/:id/promote', component: PromoteUserPageComponent }, // TODO
+  { path: 'u/:id/mute', component: MuteUserPageComponent },
+  { path: 'u/:id/ban', component: BanUserPageComponent },
+  { path: 'u/:id/promote', component: PromoteUserPageComponent },
   { path: 'u/:id/delete', component: DeleteUserPageComponent },
   { path: 'u/:id/followers', component: UserFollowersPageComponent },
   { path: 'u/:id/following', component: UserFollowingPageComponent },
   { path: 'post/:id', component: PostPageComponent },
-  { path: 'post/:id/edit', component: EditPostPageComponent }, // TODO
+  { path: 'post/:id/edit', component: EditPostPageComponent },
   { path: 'post/:id/delete', component: DeletePostPageComponent },
   { path: 'comment/:id/edit', component: EditPostPageComponent }, // TODO
   { path: 'comment/:id/delete', component: DeletePostPageComponent },
