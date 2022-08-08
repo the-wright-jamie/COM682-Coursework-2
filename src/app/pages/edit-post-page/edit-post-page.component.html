@@ -1,1 +1,73 @@
 <app-navbar></app-navbar>
+
+<div class="container-fluid" *ngIf="!this.isLoading && !this.notFound">
+  <h4>Create Post</h4>
+  <br />
+  <form>
+    <h5>Title</h5>
+    <input
+      #title
+      (keyup)="this.titleChanged(title.value)"
+      value="{{ this.header }}"
+      type="text"
+      id="title"
+      class="form-control invertible" />
+    <p class="light">({{ this.header.length }}/128)</p>
+    <br />
+    <h5>Body</h5>
+    <textarea
+      #body_input
+      (keyup)="this.bodyChanged(body_input.value)"
+      value="{{ this.body }}"
+      class="form-control invertible"
+      id="body"
+      rows="3"></textarea>
+    <p class="light">({{ this.body.length }}/2000)</p>
+    <br />
+    <h5>Media Link</h5>
+    <input
+      #media_input
+      (keyup)="this.mediaChanged(media_input.value)"
+      value="{{ this.media }}"
+      type="text"
+      id="title"
+      class="form-control invertible" />
+    <br />
+    <p class="light" *ngIf="!this.readyToPost">
+      You must include a title and a body in order to be able to post
+    </p>
+    <p class="light" *ngIf="this.dataOverload">
+      Your title or body has too much information
+    </p>
+    <div
+      *ngIf="this.isPosting"
+      class="spinner-border spinner-border-sm"
+      role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <button
+      *ngIf="this.readyToPost && !this.dataOverload && !this.isPosting"
+      type="button"
+      class="btn btn-primary"
+      (click)="this.update()">
+      Edit!
+    </button>
+  </form>
+  <br />
+
+  <h5>How your post will look:</h5>
+  <app-user-post
+    [id]="0"
+    [poster]="this.username"
+    [avatar]="this.avatar"
+    [postType]="this.type"
+    [postDate]="this.date"
+    [header]="this.header"
+    [body]="this.body"
+    [media]="this.media"
+    [likes]="this.likes"
+    [comments]="this.comments"></app-user-post>
+</div>
+
+<app-loading *ngIf="this.isLoading" [isLoading]="this.isLoading"></app-loading>
+<app-error-page *ngIf="this.notFound"></app-error-page>

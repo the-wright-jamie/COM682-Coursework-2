@@ -30,7 +30,7 @@
       <a class="light" href="/post/{{ this.underPostId }}">See Source</a>
     </div>
 
-    <div *ngIf="!this.isComment">
+    <div *ngIf="!this.isComment && this.id !== 0">
       <a *ngIf="this.postedByCurrentUser" href="/post/{{ this.id }}/edit"
         ><span style="color: black" class="material-symbols-rounded invertible">
           edit
@@ -46,7 +46,7 @@
       >
     </div>
 
-    <div *ngIf="this.isComment">
+    <div *ngIf="this.isComment && this.id !== 0">
       <a *ngIf="this.postedByCurrentUser" href="/comment/{{ this.id }}/edit"
         ><span style="color: black" class="material-symbols-rounded invertible">
           edit
@@ -88,7 +88,7 @@
   <!-- create the footer  -->
   <div class="card-footer text-muted d-flex" style="margin-bottom: -2%">
     <!-- show the likes -->
-    <div class="invertible">
+    <div *ngIf="this.id !== 0" class="invertible">
       <div style="color: black">
         <a (click)="updateLikes()" style="cursor: pointer">
           <span class="material-symbols-rounded interact-controls">
@@ -105,6 +105,21 @@
             role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="this.id === 0" class="invertible">
+      <div style="color: black">
+        <a style="cursor: pointer">
+          <span class="material-symbols-rounded interact-controls">
+            thumb_up
+          </span>
+          <span
+            *ngIf="!this.likeLoading"
+            class="badge rounded-pill text-bg-dark badge"
+            >{{ this.likes }}</span
+          >
         </a>
       </div>
     </div>

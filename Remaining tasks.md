@@ -1,6 +1,5 @@
 # Things to do
 
-- [ ] Edit post
 - [ ] Edit comment
 - [ ] Edit Account
   - [ ] Upload avatar
@@ -15,7 +14,7 @@
 
 - [ ] ML to process images and videos
 - [ ] Full admin panel
-  - [ ] Edit user perms
+  - [x] Edit user perms
   - [ ] Give badges
   - [ ] Muted user overview
 
@@ -43,6 +42,7 @@
 - [x] login
 - [x] create Post (basic)
 - [x] follow user
+- [x] Edit post
 - [x] landing page
 - [x] routing
 - [x] searching for users

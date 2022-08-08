@@ -155,6 +155,27 @@ export class ApiInterfaceService {
     );
   }
 
+  editPost(
+    token: string,
+    userId: number,
+    header: string,
+    body: string,
+    media: string,
+    postId: number
+  ) {
+    return this.httpClient.patch(
+      'https://prod-26.centralus.logic.azure.com/workflows/2b7b1ed541624b18afb20fd674bd7695/triggers/manual/paths/invoke/api/v1/editPost?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=S7S_yTAuDjhD-fy39MR7FFUrKRk9YOcY3ROm7m5iBJ8',
+      {
+        token: token,
+        userId: userId,
+        header: header,
+        body: body,
+        media: media,
+        postId: postId
+      }
+    );
+  }
+
   deletePost(token: string, postId: number, userId: number) {
     return this.httpClient.post(
       'https://prod-25.centralus.logic.azure.com/workflows/994eb30b9e9c4f5090cb382725df36f3/triggers/manual/paths/invoke/api/v1/deletePost?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=T_rRFeB6n4PIDC9B8PQF1X_894LThfU7yDDSnlElY5Q',
