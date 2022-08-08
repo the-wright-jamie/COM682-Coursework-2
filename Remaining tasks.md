@@ -1,6 +1,5 @@
 # Things to do
 
-- [ ] Edit comment
 - [ ] Edit Account
   - [ ] Upload avatar
 - [ ] Filled in like button when liked
@@ -32,6 +31,7 @@
   - [x] Promote user
 - [x] Banned users can't log in
   - [x] Pages are blocked
+- [x] Edit comment
 - [x] Paging
 - [x] Delete Post
 - [x] Fix likes trying to send when not logged in
