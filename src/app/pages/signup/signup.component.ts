@@ -1,5 +1,7 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import moment, { Moment } from 'moment';
 import { ApiInterfaceService } from 'src/app/services/api-interface.service';
 
 @Component({
@@ -7,10 +9,15 @@ import { ApiInterfaceService } from 'src/app/services/api-interface.service';
   templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit {
-  constructor(
-    private apiService: ApiInterfaceService,
-    private router: Router
-  ) {}
+  minBirthday: string;
+  maxBirthday: string;
+  eighteenYearsAgo: string;
+
+  constructor(private apiService: ApiInterfaceService, private router: Router) {
+    this.minBirthday = moment().subtract('year', 13).format('YYYY-MM-D');
+    this.maxBirthday = moment().subtract('year', 120).format('YYYY-MM-D');
+    this.eighteenYearsAgo = moment().subtract('year', 18).format('YYYY-MM-D');
+  }
   username = '';
   email = '';
   password = '';
@@ -18,11 +25,15 @@ export class SignupComponent implements OnInit {
 
   isCreating = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.minBirthday);
+    console.log(this.maxBirthday);
+    console.log(this.eighteenYearsAgo);
+  }
 
   create() {
     this.isCreating = true;
-    let [day, month, year] = this.birthday.split('/');
+    let [year, month, day] = this.birthday.split('-');
     let date = new Date(+year, +month - 1, +day);
 
     this.apiService

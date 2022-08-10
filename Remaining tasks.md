@@ -3,8 +3,6 @@
 - [ ] Edit Account
   - [ ] Upload avatar
 - [ ] Filled in like button when liked
-- [x] Sign up
-  - [ ] Better date system
 - [ ] Add media during post create (Azure Blobs)
 - [ ] CI pipeline to deploy webapp
 - [ ] Fix TODO comments
@@ -56,3 +54,5 @@
   - [x] navbar
   - [x] common user post/comment component
   - [x] error page
+- [x] Sign up
+  - [x] Better date system
