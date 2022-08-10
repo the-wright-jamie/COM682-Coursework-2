@@ -47,6 +47,28 @@ export class ApiInterfaceService {
     );
   }
 
+  editUser(
+    username: string,
+    email: string,
+    password: string,
+    birthday: number,
+    userId: number,
+    token: string
+  ) {
+    password = shajs('sha256').update(password).digest('hex');
+    return this.httpClient.patch(
+      'https://prod-22.centralus.logic.azure.com/workflows/a90b91aced584958b9d0b78bba1593ef/triggers/manual/paths/invoke/api/v1/editAccount?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0l4xgJPiJbJ6bPB2bfmwyfRsFwkeWrbFY25NX1q-1Y8',
+      {
+        username: username,
+        email: email,
+        password: password,
+        birthday: birthday,
+        userId: userId,
+        token: token
+      }
+    );
+  }
+
   deleteUser(token: string, userId: number, userToDeleteId: number) {
     return this.httpClient.post(
       'https://prod-19.centralus.logic.azure.com/workflows/ca493a2514234d3188e8353eb93ebcd4/triggers/manual/paths/invoke/api/v1/deletePost?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QXwroRzVjth9f6hu_D4OT7k36ElwZsxa6k7MdNhQb7g',

@@ -14,9 +14,9 @@ export class SignupComponent implements OnInit {
   eighteenYearsAgo: string;
 
   constructor(private apiService: ApiInterfaceService, private router: Router) {
-    this.minBirthday = moment().subtract('year', 13).format('YYYY-MM-D');
-    this.maxBirthday = moment().subtract('year', 120).format('YYYY-MM-D');
-    this.eighteenYearsAgo = moment().subtract('year', 18).format('YYYY-MM-D');
+    this.minBirthday = moment().subtract('year', 13).format('YYYY-MM-DD');
+    this.maxBirthday = moment().subtract('year', 120).format('YYYY-MM-DD');
+    this.eighteenYearsAgo = moment().subtract('year', 18).format('YYYY-MM-DD');
   }
   username = '';
   email = '';
@@ -25,11 +25,7 @@ export class SignupComponent implements OnInit {
 
   isCreating = false;
 
-  ngOnInit(): void {
-    console.log(this.minBirthday);
-    console.log(this.maxBirthday);
-    console.log(this.eighteenYearsAgo);
-  }
+  ngOnInit(): void {}
 
   create() {
     this.isCreating = true;

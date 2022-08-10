@@ -1,6 +1,7 @@
 # Things to do
 
-- [ ] Edit Account
+- [ ] unique email and username validation
+- [x] Edit Account
   - [ ] Upload avatar
 - [ ] Filled in like button when liked
 - [ ] Add media during post create (Azure Blobs)
