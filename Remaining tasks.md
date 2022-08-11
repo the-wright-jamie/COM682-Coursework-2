@@ -1,5 +1,6 @@
 # Things to do
 
+- [ ] Add message on signup failure
 - [ ] unique email and username validation
 - [x] Edit Account
   - [ ] Upload avatar
