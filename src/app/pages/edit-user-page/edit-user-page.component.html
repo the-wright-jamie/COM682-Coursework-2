@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+
+<div #top class="container-fluid" *ngIf="!this.isLoading">
+  <!-- (!this.user.isDeleted && this.userFound) || -->
+  <div class="text-center">
+    <img src="{{ this.user.avatar }}" class="shadow large-avatar" />
+    <h1>
+      {{ this.user.username }}
+    </h1>
+    <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
+      this.badge
+    }}</span>
+  </div>
+
+  <br />
+
+  <h4>Edit Account</h4>
+  <br />
+  <form>
+    <p>Username</p>
+    <input
+      #username_input
+      (keyup)="this.usernameChanged(username_input.value)"
+      type="text"
+      value="{{ this.user.username }}"
+      id="username_input"
+      class="form-control invertible" />
+    <p class="light">({{ this.user.username.length }}/24)</p>
+    <p>E-mail</p>
+    <input
+      #email_input
+      (keyup)="this.emailChanged(email_input.value)"
+      type="text"
+      value="{{ this.user.emailAddress }}"
+      id="email_input"
+      class="form-control invertible" />
+    <p class="light">({{ this.user.emailAddress.length }}/255)</p>
+    <p>New password (can be your old one)</p>
+    <input
+      #password_input
+      (keyup)="this.passwordChanged(password_input.value)"
+      type="password"
+      id="password_input"
+      class="form-control invertible" />
+    <p class="light">
+      We don't store your password in our database so we cannot auto fill it
+    </p>
+    <br />
+    <p>Birthday</p>
+    <input
+      #birthday_input
+      (input)="this.birthdayChanged(birthday_input.value)"
+      class="invertible"
+      type="date"
+      id="birthday"
+      name="birthday"
+      value="{{ this.birthdayValue }}"
+      min="{{ this.maxBirthday }}"
+      max="{{ this.minBirthday }}" />
+    <br /><br />
+
+    <p class="light" *ngIf="!this.ready">
+      You must include fill in all fields to continue
+    </p>
+    <p class="light" *ngIf="this.dataOverload">
+      A field contains too much information
+    </p>
+    <div
+      *ngIf="this.isCreating"
+      class="spinner-border spinner-border-sm"
+      role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <button
+      *ngIf="this.ready && !this.dataOverload && !this.isCreating"
+      type="button"
+      class="btn btn-primary"
+      (click)="this.edit()">
+      Edit!
+    </button>
+  </form>
+
+  <div *ngIf="!this.isFound && !this.isLoading">
+    <app-error-page></app-error-page>
+  </div>
+</div>
+
+<div *ngIf="this.errorFinding">
+  <app-error-page></app-error-page>
+</div>
+
+<app-loading
+  *ngIf="this.isLoading && !this.errorFinding"
+  [isLoading]="this.isLoading && !this.errorFinding"></app-loading>
+
+<br />

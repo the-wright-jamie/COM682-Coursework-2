@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <div class="d-grid gap-2">
+    <a
+      *ngIf="this.isSignedIn"
+      class="shadow btn btn-primary"
+      href="/create-post"
+      role="button"
+      >Post something...</a
+    >
+    <a
+      *ngIf="this.isSignedIn"
+      class="shadow btn btn-outline-primary"
+      href="/search-for-users"
+      role="button"
+      >Search for users...</a
+    >
+  </div>
+  <br />
+  <div *ngIf="!this.isLoading">
+    <app-user-post
+      *ngFor="let post of this.posts"
+      [id]="post.id"
+      [poster]="post.poster"
+      [avatar]="post.avatar"
+      [badge]="post.badge"
+      [postType]="post.postType"
+      [postDate]="post.postDate"
+      [header]="post.header"
+      [body]="post.body"
+      [media]="post.media"
+      [likes]="post.likes"
+      [comments]="post.comments"></app-user-post>
+
+    <a
+      *ngIf="!this.notFollowingAnyone && this.page > 1"
+      href="/feed/{{ this.page - 1 }}"
+      class="btn btn-primary ms-2"
+      >Previous Page</a
+    >
+    <a
+      *ngIf="!this.notFollowingAnyone"
+      href="/feed/{{ this.page + 1 }}"
+      class="btn btn-primary ms-2"
+      >Next Page</a
+    >
+    <br /><br />
+  </div>
+  <div
+    *ngIf="this.notFollowingAnyone && this.page == 1"
+    class="position-absolute top-50 start-50 translate-middle text-center">
+    <p class="light">
+      You aren't following anyone, or no one you follow has posted yet 🙈
+    </p>
+  </div>
+
+  <div
+    *ngIf="this.notFollowingAnyone && this.page != 1"
+    class="position-absolute top-50 start-50 translate-middle text-center">
+    <p class="light">You've reached the last page! 📔</p>
+    <a href="/feed/{{ this.page - 1 }}" class="btn btn-primary"
+      >Previous Page</a
+    >
+  </div>
+
+  <app-loading [isLoading]="this.isLoading"></app-loading>
+</div>

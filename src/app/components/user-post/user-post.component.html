@@ -1,0 +1,153 @@
+<!-- create a card with a drop shadow -->
+<div class="shadow card">
+  <!-- create the card header, which contains info such 
+  as the poster and when is was posted -->
+  <div class="card-header">
+    <!-- poster avatar -->
+    <img class="small-avatar" src="{{ this.avatar }}" />
+    <!-- poster username -->
+    <a href="/u/{{ this.poster }}">{{ this.poster }}</a>
+    <!-- poster badge -->
+    <span class="badge rounded-pill text-bg-{{ this.badgeColour }} badge">{{
+      this.badgeName
+    }}</span>
+    <!-- post date -->
+    {{ this.isComment ? 'commented' : 'posted' }} {{ this.formattedDate }}
+  </div>
+
+  <!-- create the card body -->
+  <div class="card-body">
+    <!-- if this is a comment, there won't be a title so
+    don't attempt to show it -->
+    <div *ngIf="!this.isComment" class="card-title">
+      <h5 class="card-title">{{ this.header }}</h5>
+    </div>
+    <!-- show the body -->
+    <p class="card-text">{{ this.body }}</p>
+    <!-- if this is a comment and if we are on a user's page 
+    (comments will be out of context in this context) -->
+    <div *ngIf="this.isComment && this.underPostId">
+      <a class="light" href="/post/{{ this.underPostId }}">See Source</a>
+    </div>
+
+    <div *ngIf="!this.isComment && this.id !== 0">
+      <a *ngIf="this.postedByCurrentUser" href="/post/{{ this.id }}/edit"
+        ><span style="color: black" class="material-symbols-rounded invertible">
+          edit
+        </span></a
+      >
+
+      <a
+        *ngIf="this.postedByCurrentUser || this.activeUserHasDeletePowers"
+        href="/post/{{ this.id }}/delete"
+        ><span style="color: black" class="material-symbols-rounded invertible">
+          delete
+        </span></a
+      >
+    </div>
+
+    <div *ngIf="this.isComment && this.id !== 0">
+      <a *ngIf="this.postedByCurrentUser" href="/comment/{{ this.id }}/edit"
+        ><span style="color: black" class="material-symbols-rounded invertible">
+          edit
+        </span></a
+      >
+
+      <a
+        *ngIf="this.postedByCurrentUser || this.activeUserHasDeletePowers"
+        href="/comment/{{ this.id }}/delete"
+        ><span style="color: black" class="material-symbols-rounded invertible">
+          delete
+        </span></a
+      >
+    </div>
+
+    <!-- Button trigger modal -->
+    <button
+      *ngIf="this.hasMedia && !this.isComment"
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#imageModal">
+      View full image
+    </button>
+  </div>
+
+  <!-- if the post has attached media then show this -->
+  <img *ngIf="this.hasMedia" src="{{ this.media }}" class="image-attachment" />
+
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <img src="{{ this.media }}" class="image-modal" />
+      </div>
+    </div>
+  </div>
+
+  <!-- create the footer  -->
+  <div class="card-footer text-muted d-flex" style="margin-bottom: -2%">
+    <!-- show the likes -->
+    <div *ngIf="this.id !== 0" class="invertible">
+      <div style="color: black">
+        <a (click)="updateLikes()" style="cursor: pointer">
+          <span class="material-symbols-rounded interact-controls">
+            thumb_up
+          </span>
+          <span
+            *ngIf="!this.likeLoading"
+            class="badge rounded-pill text-bg-dark badge"
+            >{{ this.likes }}</span
+          >
+          <div
+            *ngIf="this.likeLoading"
+            class="text-center spinner-border spinner-border-sm"
+            role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="this.id === 0" class="invertible">
+      <div style="color: black">
+        <a style="cursor: pointer">
+          <span class="material-symbols-rounded interact-controls">
+            thumb_up
+          </span>
+          <span
+            *ngIf="!this.likeLoading"
+            class="badge rounded-pill text-bg-dark badge"
+            >{{ this.likes }}</span
+          >
+        </a>
+      </div>
+    </div>
+
+    <!-- show the comments button if this isn't a comment
+    (you cannot comment on comments) -->
+    <div *ngIf="!this.isComment" class="invertible">
+      <a style="color: black" *ngIf="this.id !== 0" href="/post/{{ this.id }}"
+        ><span class="material-symbols-rounded interact-controls">
+          comment
+        </span>
+        <span class="badge rounded-pill text-bg-dark badge">{{
+          this.comments
+        }}</span>
+      </a>
+      <!-- if we are on the post creation page, don't include a
+      link to the comments list -->
+      <div style="color: black" *ngIf="this.id === 0">
+        <span class="material-symbols-rounded interact-controls">
+          comment
+        </span>
+        <span class="badge rounded-pill text-bg-dark badge">{{
+          this.comments
+        }}</span>
+      </div>
+    </div>
+    <br /><br /><br />
+  </div>
+</div>
+<!-- add a space for good measure -->
+<br />

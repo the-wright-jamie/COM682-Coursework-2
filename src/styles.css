@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #f5f5f5;
+    color: #222;
+  }
+
+  .navbar {
+    backdrop-filter: blur(8px);
+  }
+
+  a {
+    color: #222;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #222;
+    text-decoration: underline;
+  }
+
+  .warning {
+    color: goldenrod;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #222;
+    color: #fff;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .navbar {
+    backdrop-filter: blur(30px);
+    background-color: rgba(38, 38, 38, 0.8);
+  }
+
+  .card {
+    background-color: rgb(38, 38, 38);
+  }
+
+  .invertible {
+    filter: invert(1);
+  }
+
+  .warning {
+    color: gold;
+  }
+}
+
+.small-avatar {
+  max-width: 2em;
+  border-radius: 50%;
+  margin-right: 2%;
+
+  width: 2em;
+  height: 2em;
+  object-fit: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.large-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.interact-controls {
+  margin-right: 2%;
+}
+
+.badge {
+  margin-left: 0.75%;
+  margin-right: 0.25%;
+}
+
+.image-attachment {
+  max-height: 240px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.image-modal {
+  width: 100%;
+  object-fit: cover;
+}
+
+.container-fluid {
+  max-width: 760px;
+}
+
+.light {
+  opacity: 60%;
+}
+
+.error {
+  color: red;
+}

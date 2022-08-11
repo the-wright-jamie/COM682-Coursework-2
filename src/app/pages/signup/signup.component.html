@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <h4>Create Account</h4>
+  <br />
+  <form>
+    <p>Username</p>
+    <input
+      #username_input
+      (keyup)="this.usernameChanged(username_input.value)"
+      type="text"
+      id="username_input"
+      class="form-control invertible" />
+    <p class="light">({{ this.username.length }}/24)</p>
+    <p>E-mail</p>
+    <input
+      #email_input
+      (keyup)="this.emailChanged(email_input.value)"
+      type="text"
+      id="email_input"
+      class="form-control invertible" />
+    <p class="light">({{ this.email.length }}/255)</p>
+    <p>Password</p>
+    <input
+      #password_input
+      (keyup)="this.passwordChanged(password_input.value)"
+      type="password"
+      id="password_input"
+      class="form-control invertible" />
+    <br />
+    <p>Birthday</p>
+    <input
+      #birthday_input
+      (keyup)="this.birthdayChanged(birthday_input.value)"
+      class="invertible"
+      type="date"
+      id="birthday"
+      name="birthday"
+      value="{{ this.eighteenYearsAgo }}"
+      min="{{ this.maxBirthday }}"
+      max="{{ this.minBirthday }}" />
+    <!--<input
+      #birthday_input
+      (keyup)="this.birthdayChanged(birthday_input.value)"
+      type="text"
+      id="birthday_input"
+      placeholder="dd/mm/yyyy"
+      class="form-control invertible" />-->
+    <br /><br />
+
+    <p class="light" *ngIf="!this.ready">
+      You must include fill in all fields to continue
+    </p>
+    <p class="light" *ngIf="this.dataOverload">
+      A field contains too much information
+    </p>
+    <div
+      *ngIf="this.isCreating"
+      class="spinner-border spinner-border-sm"
+      role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <button
+      *ngIf="this.ready && !this.dataOverload && !this.isCreating"
+      type="button"
+      class="btn btn-primary"
+      (click)="this.create()">
+      Sign Up!
+    </button>
+  </form>
+  <br />
+</div>

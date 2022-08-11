@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid" *ngIf="!this.isLoading && !this.notFound">
+  <h4>Edit {{ !this.isComment ? 'Post' : 'Comment' }}</h4>
+  <br />
+  <form>
+    <div *ngIf="!this.isComment">
+      <h5>Title</h5>
+      <input
+        #title
+        (keyup)="this.titleChanged(title.value)"
+        value="{{ this.post.header }}"
+        type="text"
+        id="title"
+        class="form-control invertible" />
+      <p class="light">({{ this.post.header.length }}/128)</p>
+      <br />
+    </div>
+    <h5>Body</h5>
+    <textarea
+      #body_input
+      (keyup)="this.bodyChanged(body_input.value)"
+      value="{{ !this.isComment ? this.post.body : this.comment.body }}"
+      class="form-control invertible"
+      id="body"
+      rows="3"></textarea>
+    <p class="light">
+      ({{
+        !this.isComment ? this.post.body.length : this.comment.body.length
+      }}/2000)
+    </p>
+    <br />
+    <div *ngIf="!this.isComment">
+      <h5>Media Link</h5>
+      <input
+        #media_input
+        (keyup)="this.mediaChanged(media_input.value)"
+        value="{{ this.post.media }}"
+        type="text"
+        id="title"
+        class="form-control invertible" />
+      <br />
+    </div>
+    <p class="light" *ngIf="!this.readyToPost">
+      You must include a {{ !this.isComment ? 'title and a' : '' }} body in
+      order to be able to {{ !this.isComment ? 'post' : 'comment' }}
+    </p>
+    <p class="light" *ngIf="this.dataOverload">
+      Your {{ !this.isComment ? 'title or' : '' }} body has too much information
+    </p>
+    <div
+      *ngIf="this.isPosting"
+      class="spinner-border spinner-border-sm"
+      role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <button
+      *ngIf="this.readyToPost && !this.dataOverload && !this.isPosting"
+      type="button"
+      class="btn btn-primary"
+      (click)="this.update()">
+      Edit!
+    </button>
+  </form>
+  <br />
+
+  <h5>How your {{ !this.isComment ? 'post' : 'comment' }} will look:</h5>
+  <app-user-post
+    *ngIf="!this.isComment"
+    [id]="0"
+    [poster]="this.post.poster"
+    [avatar]="this.post.avatar"
+    [badge]="this.post.badge"
+    [postType]="this.post.postType"
+    [postDate]="this.post.postDate"
+    [header]="this.post.header"
+    [body]="this.post.body"
+    [media]="this.post.media"
+    [likes]="this.post.likes"
+    [comments]="this.post.comments"></app-user-post>
+
+  <app-user-post
+    *ngIf="this.isComment"
+    [id]="0"
+    [poster]="this.comment.username"
+    [avatar]="this.comment.avatar"
+    [badge]="this.comment.badge"
+    [postType]="'comment'"
+    [postDate]="this.comment.postDate"
+    [header]=""
+    [body]="this.comment.body"
+    [media]=""
+    [likes]="this.comment.likes"
+    [comments]="0"></app-user-post>
+</div>
+
+<app-loading *ngIf="this.isLoading" [isLoading]="this.isLoading"></app-loading>
+<app-error-page *ngIf="this.notFound"></app-error-page>
