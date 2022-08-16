@@ -1,7 +1,6 @@
-import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import moment, { Moment } from 'moment';
+import moment from 'moment';
 import { ApiInterfaceService } from 'src/app/services/api-interface.service';
 
 @Component({

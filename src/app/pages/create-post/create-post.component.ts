@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiInterfaceService } from 'src/app/services/api-interface.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   templateUrl: './create-post.component.html'
 })
 export class CreatePostComponent implements OnInit {
+  fileToUpload: File | null = null;
+
   username = '';
   avatar = '';
   badge = '';
@@ -18,6 +20,8 @@ export class CreatePostComponent implements OnInit {
   media = '';
   likes = 0;
   comments = 0;
+
+  fileName = '';
 
   isPosting = false;
 
@@ -61,6 +65,25 @@ export class CreatePostComponent implements OnInit {
 
   mediaChanged(str: string): void {
     this.media = str;
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('thumbnail', file);
+
+      console.log(file);
+      console.log(formData);
+
+      //const upload$ = this.http.post('/api/thumbnail-upload', formData);
+
+      //upload$.subscribe();
+    }
   }
 
   get readyToPost(): boolean {
