@@ -1,12 +1,11 @@
 # Things to do
 
-- [ ] Add message on signup failure
-- [ ] unique email and username validation
+- [ ] Add media during post create (Azure Blobs)
 - [x] Edit Account
   - [ ] Upload avatar
+- [ ] Add message on signup failure
+- [ ] unique email and username validation
 - [ ] Filled in like button when liked
-- [ ] Add media during post create (Azure Blobs)
-- [ ] CI pipeline to deploy webapp
 - [ ] Fix TODO comments
 
 # Stretch goals
@@ -58,3 +57,4 @@
   - [x] error page
 - [x] Sign up
   - [x] Better date system
+- [x] CD pipeline to deploy webapp
