@@ -68,19 +68,37 @@
       type="button"
       class="btn btn-primary"
       data-bs-toggle="modal"
-      data-bs-target="#imageModal">
-      View full attachment
+      attr.data-bs-target="#{{ this.mediaId }}">
+      View {{ this.isImage ? 'image' : 'video' }}
     </button>
   </div>
 
   <!-- if the post has attached media then show this -->
-  <img *ngIf="this.hasMedia" src="{{ this.media }}" class="image-attachment" />
+  <div *ngIf="this.hasMedia && !this.isComment">
+    <img *ngIf="this.isImage" src="{{ this.media }}" class="image-attachment" />
+    <video *ngIf="!this.isImage" class="image-attachment">
+      <source src="{{ this.media }}" />
+    </video>
+  </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="{{ this.mediaId }}"
+    tabindex="-1"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
-        <img src="{{ this.media }}" class="image-modal" />
+        <img
+          class="image-modal"
+          *ngIf="this.hasMedia && this.isImage"
+          src="{{ this.media }}" />
+        <video
+          controls
+          class="image-modal"
+          *ngIf="this.hasMedia && !this.isImage">
+          <source src="{{ this.media }}" />
+        </video>
       </div>
     </div>
   </div>

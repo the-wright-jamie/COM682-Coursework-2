@@ -77,6 +77,7 @@
   object-fit: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  filter: drop-shadow(0 0 0.5rem black);
 }
 
 .interact-controls {
@@ -95,8 +96,13 @@
 }
 
 .image-modal {
-  width: 100%;
-  object-fit: cover;
+  height: 80vh;
+  object-fit: contain;
+  filter: drop-shadow(0 0 0.5rem black);
+}
+
+.modal {
+  --bs-modal-bg: #00000000;
 }
 
 .container-fluid {
