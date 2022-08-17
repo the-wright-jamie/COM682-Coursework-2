@@ -30,17 +30,6 @@
       }}/2000)
     </p>
     <br />
-    <div *ngIf="!this.isComment">
-      <h5>Media Link</h5>
-      <input
-        #media_input
-        (keyup)="this.mediaChanged(media_input.value)"
-        value="{{ this.post.media }}"
-        type="text"
-        id="title"
-        class="form-control invertible" />
-      <br />
-    </div>
     <p class="light" *ngIf="!this.readyToPost">
       You must include a {{ !this.isComment ? 'title and a' : '' }} body in
       order to be able to {{ !this.isComment ? 'post' : 'comment' }}

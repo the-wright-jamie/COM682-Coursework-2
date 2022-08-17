@@ -69,9 +69,7 @@ export class UserPostComponent implements OnInit {
                 : Number(this.likes) - 1;
             this.likeLoading = false;
           },
-          error: (e) => {
-            console.log(e);
-          }
+          error: (e) => {}
         });
     }
   }

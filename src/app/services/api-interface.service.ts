@@ -51,7 +51,7 @@ export class ApiInterfaceService {
     username: string,
     email: string,
     password: string,
-    birthday: number,
+    avatar: string,
     userId: number,
     token: string
   ) {
@@ -62,7 +62,7 @@ export class ApiInterfaceService {
         username: username,
         email: email,
         password: password,
-        birthday: birthday,
+        avatar: avatar,
         userId: userId,
         token: token
       }
@@ -153,6 +153,13 @@ export class ApiInterfaceService {
       'https://prod-01.centralus.logic.azure.com/workflows/da85adce2c474fc5a7ac849f019cb26f/triggers/manual/paths/invoke/api/v1/post/' +
         postId +
         '?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=SdgavJBTvS9Xm7DJzI6lgs2m6pXeVX2KxYt1xx7CMog'
+    );
+  }
+
+  uploadMedia(formData: FormData) {
+    return this.httpClient.post(
+      'https://prod-16.centralus.logic.azure.com:443/workflows/577a7e163c494d8da7869bb1153dcf1a/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=w7HQoQbvleAsVFnDDAbzciNVtqfb_SxEp6jGw6t_pgI',
+      formData
     );
   }
 

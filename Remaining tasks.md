@@ -1,8 +1,8 @@
 # Things to do
 
+- [ ] emojis are inverted - fix!
+- [ ] get rid of email
 - [ ] Add media during post create (Azure Blobs)
-- [x] Edit Account
-  - [ ] Upload avatar
 - [ ] Add message on signup failure
 - [ ] unique email and username validation
 - [ ] Filled in like button when liked
@@ -58,3 +58,6 @@
 - [x] Sign up
   - [x] Better date system
 - [x] CD pipeline to deploy webapp
+- [x] fix birthday not being picked up when not interacted with
+- [x] Edit Account
+  - [x] Upload avatar

@@ -14,6 +14,28 @@
 
   <br />
 
+  <p>Upload New Avatar</p>
+  <div *ngIf="!this.mediaUploading">
+    <input
+      type="file"
+      class="file-input"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      #fileUpload />
+  </div>
+  <div
+    *ngIf="this.mediaUploading"
+    class="spinner-border spinner-border-sm"
+    role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="light">
+    You will need to log out and log in again to make sure the image updates for
+    you
+  </p>
+
+  <br />
+
   <h4>Edit Account</h4>
   <br />
   <form>
@@ -46,38 +68,33 @@
       We don't store your password in our database so we cannot auto fill it
     </p>
     <br />
-    <p>Birthday</p>
-    <input
-      #birthday_input
-      (input)="this.birthdayChanged(birthday_input.value)"
-      class="invertible"
-      type="date"
-      id="birthday"
-      name="birthday"
-      value="{{ this.birthdayValue }}"
-      min="{{ this.maxBirthday }}"
-      max="{{ this.minBirthday }}" />
-    <br /><br />
-
     <p class="light" *ngIf="!this.ready">
       You must include fill in all fields to continue
     </p>
     <p class="light" *ngIf="this.dataOverload">
       A field contains too much information
     </p>
+    <p class="light" *ngIf="this.mediaUploading">
+      Please wait while your new avatar is uploading
+    </p>
+    <button
+      *ngIf="
+        this.ready &&
+        !this.dataOverload &&
+        !this.isCreating &&
+        !this.mediaUploading
+      "
+      type="button"
+      class="btn btn-primary"
+      (click)="this.edit()">
+      Edit!
+    </button>
     <div
       *ngIf="this.isCreating"
       class="spinner-border spinner-border-sm"
       role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
-    <button
-      *ngIf="this.ready && !this.dataOverload && !this.isCreating"
-      type="button"
-      class="btn btn-primary"
-      (click)="this.edit()">
-      Edit!
-    </button>
   </form>
 
   <div *ngIf="!this.isFound && !this.isLoading">
