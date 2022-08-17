@@ -21,6 +21,8 @@ export class UserPostComponent implements OnInit {
 
   likeLoading = false;
 
+  mediaId = '';
+
   // add type
   @Input('id') id!: number;
   @Input('underPostId') underPostId: number | undefined;
@@ -46,6 +48,11 @@ export class UserPostComponent implements OnInit {
       ? this.postDate
       : (this.postDate = this.postDate * 1000);
     this.formattedDate = this.timeDifference.calculate(this.postDate);
+
+    if (this.media !== undefined) {
+      this.mediaId = this.media!.substring(this.media!.lastIndexOf('/') + 1);
+      this.mediaId = 'a' + this.mediaId!.substring(0, 8);
+    }
 
     this.badgeName = this.badge?.split(':')[0];
     this.badgeColour = this.badge?.split(':')[1];
@@ -76,6 +83,12 @@ export class UserPostComponent implements OnInit {
 
   get hasMedia(): boolean {
     return this.media === '' || this.media === null ? false : true;
+  }
+
+  get isImage(): boolean {
+    return this.media === ''
+      ? false
+      : /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(this.media!);
   }
 
   get isComment(): boolean {

@@ -51,19 +51,6 @@
             Video
           </button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="pills-gif-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#pills-gif"
-            type="button"
-            role="tab"
-            aria-controls="pills-gif"
-            aria-selected="false">
-            GIF
-          </button>
-        </li>
       </ul>
       <div class="tab-content" id="pills-tabContent">
         <div
@@ -91,20 +78,6 @@
             accept="video/*"
             (change)="onFileSelected($event)"
             #fileUpload />
-        </div>
-        <div
-          class="tab-pane fade"
-          id="pills-gif"
-          role="tabpanel"
-          aria-labelledby="pills-gif-tab"
-          tabindex="0">
-          <h5>Insert GIF link:</h5>
-          <input
-            #media_input
-            (keyup)="this.mediaChanged(media_input.value)"
-            type="text"
-            id="media"
-            class="form-control invertible" />
         </div>
       </div>
     </div>
