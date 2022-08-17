@@ -24,6 +24,7 @@ export class CreatePostComponent implements OnInit {
   fileName = '';
 
   isPosting = false;
+  mediaUploading = false;
 
   constructor(
     private cookieService: CookieService,
@@ -68,21 +69,25 @@ export class CreatePostComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
+    this.mediaUploading = true;
     const file: File = event.target.files[0];
+    var re = /(?:\.([^.]+))?$/;
 
     if (file) {
       this.fileName = file.name;
 
       const formData = new FormData();
 
-      formData.append('thumbnail', file);
+      formData.append('file', file);
+      formData.append('fileType', re.exec(this.fileName)![1]);
 
-      console.log(file);
-      console.log(formData);
+      this.apiService.uploadMedia(formData).subscribe((response: any) => {
+        this.media =
+          'https://ulsterbook.blob.core.windows.net/user-content/' +
+          response.message;
 
-      //const upload$ = this.http.post('/api/thumbnail-upload', formData);
-
-      //upload$.subscribe();
+        this.mediaUploading = false;
+      });
     }
   }
 

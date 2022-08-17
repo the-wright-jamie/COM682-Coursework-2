@@ -1,5 +1,8 @@
 # Things to do
 
+- [ ] fix birthday not being picked up when not interacted with
+- [ ] emojis are inverted - fix!
+- [ ] get rid of email
 - [ ] Add media during post create (Azure Blobs)
 - [x] Edit Account
   - [ ] Upload avatar

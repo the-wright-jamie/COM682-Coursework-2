@@ -36,16 +36,9 @@
       type="date"
       id="birthday"
       name="birthday"
-      value="{{ this.eighteenYearsAgo }}"
+      value=""
       min="{{ this.maxBirthday }}"
       max="{{ this.minBirthday }}" />
-    <!--<input
-      #birthday_input
-      (keyup)="this.birthdayChanged(birthday_input.value)"
-      type="text"
-      id="birthday_input"
-      placeholder="dd/mm/yyyy"
-      class="form-control invertible" />-->
     <br /><br />
 
     <p class="light" *ngIf="!this.ready">
