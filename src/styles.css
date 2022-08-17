@@ -96,13 +96,13 @@
 }
 
 .image-modal {
-  height: 80vh;
-  object-fit: contain;
+  max-height: 80vh;
+  object-fit: scale-down;
   filter: drop-shadow(0 0 0.5rem black);
 }
 
 .modal {
-  --bs-modal-bg: #00000000;
+  --bs-modal-bg: #00000088;
 }
 
 .container-fluid {
