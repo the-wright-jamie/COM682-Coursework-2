@@ -12,7 +12,6 @@ import { TimeDifferenceService } from '../../services/time-difference.service';
 @Component({
   selector: 'app-user-post',
   templateUrl: './user-post.component.html',
-  styles: ['.modal-backdrop { opacity:0 !important; }'],
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class UserPostComponent implements OnInit {
@@ -70,9 +69,7 @@ export class UserPostComponent implements OnInit {
                 : Number(this.likes) - 1;
             this.likeLoading = false;
           },
-          error: (e) => {
-            console.log(e);
-          }
+          error: (e) => {}
         });
     }
   }

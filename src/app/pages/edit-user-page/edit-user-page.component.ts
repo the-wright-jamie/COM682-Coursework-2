@@ -22,6 +22,7 @@ export class EditUserPageComponent implements OnInit {
   isFound = false;
   errorFinding = false;
   isCreating = false;
+  mediaUploading = false;
 
   badge = '';
   badgeColour = '';
@@ -82,8 +83,6 @@ export class EditUserPageComponent implements OnInit {
             .unix(this.user.birthday)
             .format('YYYY-MM-DD');
 
-          console.log(this.birthdayValue);
-
           this.isFound = true;
         } catch (e) {
           this.errorFinding = true;
@@ -96,25 +95,17 @@ export class EditUserPageComponent implements OnInit {
   edit() {
     this.isCreating = true;
 
-    this.birthday = document.getElementById('birthday')?.nodeValue!;
-    console.log(this.birthday);
-
-    let [year, month, day] = this.birthday?.split('-');
-    let date = new Date(+year, +month - 1, +day);
-
-    console.log(date);
-
     this.apiService
       .editUser(
         this.user.username,
         this.user.emailAddress,
         this.password,
-        Math.round(date.valueOf() / 1000),
+        this.user.avatar,
         Number(this.cookieService.get('userId')),
         this.cookieService.get('token')
       )
       .subscribe(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/u/' + this.user.username]);
       });
   }
 
@@ -136,6 +127,29 @@ export class EditUserPageComponent implements OnInit {
 
   birthdayChanged(str: string): void {
     this.birthday = str;
+  }
+
+  onFileSelected(event: any) {
+    this.mediaUploading = true;
+    const file: File = event.target.files[0];
+    var re = /(?:\.([^.]+))?$/;
+
+    if (file) {
+      let fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('file', file);
+      formData.append('fileType', re.exec(fileName)![1]);
+
+      this.apiService.uploadMedia(formData).subscribe((response: any) => {
+        this.user.avatar =
+          'https://ulsterbook.blob.core.windows.net/user-content/' +
+          response.message;
+
+        this.mediaUploading = false;
+      });
+    }
   }
 
   get ready(): boolean {

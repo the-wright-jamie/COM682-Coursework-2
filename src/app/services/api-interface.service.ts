@@ -51,7 +51,7 @@ export class ApiInterfaceService {
     username: string,
     email: string,
     password: string,
-    birthday: number,
+    avatar: string,
     userId: number,
     token: string
   ) {
@@ -62,7 +62,7 @@ export class ApiInterfaceService {
         username: username,
         email: email,
         password: password,
-        birthday: birthday,
+        avatar: avatar,
         userId: userId,
         token: token
       }

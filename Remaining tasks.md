@@ -1,6 +1,5 @@
 # Things to do
 
-- [ ] fix birthday not being picked up when not interacted with
 - [ ] emojis are inverted - fix!
 - [ ] get rid of email
 - [ ] Add media during post create (Azure Blobs)
@@ -61,3 +60,4 @@
 - [x] Sign up
   - [x] Better date system
 - [x] CD pipeline to deploy webapp
+- [x] fix birthday not being picked up when not interacted with

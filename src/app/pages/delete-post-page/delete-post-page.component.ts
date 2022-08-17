@@ -139,7 +139,6 @@ export class DeletePostPageComponent implements OnInit {
             this.postLoaded = true;
             this.error =
               'Unable to delete, you may not be authorised to do so.';
-            console.log(e);
           }
         });
     } else {
@@ -157,7 +156,6 @@ export class DeletePostPageComponent implements OnInit {
             this.postLoaded = true;
             this.error =
               'Unable to delete, you may not be authorised to do so.';
-            console.log(e);
           }
         });
     }
