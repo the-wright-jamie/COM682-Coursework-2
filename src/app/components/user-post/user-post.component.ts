@@ -104,6 +104,9 @@ export class UserPostComponent implements OnInit {
   }
 
   get activeUserHasDeletePowers() {
-    return this.cookieService.get('role') === 'admin' ? true : false;
+    return this.cookieService.get('role') === 'admin' ||
+      this.cookieService.get('role') === 'moderator'
+      ? true
+      : false;
   }
 }
