@@ -1,4 +1,6 @@
-# Com682Coursework2
+# UlsterBook
+
+This project was created for my BSc Computing Systems course at Ulster University, year 3. It currently doesn't work due to the Azure API being offline.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
